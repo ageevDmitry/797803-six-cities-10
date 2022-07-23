@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import PlaceCard from '../place-card/place-card';
-import {PLACE_CARDS_COUNT, START_PLACE_CARD_ID, PlaceCardType} from '../../const';
+import {PLACE_CARDS_COUNT, START_PLACE_CARD_ID, PLACE_CARD_CLASS_NAME, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 
 type PlaceCardListProps = {
@@ -8,22 +8,22 @@ type PlaceCardListProps = {
     offers: Offer[];
   }
 
-const getClassName = (typeComponent: PlaceCardType) => {
-  switch (typeComponent) {
-    case PlaceCardType.Cities:
-      return 'cities__places-list places__list tabs__content';
-    case PlaceCardType.Favorites:
-      return 'favorites__places';
-    case PlaceCardType.NearPlaces:
-      return 'near-places__list places__list';
-  }
-};
+// const getClassName = (typeComponent: PlaceCardType) => {
+//   switch (typeComponent) {
+//     case PlaceCardType.Cities:
+//       return 'cities__places-list places__list tabs__content';
+//     case PlaceCardType.Favorites:
+//       return 'favorites__places';
+//     case PlaceCardType.NearPlaces:
+//       return 'near-places__list places__list';
+//   }
+// };
 
 function PlaceCardList ({typeComponent, offers}:PlaceCardListProps): JSX.Element {
   const [, setIdPlaceCard] = useState(START_PLACE_CARD_ID);
 
   return (
-    <div className={getClassName(typeComponent)}>
+    <div className={PLACE_CARD_CLASS_NAME[typeComponent]}>
       {
         Array.from(Array(PLACE_CARDS_COUNT)
           .keys())

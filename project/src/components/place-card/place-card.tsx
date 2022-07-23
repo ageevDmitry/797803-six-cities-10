@@ -1,23 +1,23 @@
-import {RatingWidthFactor, PlaceCardType} from '../../const';
+import {RatingWidthFactor} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 
 type PlaceCardProps = {
-  typeComponent: PlaceCardType;
+  typeComponent: string;
   offer: Offer;
   onMouseEnterPlaceCard?: (id: number) => void;
 }
 
-const getClassName = (typeComponent: PlaceCardType) => {
-  switch (typeComponent) {
-    case PlaceCardType.Cities:
-      return 'cities';
-    case PlaceCardType.Favorites:
-      return 'favorites';
-    case PlaceCardType.NearPlaces:
-      return 'near-places';
-  }
-};
+// const getClassName = (typeComponent: PlaceCardType) => {
+//   switch (typeComponent) {
+//     case PlaceCardType.Cities:
+//       return 'cities';
+//     case PlaceCardType.Favorites:
+//       return 'favorites';
+//     case PlaceCardType.NearPlaces:
+//       return 'near-places';
+//   }
+// };
 
 function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps): JSX.Element {
 
@@ -25,11 +25,11 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
   const placeCardId = `/offer/:${id}`;
 
   return (
-    <article className={`${getClassName(typeComponent)}__card place-card`}
+    <article className={`${typeComponent}__card place-card`}
       onMouseEnter = {onMouseEnterPlaceCard ? () => onMouseEnterPlaceCard(id) : undefined}
     >
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
-      <div className={`${getClassName(typeComponent)}__image-wrapper place-card__image-wrapper`}>
+      <div className={`${typeComponent}__image-wrapper place-card__image-wrapper`}>
         <a href="/">
           <img
             className="place-card__image"

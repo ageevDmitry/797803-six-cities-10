@@ -17,6 +17,10 @@ export enum PlaceCardType {
   NearPlaces = 'near-places',
 }
 
+export const PLACE_CARD_CLASS_NAME = {
+  [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
+};
+
 export enum RatingWidthFactor {
   Film = 14.8,
   Review = 19.5
