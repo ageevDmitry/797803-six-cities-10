@@ -148,7 +148,7 @@ function Property ({offers, reviews}: PropertyProps): JSX.Element {
               </div>
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">
-              Reviews · <span className="reviews__amount">1</span>
+              Reviews · <span className="reviews__amount">{reviews.length}</span>
                 </h2>
                 <ReviewList reviews = {reviews}/>
                 <ReviewForm/>
