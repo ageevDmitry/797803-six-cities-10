@@ -1,36 +1,36 @@
 import {useState} from 'react';
 import PlaceCard from '../place-card/place-card';
-import {PLACE_CARDS_COUNT, START_PLACE_CARD_ID, PlaceCardClass} from '../../const';
+import {PLACE_CARDS_COUNT, START_PLACE_CARD_ID, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 
 type PlaceCardListProps = {
-    classComponent: PlaceCardClass;
+    typeComponent: PlaceCardType;
     offers: Offer[];
   }
 
-const getComponentClassName = (type: PlaceCardClass) => {
-  switch (type) {
-    case PlaceCardClass.Cities:
+const getComponentClassName = (typeComponent: PlaceCardType) => {
+  switch (typeComponent) {
+    case PlaceCardType.Cities:
       return 'cities__places-list places__list tabs__content';
-    case PlaceCardClass.Favorites:
+    case PlaceCardType.Favorites:
       return 'favorites__places';
-    case PlaceCardClass.NearPlaces:
+    case PlaceCardType.NearPlaces:
       return 'near-places__list places__list';
   }
 };
 
-function PlaceCardList ({offers, classComponent}:PlaceCardListProps): JSX.Element {
+function PlaceCardList ({typeComponent, offers}:PlaceCardListProps): JSX.Element {
   const [, setIdPlaceCard] = useState(START_PLACE_CARD_ID);
 
   return (
-    <div className={getComponentClassName(classComponent)}>
+    <div className={getComponentClassName(typeComponent)}>
       {
         Array.from(Array(PLACE_CARDS_COUNT)
           .keys())
           .map((item) => (
             <PlaceCard
               key = {offers[item].id}
-              classComponent = {classComponent}
+              typeComponent = {typeComponent}
               offer = {offers[item]}
               onMouseEnterPlaceCard = {setIdPlaceCard}
             />) )

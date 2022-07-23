@@ -3,7 +3,7 @@ import ReviewForm from '../../components/review-form/review-form';
 import ReviewList from '../../components/review-list/review-list';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
-import {MAP_CITY, PlaceCardClass} from '../../const';
+import {MAP_CITY, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 import {Review} from '../../types/review';
 
@@ -167,7 +167,7 @@ function Property ({offers, reviews}: PropertyProps): JSX.Element {
             <div className="near-places__list places__list">
               <PlaceCardList
                 offers = {offers}
-                classComponent = {PlaceCardClass.NearPlaces}
+                typeComponent = {PlaceCardType.NearPlaces}
               />
             </div>
           </section>

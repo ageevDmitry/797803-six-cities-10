@@ -1,7 +1,7 @@
 import PlaceCardList from '../place-card-list/place-card-list';
 import Map from '../map/map';
 import {Offer} from '../../types/offer';
-import {MAP_CITY, PlaceCardClass} from '../../const';
+import {MAP_CITY, PlaceCardType} from '../../const';
 
 type MainPlacesProps = {
     offers: Offer[];
@@ -43,7 +43,7 @@ function MainPlaces ({offers, offersCount}: MainPlacesProps): JSX.Element {
         </form>
         <PlaceCardList
           offers = {offers}
-          classComponent = {PlaceCardClass.Cities}
+          typeComponent = {PlaceCardType.Cities}
         />
       </section>
       <div className="cities__right-section">

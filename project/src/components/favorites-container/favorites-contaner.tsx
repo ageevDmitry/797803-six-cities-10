@@ -1,6 +1,6 @@
 import PlaceCardList from '../place-card-list/place-card-list';
 import {Offer} from '../../types/offer';
-import {CITIES, PlaceCardClass} from '../../const';
+import {CITIES, PlaceCardType} from '../../const';
 
 type FavoritesContainerProps = {
   offers: Offer[];
@@ -23,7 +23,7 @@ function FavoritesContainer ({offers}: FavoritesContainerProps): JSX.Element {
             </div>
             <PlaceCardList
               offers = {offers}
-              classComponent = {PlaceCardClass.Favorites}
+              typeComponent = {PlaceCardType.Favorites}
             />
           </li>
         ))}
