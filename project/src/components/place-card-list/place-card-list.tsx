@@ -8,7 +8,7 @@ type PlaceCardListProps = {
     offers: Offer[];
   }
 
-const getComponentClassName = (typeComponent: PlaceCardType) => {
+const getClassName = (typeComponent: PlaceCardType) => {
   switch (typeComponent) {
     case PlaceCardType.Cities:
       return 'cities__places-list places__list tabs__content';
@@ -23,7 +23,7 @@ function PlaceCardList ({typeComponent, offers}:PlaceCardListProps): JSX.Element
   const [, setIdPlaceCard] = useState(START_PLACE_CARD_ID);
 
   return (
-    <div className={getComponentClassName(typeComponent)}>
+    <div className={getClassName(typeComponent)}>
       {
         Array.from(Array(PLACE_CARDS_COUNT)
           .keys())

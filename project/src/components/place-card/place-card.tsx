@@ -8,7 +8,7 @@ type PlaceCardProps = {
   onMouseEnterPlaceCard?: (id: number) => void;
 }
 
-const getComponentClassName = (typeComponent: PlaceCardType) => {
+const getClassName = (typeComponent: PlaceCardType) => {
   switch (typeComponent) {
     case PlaceCardType.Cities:
       return 'cities';
@@ -25,11 +25,11 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
   const placeCardId = `/offer/:${id}`;
 
   return (
-    <article className={`${getComponentClassName(typeComponent)}__card place-card`}
+    <article className={`${getClassName(typeComponent)}__card place-card`}
       onMouseEnter = {onMouseEnterPlaceCard ? () => onMouseEnterPlaceCard(id) : undefined}
     >
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
-      <div className={`${getComponentClassName(typeComponent)}__image-wrapper place-card__image-wrapper`}>
+      <div className={`${getClassName(typeComponent)}__image-wrapper place-card__image-wrapper`}>
         <a href="/">
           <img
             className="place-card__image"
