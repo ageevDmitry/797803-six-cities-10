@@ -8,17 +8,6 @@ type PlaceCardListProps = {
     offers: Offer[];
   }
 
-// const getClassName = (typeComponent: PlaceCardType) => {
-//   switch (typeComponent) {
-//     case PlaceCardType.Cities:
-//       return 'cities__places-list places__list tabs__content';
-//     case PlaceCardType.Favorites:
-//       return 'favorites__places';
-//     case PlaceCardType.NearPlaces:
-//       return 'near-places__list places__list';
-//   }
-// };
-
 function PlaceCardList ({typeComponent, offers}:PlaceCardListProps): JSX.Element {
   const [, setIdPlaceCard] = useState(START_PLACE_CARD_ID);
 

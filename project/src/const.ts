@@ -19,6 +19,8 @@ export enum PlaceCardType {
 
 export const PLACE_CARD_CLASS_NAME = {
   [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
+  [PlaceCardType.Favorites]: 'favorites__places',
+  [PlaceCardType.NearPlaces]: 'near-places__list places__list',
 };
 
 export enum RatingWidthFactor {

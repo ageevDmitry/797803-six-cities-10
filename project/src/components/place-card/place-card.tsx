@@ -8,17 +8,6 @@ type PlaceCardProps = {
   onMouseEnterPlaceCard?: (id: number) => void;
 }
 
-// const getClassName = (typeComponent: PlaceCardType) => {
-//   switch (typeComponent) {
-//     case PlaceCardType.Cities:
-//       return 'cities';
-//     case PlaceCardType.Favorites:
-//       return 'favorites';
-//     case PlaceCardType.NearPlaces:
-//       return 'near-places';
-//   }
-// };
-
 function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps): JSX.Element {
 
   const {id, isPremium, previewImage, price, rating, title, type} = offer;
