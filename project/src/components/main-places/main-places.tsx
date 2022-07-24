@@ -1,7 +1,7 @@
-import CitiesCardList from '../cities-card-list/cities-card-list';
+import PlaceCardList from '../place-card-list/place-card-list';
 import Map from '../map/map';
 import {Offer} from '../../types/offer';
-import {MAP_CITY} from '../../const';
+import {MAP_CITY, PlaceCardType} from '../../const';
 
 type MainPlacesProps = {
     offers: Offer[];
@@ -41,11 +41,17 @@ function MainPlaces ({offers, offersCount}: MainPlacesProps): JSX.Element {
             </li>
           </ul>
         </form>
-        <CitiesCardList offers = {offers}/>
+        <PlaceCardList
+          offers = {offers}
+          typeComponent = {PlaceCardType.Cities}
+        />
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <Map city = {MAP_CITY.Amsterdam} offers = {offers}/>
+          <Map
+            city = {MAP_CITY.Amsterdam}
+            offers = {offers}
+          />
         </section>
       </div>
     </div>

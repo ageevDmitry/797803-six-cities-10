@@ -11,9 +11,21 @@ export enum AuthorizationStatus {
     Unknown = 'UNKNOWN',
   }
 
-export enum PlaceCardClass {
+export enum PlaceCardType {
   Cities = 'cities',
   Favorites = 'favorites',
+  NearPlaces = 'near-places',
+}
+
+export const PLACE_CARD_CLASS_NAME = {
+  [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
+  [PlaceCardType.Favorites]: 'favorites__places',
+  [PlaceCardType.NearPlaces]: 'near-places__list places__list',
+};
+
+export enum RatingWidthFactor {
+  Film = 14.8,
+  Review = 19.5
 }
 
 export const CITIES = [
@@ -65,8 +77,6 @@ export const URL_MARKER_DEFAULT =
 export const OFFERS_COUNT = 312;
 
 export const PLACE_CARDS_COUNT = 4;
-
-export const RATING_WIDTH_FACTOR = 14.8;
 
 export const START_PLACE_CARD_ID = 0;
 
