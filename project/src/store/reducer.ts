@@ -1,19 +1,25 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {chooseCity} from '../store/action';
+import {changeCity, filterCity} from '../store/action';
 import {offers} from '../mocks/offers';
+import {getFilterOffers} from '../utils';
+import {DEFAULT_CITY} from '../const';
 
 const intialState = {
-  city: 'Paris',
-  offers: offers,
+  city: DEFAULT_CITY,
+  offers: getFilterOffers(offers, DEFAULT_CITY),
 };
 
 const reducer = createReducer(intialState, (builder) => {
   builder
-    .addCase(chooseCity, (state, action) => {
+    .addCase(changeCity, (state, action) => {
 
-      const choosedCity = action.payload.town;
+      const choosedCity = action.payload.city;
 
       state.city = choosedCity;
+    })
+    .addCase(filterCity, (state) => {
+
+      state.offers = getFilterOffers(offers, state.city);
     });
 });
 

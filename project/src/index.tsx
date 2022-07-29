@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
-import {OFFERS_COUNT} from './const';
 import {offers} from './mocks/offers';
 import {reviews} from './mocks/reviews';
 import {store} from './store/index';
@@ -16,7 +15,7 @@ root.render(
     <Provider store = {store}>
       <App
         offers = {offers}
-        offersCount = {OFFERS_COUNT} reviews = {reviews}
+        reviews = {reviews}
       />
     </Provider>
   </React.StrictMode>,

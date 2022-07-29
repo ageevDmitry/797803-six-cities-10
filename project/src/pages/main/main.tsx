@@ -5,10 +5,9 @@ import {Offer} from '../../types/offer';
 
 type MainProps = {
     offers: Offer[];
-    offersCount: number;
   }
 
-function Main ({offers, offersCount}: MainProps): JSX.Element {
+function Main ({offers}: MainProps): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
@@ -21,7 +20,7 @@ function Main ({offers, offersCount}: MainProps): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          <MainPlaces offers = {offers} offersCount = {offersCount}/>
+          <MainPlaces offers = {offers}/>
         </div>
       </main>
     </div>
