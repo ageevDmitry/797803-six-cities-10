@@ -13,8 +13,8 @@ function useMap(
     if (mapRef.current !== null && !isRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.location.latitude,
-          lng: city.location.longitude
+          lat: city.city.location.latitude,
+          lng: city.city.location.longitude
         },
         zoom: 10
       });

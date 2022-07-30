@@ -5,6 +5,8 @@ export type Location = {
   };
 
 export type City = {
+  'city': {
     'location': Location,
     'name': string,
+    }
   };

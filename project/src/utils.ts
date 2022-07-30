@@ -1,14 +1,17 @@
 import {Offer} from '../src/types/offer';
+import {City} from '../src/types/map';
 
-export function getFilterOffers (offers: Offer[], choosedCity: string) {
+export function getFilterItems (items: Offer[], choosedItem: string) {
+// export function getFilterItems (items: Offer[] | City[], choosedItem: string) {
 
-  function checkOffer(offer: Offer) {
-    if (offer.city.name === choosedCity) {
+  // function checkItem(item: Offer | City) {
+  function checkItem(item: Offer | City) {
+    if (item.city.name === choosedItem) {
       return true;
     }
   }
 
-  const filteredOffers = offers.filter(checkOffer);
+  const filteredItems = items.filter(checkItem);
 
-  return filteredOffers;
+  return filteredItems;
 }

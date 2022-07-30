@@ -2,8 +2,9 @@ import Header from '../../components/header/header';
 import ReviewForm from '../../components/review-form/review-form';
 import ReviewList from '../../components/review-list/review-list';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
-import Map from '../../components/map/map';
-import {MAP_CITY, PlaceCardType} from '../../const';
+// import Map from '../../components/map/map';
+import {PlaceCardType} from '../../const';
+// import {MAP_CITY} from '../../mocks/map';
 import {Offer} from '../../types/offer';
 import {Review} from '../../types/review';
 
@@ -156,7 +157,7 @@ function Property ({offers, reviews}: PropertyProps): JSX.Element {
             </div>
           </div>
           <section className="property__map map">
-            <Map city = {MAP_CITY.Amsterdam} offers = {offers}/>
+            {/* <Map city = {MAP_CITY.Amsterdam} offers = {offers}/> */}
           </section>
         </section>
         <div className="container">

@@ -2,7 +2,8 @@ import {useAppSelector} from '../../hooks';
 import PlaceCardList from '../place-card-list/place-card-list';
 import Map from '../map/map';
 import {Offer} from '../../types/offer';
-import {MAP_CITY, PlaceCardType} from '../../const';
+import {PlaceCardType} from '../../const';
+import {MAP_CITIES} from '../../mocks/map';
 
 type MainPlacesProps = {
     offers: Offer[];
@@ -12,6 +13,7 @@ function MainPlaces ({offers}: MainPlacesProps): JSX.Element {
 
   const chooseCity = useAppSelector((state) => state.city);
   const currentOffers = useAppSelector((state) => state.offers);
+
 
   return (
     <div className="cities__places-container container">
@@ -52,8 +54,8 @@ function MainPlaces ({offers}: MainPlacesProps): JSX.Element {
       <div className="cities__right-section">
         <section className="cities__map map">
           <Map
-            city = {MAP_CITY.Amsterdam}
-            offers = {offers}
+            city = {MAP_CITIES[3]}
+            offers = {currentOffers}
           />
         </section>
       </div>
