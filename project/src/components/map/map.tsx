@@ -1,6 +1,6 @@
 import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
-import {City} from '../../types/map';
+import {City} from '../../types/city';
 import {Offer} from '../../types/offer';
 import {URL_MARKER_DEFAULT} from '../../const';
 import useMap from '../../hooks/useMap';
@@ -24,19 +24,33 @@ function Map(props: MapProps): JSX.Element {
   const map = useMap(mapRef, city);
 
   useEffect(() => {
+    const markers: Marker[] = [];
+
     if (map) {
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
-          lng: offer.location.longitude
+          lng: offer.location.longitude,
         });
+
+        markers.push(marker);
 
         marker
           .setIcon(defaultCustomIcon)
           .addTo(map);
       });
+
+      map.setView({
+        lat: city.lat,
+        lng: city.lng,
+      });
     }
-  }, [map, offers]);
+
+    return () => {
+      markers.forEach((marker) => {marker.remove();});
+    };
+
+  }, [map, offers, city]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

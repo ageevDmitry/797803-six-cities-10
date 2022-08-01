@@ -1,64 +1,40 @@
-import {City} from '../types/map';
+import {City} from '../types/city';
 
 export const MAP_CITIES: City[] = [
   {
-    city: {
-      location: {
-        latitude: 48.864716,
-        longitude: 2.349014,
-        zoom: 10,
-      },
-      name: 'Paris',
-    }
+    title: 'Paris',
+    lat: 48.864716,
+    lng: 2.349014,
+    zoom: 10,
   },
   {
-    city: {
-      location: {
-        latitude: 50.935173,
-        longitude: 6.953101,
-        zoom: 10,
-      },
-      name: 'Cologne',
-    }
+    title: 'Cologne',
+    lat: 50.935173,
+    lng: 6.953101,
+    zoom: 10,
   },
   {
-    city: {
-      location: {
-        latitude: 50.8505,
-        longitude: 4.3488,
-        zoom: 10,
-      },
-      name: 'Brussels',
-    }
+    title: 'Brussels',
+    lat: 50.8505,
+    lng: 4.3488,
+    zoom: 10,
   },
   {
-    city: {
-      location: {
-        latitude: 52.377956,
-        longitude: 4.897070,
-        zoom: 10,
-      },
-      name: 'Amst[erdam',
-    }
+    title: 'Amsterdam',
+    lat: 52.377956,
+    lng: 4.897070,
+    zoom: 10,
   },
   {
-    city: {
-      location: {
-        latitude: 53.551086,
-        longitude: 9.993682,
-        zoom: 10,
-      },
-      name: 'Hamburg',
-    }
+    title: 'Hamburg',
+    lat: 53.551086,
+    lng: 9.993682,
+    zoom: 10,
   },
   {
-    city: {
-      location: {
-        latitude: 51.233334,
-        longitude: 6.783333,
-        zoom: 10,
-      },
-      name: 'Dusseldorf',
-    }
+    title: 'Dusseldorf',
+    lat: 51.233334,
+    lng: 6.783333,
+    zoom: 10,
   },
 ];
