@@ -7,7 +7,7 @@ import useMap from '../../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  city: City;
+  mapCity: City;
   offers: Offer[];
 };
 
@@ -18,10 +18,10 @@ const defaultCustomIcon = new Icon({
 });
 
 function Map(props: MapProps): JSX.Element {
-  const {city, offers} = props;
+  const {mapCity, offers} = props;
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, mapCity);
 
   useEffect(() => {
     const markers: Marker[] = [];
@@ -41,8 +41,8 @@ function Map(props: MapProps): JSX.Element {
       });
 
       map.setView({
-        lat: city.lat,
-        lng: city.lng,
+        lat: mapCity.lat,
+        lng: mapCity.lng,
       });
     }
 
@@ -50,7 +50,7 @@ function Map(props: MapProps): JSX.Element {
       markers.forEach((marker) => {marker.remove();});
     };
 
-  }, [map, offers, city]);
+  }, [map, offers, mapCity]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

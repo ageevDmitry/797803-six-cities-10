@@ -7,16 +7,15 @@ import Map from '../../components/map/map';
 import {PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 import {Review} from '../../types/review';
+import {City} from '../../types/city';
 
 type PropertyProps = {
   offers: Offer[];
   reviews: Review[];
+  mapCity: City,
   }
 
-function Property ({offers, reviews}: PropertyProps): JSX.Element {
-
-  const filterOffers = useAppSelector((state) => state.offers);
-  const filterMapCity = useAppSelector((state) => state.mapCity[0]);
+function Property ({offers, reviews, mapCity}: PropertyProps): JSX.Element {
 
   return (
     <div className="page">
@@ -161,8 +160,8 @@ function Property ({offers, reviews}: PropertyProps): JSX.Element {
           </div>
           <section className="property__map map">
             <Map
-              city = {filterMapCity}
-              offers = {filterOffers}
+              mapCity = {mapCity}
+              offers = {offers}
             />
           </section>
         </section>

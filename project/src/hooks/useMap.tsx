@@ -4,7 +4,7 @@ import {City} from '../types/city';
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
-  city: City
+  mapCity: City
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRef = useRef<boolean>(false);
@@ -13,8 +13,8 @@ function useMap(
     if (mapRef.current !== null && !isRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.lat,
-          lng: city.lng,
+          lat: mapCity.lat,
+          lng: mapCity.lng,
         },
         zoom: 10
       });
@@ -36,7 +36,7 @@ function useMap(
     return () => {
       mapRef.current = null;
     };
-  }, [mapRef, city]);
+  }, [mapRef, mapCity]);
 
   return map;
 }

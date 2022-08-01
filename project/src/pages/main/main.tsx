@@ -1,9 +1,16 @@
 import Header from '../../components/header/header';
 import LocationList from '../../components/location-list/location-list';
 import MainPlaces from '../../components/main-places/main-places';
+import {Offer} from '../../types/offer';
+import {City} from '../../types/city';
 
+type MainProps = {
+  city: string,
+  offers: Offer[],
+  mapCity: City,
+}
 
-function Main (): JSX.Element {
+function Main ({city, offers, mapCity}: MainProps): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
@@ -16,7 +23,11 @@ function Main (): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          <MainPlaces/>
+          <MainPlaces
+            city = {city}
+            offers = {offers}
+            mapCity = {mapCity}
+          />
         </div>
       </main>
     </div>
