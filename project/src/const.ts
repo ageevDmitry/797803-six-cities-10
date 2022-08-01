@@ -65,4 +65,4 @@ export const URL_MARKER_DEFAULT =
 
 export const START_PLACE_CARD_ID = 0;
 
-export const DEFAULT_CITY = 'Cologne';
+export const DEFAULT_CITY = 'Paris';

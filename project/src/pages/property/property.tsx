@@ -1,10 +1,10 @@
+import {useAppSelector} from '../../hooks';
 import Header from '../../components/header/header';
 import ReviewForm from '../../components/review-form/review-form';
 import ReviewList from '../../components/review-list/review-list';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
-// import Map from '../../components/map/map';
+import Map from '../../components/map/map';
 import {PlaceCardType} from '../../const';
-// import {MAP_CITY} from '../../mocks/map';
 import {Offer} from '../../types/offer';
 import {Review} from '../../types/review';
 
@@ -14,6 +14,9 @@ type PropertyProps = {
   }
 
 function Property ({offers, reviews}: PropertyProps): JSX.Element {
+
+  const filterOffers = useAppSelector((state) => state.offers);
+  const filterMapCity = useAppSelector((state) => state.mapCity[0]);
 
   return (
     <div className="page">
@@ -157,7 +160,10 @@ function Property ({offers, reviews}: PropertyProps): JSX.Element {
             </div>
           </div>
           <section className="property__map map">
-            {/* <Map city = {MAP_CITY.Amsterdam} offers = {offers}/> */}
+            <Map
+              city = {filterMapCity}
+              offers = {filterOffers}
+            />
           </section>
         </section>
         <div className="container">
