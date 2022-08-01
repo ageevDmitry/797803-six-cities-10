@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, filterCity} from '../store/action';
-import {offers} from '../mocks/offers';
+import {changeCity, filterCity} from './action';
+import {OFFERS} from '../mocks/offers';
 import {MAP_CITIES} from '../mocks/map';
 import {reviews} from '../mocks/reviews';
 import {DEFAULT_CITY} from '../const';
@@ -8,7 +8,7 @@ import {getFilterOffers, getFilterCity} from './utils';
 
 const intialState = {
   city: DEFAULT_CITY,
-  offers: getFilterOffers(offers, DEFAULT_CITY),
+  offers: getFilterOffers(OFFERS, DEFAULT_CITY),
   reviews: reviews,
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_CITY),
 };
@@ -23,7 +23,7 @@ const reducer = createReducer(intialState, (builder) => {
     })
     .addCase(filterCity, (state) => {
 
-      state.offers = getFilterOffers(offers, state.city);
+      state.offers = getFilterOffers(OFFERS, state.city);
       state.mapCity = getFilterCity(MAP_CITIES, state.city);
     });
 });

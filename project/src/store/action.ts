@@ -1,5 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
 
-export const changeCity = createAction<{city: string}>('main/changeCity');
+export const changeCity = createAction<{city: string}>('city/change');
 
-export const filterCity = createAction('main/filterCity');
+export const filterCity = createAction('city/filter');
