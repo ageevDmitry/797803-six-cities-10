@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import PlaceCard from '../place-card/place-card';
-import {PLACE_CARDS_COUNT, START_PLACE_CARD_ID, PLACE_CARD_CLASS_NAME, PlaceCardType} from '../../const';
+import {START_PLACE_CARD_ID, PLACE_CARD_CLASS_NAME, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 
 type PlaceCardListProps = {
@@ -14,13 +14,12 @@ function PlaceCardList ({typeComponent, offers}:PlaceCardListProps): JSX.Element
   return (
     <div className={PLACE_CARD_CLASS_NAME[typeComponent]}>
       {
-        Array.from(Array(PLACE_CARDS_COUNT)
-          .keys())
-          .map((item) => (
+        offers
+          .map((offer) => (
             <PlaceCard
-              key = {offers[item].id}
+              key = {offer.id}
               typeComponent = {typeComponent}
-              offer = {offers[item]}
+              offer = {offer}
               onMouseEnterPlaceCard = {setIdPlaceCard}
             />) )
       }

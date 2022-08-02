@@ -1,20 +1,22 @@
 import PlaceCardList from '../place-card-list/place-card-list';
 import Map from '../map/map';
+import {PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
-import {MAP_CITY, PlaceCardType} from '../../const';
+import {City} from '../../types/city';
 
 type MainPlacesProps = {
-    offers: Offer[];
-    offersCount: number;
-  }
+  city: string,
+  offers: Offer[],
+  mapCity: City,
+}
 
-function MainPlaces ({offers, offersCount}: MainPlacesProps): JSX.Element {
+function MainPlaces ({city, offers, mapCity}: MainPlacesProps): JSX.Element {
 
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+        <b className="places__found">{offers.length} places to stay in {city}</b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by</span>
           <span className="places__sorting-type" tabIndex={0}>
@@ -49,7 +51,7 @@ function MainPlaces ({offers, offersCount}: MainPlacesProps): JSX.Element {
       <div className="cities__right-section">
         <section className="cities__map map">
           <Map
-            city = {MAP_CITY.Amsterdam}
+            mapCity = {mapCity}
             offers = {offers}
           />
         </section>

@@ -1,13 +1,13 @@
 import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
-import {City} from '../../types/map';
+import {City} from '../../types/city';
 import {Offer} from '../../types/offer';
 import {URL_MARKER_DEFAULT} from '../../const';
 import useMap from '../../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  city: City;
+  mapCity: City;
   offers: Offer[];
 };
 
@@ -18,25 +18,39 @@ const defaultCustomIcon = new Icon({
 });
 
 function Map(props: MapProps): JSX.Element {
-  const {city, offers} = props;
+  const {mapCity, offers} = props;
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, mapCity);
 
   useEffect(() => {
+    const markers: Marker[] = [];
+
     if (map) {
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
-          lng: offer.location.longitude
+          lng: offer.location.longitude,
         });
+
+        markers.push(marker);
 
         marker
           .setIcon(defaultCustomIcon)
           .addTo(map);
       });
+
+      map.setView({
+        lat: mapCity.lat,
+        lng: mapCity.lng,
+      });
     }
-  }, [map, offers]);
+
+    return () => {
+      markers.forEach((marker) => {marker.remove();});
+    };
+
+  }, [map, offers, mapCity]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

@@ -6,22 +6,22 @@ import Property from '../../pages/property/property';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../../pages/private-route/private-route';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import {Offer} from '../../types/offer';
-import {Review} from '../../types/review';
+import {useAppSelector} from '../../hooks';
 
-type AppProps = {
-  offers: Offer[];
-  offersCount: number;
-  reviews: Review[];
-}
+function App(): JSX.Element {
 
-function App({offers, offersCount, reviews}: AppProps): JSX.Element {
+  const selectedCity = useAppSelector((state) => state.city);
+  const filterOffers = useAppSelector((state) => state.offers);
+  const filterMapCity = useAppSelector((state) => state.mapCity[0]);
+  const reviews = useAppSelector((state) => state.reviews);
+
   return (
+
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<Main offers = {offers} offersCount = {offersCount} />}
+          element={<Main city = {selectedCity} offers = {filterOffers} mapCity = {filterMapCity}/>}
         />
         <Route
           path={AppRoute.Login}
@@ -33,13 +33,13 @@ function App({offers, offersCount, reviews}: AppProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <Favorites offers = {offers}/>
+              <Favorites offers = {filterOffers}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Property}
-          element={<Property offers = {offers} reviews = {reviews}/>}
+          element={<Property offers = {filterOffers} reviews = {reviews} mapCity = {filterMapCity}/>}
         />
         <Route
           path="*"

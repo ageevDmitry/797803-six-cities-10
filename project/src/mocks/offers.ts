@@ -1,12 +1,12 @@
 import {Offer} from '../types/offer';
 
-export const offers: Offer[] = [
+export const OFFERS: Offer[] = [
   {
     'bedrooms': 6,
     'city': {
       'location': {
-        'latitude': 52.3909553943508,
-        'longitude': 4.85309666406198,
+        'latitude': 52.377956,
+        'longitude': 4.897070,
         'zoom': 10,
       },
       'name': 'Amsterdam',
@@ -42,8 +42,8 @@ export const offers: Offer[] = [
     'isFavorite': true,
     'isPremium': true,
     'location': {
-      'latitude': 52.3909553943508,
-      'longitude': 4.85309666406198,
+      'latitude': 52.377956,
+      'longitude': 4.897070,
       'zoom': 8,
     },
     'maxAdults': 5,
@@ -58,8 +58,8 @@ export const offers: Offer[] = [
     'bedrooms': 5,
     'city': {
       'location': {
-        'latitude': 52.369553943508,
-        'longitude': 4.85309666406198,
+        'latitude': 50.935173,
+        'longitude': 6.953101,
         'zoom': 8,
       },
       'name': 'Cologne',
@@ -92,8 +92,8 @@ export const offers: Offer[] = [
     'isFavorite': false,
     'isPremium': false,
     'location': {
-      'latitude': 52.369553943508,
-      'longitude': 4.85309666406198,
+      'latitude': 50.935173,
+      'longitude': 6.953101,
       'zoom': 11,
     },
     'maxAdults': 3,
@@ -108,8 +108,8 @@ export const offers: Offer[] = [
     'bedrooms': 4,
     'city': {
       'location': {
-        'latitude': 52.3909553943508,
-        'longitude': 4.929309666406198,
+        'latitude': 50.8505,
+        'longitude': 4.3488,
         'zoom': 8,
       },
       'name': 'Brussels',
@@ -141,8 +141,8 @@ export const offers: Offer[] = [
     'isFavorite': true,
     'isPremium': false,
     'location': {
-      'latitude': 52.3909553943508,
-      'longitude': 4.929309666406198,
+      'latitude': 50.8505,
+      'longitude': 4.3488,
       'zoom': 8,
     },
     'maxAdults': 5,
@@ -157,8 +157,8 @@ export const offers: Offer[] = [
     'bedrooms': 3,
     'city': {
       'location': {
-        'latitude': 52.3809553943508,
-        'longitude': 4.939309666406198,
+        'latitude': 53.551086,
+        'longitude': 9.993682,
         'zoom': 10,
       },
       'name': 'Hamburg',
@@ -191,8 +191,8 @@ export const offers: Offer[] = [
     'isFavorite': false,
     'isPremium': true,
     'location': {
-      'latitude': 52.3809553943508,
-      'longitude': 4.939309666406198,
+      'latitude': 53.551086,
+      'longitude': 9.993682,
       'zoom': 10,
     },
     'maxAdults': 3,
