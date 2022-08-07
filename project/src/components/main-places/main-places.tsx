@@ -1,22 +1,19 @@
 import PlaceCardList from '../place-card-list/place-card-list';
 import Map from '../map/map';
 import {PlaceCardType} from '../../const';
-import {Offer} from '../../types/offer';
-import {City} from '../../types/city';
+import {useAppSelector} from '../../hooks';
 
-type MainPlacesProps = {
-  city: string,
-  offers: Offer[],
-  mapCity: City,
-}
+function MainPlaces (): JSX.Element {
 
-function MainPlaces ({city, offers, mapCity}: MainPlacesProps): JSX.Element {
+  const selectedCity = useAppSelector((state) => state.city);
+  const filterOffers = useAppSelector((state) => state.offers);
+  const filterMapCity = useAppSelector((state) => state.mapCity[0]);
 
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{offers.length} places to stay in {city}</b>
+        <b className="places__found">{filterOffers.length} places to stay in {selectedCity}</b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by</span>
           <span className="places__sorting-type" tabIndex={0}>
@@ -44,15 +41,15 @@ function MainPlaces ({city, offers, mapCity}: MainPlacesProps): JSX.Element {
           </ul>
         </form>
         <PlaceCardList
-          offers = {offers}
+          offers = {filterOffers}
           typeComponent = {PlaceCardType.Cities}
         />
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
           <Map
-            mapCity = {mapCity}
-            offers = {offers}
+            mapCity = {filterMapCity}
+            offers = {filterOffers}
           />
         </section>
       </div>
