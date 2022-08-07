@@ -6,5 +6,5 @@ export function getFilterOffers(items: Offer[], selectedItem: string) {
 }
 
 export function getFilterCity(items: City[], selectedItem: string) {
-  return items.filter((item: City) => item.title === selectedItem);
+  return items.filter((item) => item.title === selectedItem);
 }
