@@ -8,4 +8,6 @@ export const filterCity = createAction('city/filter');
 
 export const loadOffers = createAction<Offer[]>('data/loadOffers');
 
+export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
+
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
