@@ -4,17 +4,14 @@ import ReviewList from '../../components/review-list/review-list';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
 import {PlaceCardType} from '../../const';
-import {Offer} from '../../types/offer';
-import {Review} from '../../types/review';
-import {City} from '../../types/city';
+import {useAppSelector} from '../../hooks';
 
-type PropertyProps = {
-  offers: Offer[];
-  reviews: Review[];
-  mapCity: City,
-  }
 
-function Property ({offers, reviews, mapCity}: PropertyProps): JSX.Element {
+function Property (): JSX.Element {
+
+  const filterOffers = useAppSelector((state) => state.offers);
+  const filterMapCity = useAppSelector((state) => state.mapCity[0]);
+  const reviews = useAppSelector((state) => state.reviews);
 
   return (
     <div className="page">
@@ -159,8 +156,8 @@ function Property ({offers, reviews, mapCity}: PropertyProps): JSX.Element {
           </div>
           <section className="property__map map">
             <Map
-              mapCity = {mapCity}
-              offers = {offers}
+              mapCity = {filterMapCity}
+              offers = {filterOffers}
             />
           </section>
         </section>
@@ -171,7 +168,7 @@ function Property ({offers, reviews, mapCity}: PropertyProps): JSX.Element {
             </h2>
             <div className="near-places__list places__list">
               <PlaceCardList
-                offers = {offers}
+                offers = {filterOffers}
                 typeComponent = {PlaceCardType.NearPlaces}
               />
             </div>
@@ -183,5 +180,3 @@ function Property ({offers, reviews, mapCity}: PropertyProps): JSX.Element {
 }
 
 export default Property;
-
-
