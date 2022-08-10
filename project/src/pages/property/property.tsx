@@ -10,7 +10,7 @@ import {useAppSelector} from '../../hooks';
 function Property (): JSX.Element {
 
   const filterOffers = useAppSelector((state) => state.offers);
-  const filterMapCity = useAppSelector((state) => state.mapCity[0]);
+  const filterMapCity = useAppSelector((state) => state.mapCity);
   const reviews = useAppSelector((state) => state.reviews);
 
   return (

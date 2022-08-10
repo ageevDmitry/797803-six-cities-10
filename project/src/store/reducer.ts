@@ -14,7 +14,7 @@ type InitialState = {
   offers: Offer[],
   filterOffers: Offer[],
   reviews: Review[],
-  mapCity: City[],
+  mapCity: City | undefined,
   authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
 }

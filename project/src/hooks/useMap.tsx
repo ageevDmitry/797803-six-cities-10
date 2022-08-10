@@ -4,13 +4,13 @@ import {City} from '../types/city';
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
-  mapCity: City
+  mapCity: City | undefined
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (mapRef.current !== null && !isRef.current) {
+    if (mapRef.current !== null && !isRef.current && mapCity) {
       const instance = new Map(mapRef.current, {
         center: {
           lat: mapCity.lat,
