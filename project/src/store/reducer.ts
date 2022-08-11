@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, filterCity, loadOffers, setDataLoadedStatus, requireAuthorization} from './action';
+import {changeCity, filterCity, loadOffers, setDataLoadedStatus, requireAuthorization, setError} from './action';
 import {Offer} from '../types/offer';
 import {Review} from '../types/review';
 import {City} from '../types/city';
@@ -17,6 +17,7 @@ type InitialState = {
   mapCity: City | undefined,
   authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
+  error: string | null,
 }
 
 const initialState: InitialState = {
@@ -27,6 +28,7 @@ const initialState: InitialState = {
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_CITY),
   authorizationStatus : AuthorizationStatus.Unknown,
   isDataLoaded: false,
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -51,6 +53,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 
