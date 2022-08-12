@@ -4,22 +4,10 @@ import {AppDispatch, State} from '../types/state.js';
 import {loadOffers} from './action';
 import {Offer} from '../types/offer';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
-import {setDataLoadedStatus, filterCity, requireAuthorization, setError, redirectToRoute, loadUserData} from './action';
+import {setDataLoadedStatus, filterCity, requireAuthorization, redirectToRoute, loadUserData} from './action';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {saveToken, dropToken} from '../services/token';
-import {store} from './';
-import {TIMEOUT_SHOW_ERROR} from './../const';
-
-export const clearErrorAction = createAsyncThunk(
-  'game/clearError',
-  () => {
-    setTimeout(
-      () => store.dispatch(setError(null)),
-      TIMEOUT_SHOW_ERROR,
-    );
-  },
-);
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
     dispatch: AppDispatch,

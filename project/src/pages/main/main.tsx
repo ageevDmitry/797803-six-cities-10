@@ -1,8 +1,13 @@
 import Header from '../../components/header/header';
 import LocationList from '../../components/location-list/location-list';
 import MainPlaces from '../../components/main-places/main-places';
+import MainPlacesEmpty from '../../components/main-places-empty/main-places-empty';
+import {useAppSelector} from '../../hooks';
 
 function Main (): JSX.Element {
+
+  const offers = useAppSelector((state) => state.offers);
+  const filterOffers = useAppSelector((state) => state.filterOffers);
 
   return (
     <div className="page page--gray page--main">
@@ -15,7 +20,7 @@ function Main (): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          <MainPlaces/>
+          {(offers.length > 0 && filterOffers.length > 0) ? <MainPlaces/> : <MainPlacesEmpty/>}
         </div>
       </main>
     </div>

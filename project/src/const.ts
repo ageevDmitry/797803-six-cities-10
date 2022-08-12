@@ -72,5 +72,3 @@ export const URL_MARKER_DEFAULT =
 export const START_PLACE_CARD_ID = 0;
 
 export const DEFAULT_CITY = 'Paris';
-
-export const TIMEOUT_SHOW_ERROR = 2000;
