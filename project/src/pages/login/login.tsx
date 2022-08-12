@@ -1,17 +1,14 @@
 import Header from '../../components/header/header';
 import {useRef, FormEvent} from 'react';
-// import {useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
 import {loginAction} from '../../store/api-action';
 import {AuthData} from '../../types/auth-data';
-// import {AppRoute} from '../../const';
 
 function Login (): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -24,7 +21,8 @@ function Login (): JSX.Element {
       onSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,
-      });
+      }
+      );
     }
   };
 
