@@ -53,7 +53,7 @@ function Login (): JSX.Element {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  required
+
                 />
               </div>
               <button className="login__submit form__submit button" type="submit">

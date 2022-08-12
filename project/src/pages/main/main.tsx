@@ -20,7 +20,7 @@ function Main (): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          {(offers.length > 0 && filterOffers.length > 0) ? <MainPlaces/> : <MainPlacesEmpty/>}
+          {(filterOffers === [] && offers !== []) ? <MainPlacesEmpty/> : <MainPlaces/>}
         </div>
       </main>
     </div>
