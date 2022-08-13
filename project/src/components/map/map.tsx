@@ -7,7 +7,7 @@ import useMap from '../../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  mapCity: City;
+  mapCity: City | undefined;
   offers: Offer[];
 };
 
@@ -26,7 +26,7 @@ function Map(props: MapProps): JSX.Element {
   useEffect(() => {
     const markers: Marker[] = [];
 
-    if (map) {
+    if (map && mapCity) {
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,

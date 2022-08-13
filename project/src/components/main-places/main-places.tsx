@@ -7,7 +7,7 @@ function MainPlaces (): JSX.Element {
 
   const selectedCity = useAppSelector((state) => state.city);
   const filterOffers = useAppSelector((state) => state.filterOffers);
-  const filterMapCity = useAppSelector((state) => state.mapCity[0]);
+  const filterMapCity = useAppSelector((state) => state.mapCity);
 
   return (
     <div className="cities__places-container container">
