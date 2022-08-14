@@ -7,13 +7,19 @@ function SingOut ():JSX.Element {
 
   const dispatch = useAppDispatch();
   const userName = useAppSelector((state) => state.userData?.email);
+  const userAvatar = useAppSelector((state) => state.userData?.avatarUrl);
 
   return (
     <ul className="header__nav-list">
       <li className="header__nav-item user">
         <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
-          <div className="header__avatar-wrapper user__avatar-wrapper">
-          </div>
+          <img
+            className="header__avatar-wrapper user__avatar-wrapper"
+            src={userAvatar}
+            alt="User avatar"
+            width={20}
+            height={20}
+          />
           <span className="header__user-name user__name">{userName}</span>
           <span className="header__favorite-count">3</span>
         </Link>

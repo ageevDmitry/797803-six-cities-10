@@ -5,6 +5,7 @@ import App from './components/app/app';
 import {store} from './store';
 import {fetchOffersAction, checkAuthAction} from './store/api-action';
 import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -16,7 +17,7 @@ store.dispatch(checkAuthAction());
 root.render(
   <React.StrictMode>
     <Provider store = {store}>
-      <ToastContainer />
+      <ToastContainer/>
       <App/>
     </Provider>
   </React.StrictMode>,
