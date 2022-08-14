@@ -68,7 +68,7 @@ function Map(props: MapProps): JSX.Element {
       markers.forEach((marker) => {marker.remove();});
     };
 
-  }, [map, points, mapCity, selectedPoint]);
+  }, [map, points, mapCity, hoverOffer]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

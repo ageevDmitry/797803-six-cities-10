@@ -89,8 +89,6 @@ export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 
-export const START_PLACE_CARD_ID = 0;
-
 export const DEFAULT_FILTER_TYPE = 'Paris';
 
 export const DEFAULT_SORT_TYPE = {
