@@ -3,10 +3,10 @@ import {changeCity, filterCity} from '../../store/action';
 import {CITIES} from '../../const';
 import {Link} from 'react-router-dom';
 
-function LocationList (): JSX.Element {
+function FilterCities (): JSX.Element {
 
   const dispatch = useAppDispatch();
-  const selectedCity = useAppSelector((state) => state.city);
+  const selectedCity = useAppSelector((state) => state.filterType);
 
   return (
     <ul className="locations__list tabs__list">
@@ -26,4 +26,4 @@ function LocationList (): JSX.Element {
   );
 }
 
-export default LocationList;
+export default FilterCities;
