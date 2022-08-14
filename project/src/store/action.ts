@@ -12,6 +12,8 @@ export const changeSortType = createAction<{sortType: SortType}>('offers/changeS
 
 export const sortOffers = createAction('offers/sortOffers');
 
+export const hoverOffer = createAction<{hoverOfferId: number}>('offers/hoverOffers');
+
 export const loadOffers = createAction<Offer[]>('data/loadOffers');
 
 export const loadUserData = createAction<UserData>('data/loadUserData');

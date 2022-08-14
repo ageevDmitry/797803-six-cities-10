@@ -3,6 +3,7 @@ import {changeCity,
   filterCity,
   changeSortType,
   sortOffers,
+  hoverOffer,
   loadOffers,
   setDataLoadedStatus,
   requireAuthorization,
@@ -24,6 +25,7 @@ type InitialState = {
   filterOffers: Offer[],
   sortType: SortType,
   sortOffers: Offer[],
+  hoverOfferId: number | undefined,
   reviews: Review[],
   mapCity: City | undefined,
   authorizationStatus: AuthorizationStatus,
@@ -38,6 +40,7 @@ const initialState: InitialState = {
   filterOffers: [],
   sortType: DEFAULT_SORT_TYPE,
   sortOffers: [],
+  hoverOfferId: undefined,
   reviews: reviews,
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_FILTER_TYPE),
   authorizationStatus : AuthorizationStatus.Unknown,
@@ -66,6 +69,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(sortOffers, (state) => {
 
       state.sortOffers = getSortOffers(state.filterOffers, state.sortType.type);
+    })
+    .addCase(hoverOffer, (state, action) => {
+
+      state.hoverOfferId = action.payload.hoverOfferId;
     })
     .addCase(loadOffers, (state, action) => {
 
