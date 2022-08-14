@@ -9,6 +9,10 @@ export function getFilterCity(items: City[], selectedItem: string) {
   return items.find((item) => item.title === selectedItem);
 }
 
+export function getHoverOffer(items: Offer[], selectedItem: number) {
+  return items.find((item) => item.id === selectedItem);
+}
+
 export function getSortOffers(items: Offer[], sortType: string) {
 
   const sortItems = items.slice();

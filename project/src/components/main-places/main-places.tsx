@@ -9,7 +9,7 @@ function MainPlaces (): JSX.Element {
   const selectedCity = useAppSelector((state) => state.filterType);
   const offers = useAppSelector((state) => state.sortOffers);
   const filterMapCity = useAppSelector((state) => state.mapCity);
-  const hoverOffer = useAppSelector((state) => state.hoverOfferId);
+  const hoverOffer = useAppSelector((state) => state.hoverOffer);
 
   return (
     <div className="cities__places-container container">
@@ -27,7 +27,7 @@ function MainPlaces (): JSX.Element {
           <Map
             mapCity = {filterMapCity}
             points = {offers}
-            selectedPoint = {hoverOffer}
+            hoverOffer = {hoverOffer}
           />
         </section>
       </div>

@@ -9,7 +9,7 @@ import 'leaflet/dist/leaflet.css';
 type MapProps = {
   mapCity?: City;
   points: Offer[];
-  selectedPoint? : number;
+  hoverOffer? : Offer;
 };
 
 const defaultCustomIcon = new Icon({
@@ -25,7 +25,7 @@ const currentCustomIcon = new Icon({
 });
 
 function Map(props: MapProps): JSX.Element {
-  const {mapCity, points, selectedPoint} = props;
+  const {mapCity, points, hoverOffer} = props;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, mapCity);
@@ -44,17 +44,24 @@ function Map(props: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedPoint !== undefined && point.id === selectedPoint
+            hoverOffer !== undefined && point.id === hoverOffer.id
               ? currentCustomIcon
               : defaultCustomIcon
           )
           .addTo(map);
       });
 
-      map.setView({
-        lat: mapCity.lat,
-        lng: mapCity.lng,
-      });
+      if (hoverOffer) {
+        map.setView({
+          lat: hoverOffer.location.latitude,
+          lng: hoverOffer.location.longitude,
+        });
+      } else {
+        map.setView({
+          lat: mapCity.lat,
+          lng: mapCity.lng,
+        });
+      }
     }
 
     return () => {

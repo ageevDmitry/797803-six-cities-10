@@ -15,7 +15,7 @@ import {SortType} from '../types/sort-type';
 import {MAP_CITIES} from '../mocks/map-cities';
 import {reviews} from '../mocks/reviews';
 import {DEFAULT_FILTER_TYPE, DEFAULT_SORT_TYPE} from '../const';
-import {getFilterOffers, getFilterCity, getSortOffers} from './utils';
+import {getFilterOffers, getFilterCity, getHoverOffer, getSortOffers} from './utils';
 import {AuthorizationStatus} from '../const';
 import {UserData} from '../types/user-data';
 
@@ -25,7 +25,7 @@ type InitialState = {
   filterOffers: Offer[],
   sortType: SortType,
   sortOffers: Offer[],
-  hoverOfferId: number | undefined,
+  hoverOffer: Offer | undefined,
   reviews: Review[],
   mapCity: City | undefined,
   authorizationStatus: AuthorizationStatus,
@@ -40,7 +40,7 @@ const initialState: InitialState = {
   filterOffers: [],
   sortType: DEFAULT_SORT_TYPE,
   sortOffers: [],
-  hoverOfferId: undefined,
+  hoverOffer: undefined,
   reviews: reviews,
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_FILTER_TYPE),
   authorizationStatus : AuthorizationStatus.Unknown,
@@ -72,7 +72,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(hoverOffer, (state, action) => {
 
-      state.hoverOfferId = action.payload.hoverOfferId;
+      state.hoverOffer = getHoverOffer(state.filterOffers, action.payload.hoverOfferId);
     })
     .addCase(loadOffers, (state, action) => {
 
