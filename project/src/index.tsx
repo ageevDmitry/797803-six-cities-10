@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
 import {store} from './store';
-import {fetchOffersAction} from './store/api-action';
+import {fetchOffersAction, checkAuthAction} from './store/api-action';
 import {ToastContainer} from 'react-toastify';
 
 const root = ReactDOM.createRoot(
@@ -11,6 +11,7 @@ const root = ReactDOM.createRoot(
 );
 
 store.dispatch(fetchOffersAction());
+store.dispatch(checkAuthAction());
 
 root.render(
   <React.StrictMode>

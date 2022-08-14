@@ -7,7 +7,7 @@ import useMap from '../../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  mapCity: City | undefined;
+  mapCity?: City;
   offers: Offer[];
 };
 
