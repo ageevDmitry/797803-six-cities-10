@@ -1,5 +1,5 @@
 import Header from '../../components/header/header';
-import LocationList from '../../components/location-list/location-list';
+import LocationList from '../../components/filter-cities/filter-cities';
 import MainPlaces from '../../components/main-places/main-places';
 import MainPlacesEmpty from '../../components/main-places-empty/main-places-empty';
 import {useAppSelector} from '../../hooks';
@@ -20,7 +20,7 @@ function Main (): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          {(filterOffers === [] && offers !== []) ? <MainPlacesEmpty/> : <MainPlaces/>}
+          {(filterOffers.length === 0 && offers.length !== 0) ? <MainPlacesEmpty/> : <MainPlaces/>}
         </div>
       </main>
     </div>

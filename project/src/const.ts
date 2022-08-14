@@ -1,8 +1,8 @@
 export enum AppRoute {
-    Main = '/',
-    Login = '/login',
-    Favorites = '/favorites',
-    Property = '/offer/:id'
+  Main = '/',
+  Login = '/login',
+  Favorites = '/favorites',
+  Property = '/offer/:id'
 }
 
 export enum APIRoute {
@@ -12,10 +12,10 @@ export enum APIRoute {
 }
 
 export enum AuthorizationStatus {
-    Auth = 'AUTH',
-    NoAuth = 'NO_AUTH',
-    Unknown = 'UNKNOWN',
-  }
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
 
 export enum PlaceCardType {
   Cities = 'cities',
@@ -43,6 +43,25 @@ export const CITIES = [
   'Dusseldorf',
 ];
 
+export const SORT_LIST = [
+  {
+    type: 'Popular',
+    title: 'Popular'
+  },
+  {
+    type: 'PriceHight',
+    title: 'Price: low to high'
+  },
+  {
+    type: 'PriceLow',
+    title: 'Price: high to low'
+  },
+  {
+    type: 'Rated',
+    title: 'Top rated first'
+  },
+];
+
 export const REVIEW_FORM_STATUS = [
   {
     startNumber: 5,
@@ -66,9 +85,13 @@ export const REVIEW_FORM_STATUS = [
   },
 ];
 
-export const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
-export const START_PLACE_CARD_ID = 0;
+export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 
-export const DEFAULT_CITY = 'Paris';
+export const DEFAULT_FILTER_TYPE = 'Paris';
+
+export const DEFAULT_SORT_TYPE = {
+  type: 'Popular',
+  title: 'Popular'
+};

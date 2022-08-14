@@ -8,3 +8,23 @@ export function getFilterOffers(items: Offer[], selectedItem: string) {
 export function getFilterCity(items: City[], selectedItem: string) {
   return items.find((item) => item.title === selectedItem);
 }
+
+export function getHoverOffer(items: Offer[], selectedItem: number) {
+  return items.find((item) => item.id === selectedItem);
+}
+
+export function getSortOffers(items: Offer[], sortType: string) {
+
+  const sortItems = items.slice();
+
+  switch(sortType) {
+    case 'PriceHight':
+      return sortItems.sort((a: Offer, b: Offer) => a.price - b.price);
+    case 'PriceLow':
+      return sortItems.sort((a: Offer, b: Offer) => b.price - a.price);
+    case 'Rated':
+      return sortItems.sort((a: Offer, b: Offer) => b.rating - a.rating);
+    default:
+      return items;
+  }
+}

@@ -1,11 +1,18 @@
 import {createAction} from '@reduxjs/toolkit';
 import {UserData} from '../types/user-data';
 import {Offer} from '../types/offer';
+import {SortType} from '../types/sort-type';
 import {AppRoute, AuthorizationStatus} from '../const';
 
 export const changeCity = createAction<{city: string}>('city/change');
 
 export const filterCity = createAction('city/filter');
+
+export const changeSortType = createAction<{sortType: SortType}>('offers/changeSortType');
+
+export const sortOffers = createAction('offers/sortOffers');
+
+export const hoverOffer = createAction<{hoverOfferId: number}>('offers/hoverOffers');
 
 export const loadOffers = createAction<Offer[]>('data/loadOffers');
 
