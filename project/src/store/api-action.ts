@@ -1,7 +1,7 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
-import {loadOffers, loadPropertyOffer,loadReviews} from './action';
+import {loadOffers, loadPropertyOffer, loadNearbyOffers, loadReviews} from './action';
 import {Offer} from '../types/offer';
 import {Review} from '../types/review.js';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
@@ -25,16 +25,39 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     },
   );
 
-export const fetchReviewsAction = createAsyncThunk<void, number, {
+export const fetchPropertyOffersAction = createAsyncThunk<void, number, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
   }>(
     'data/fetchPropertyOffer',
     async (id, {dispatch, extra: api}) => {
-      const route = `/hotels/${id}`;
-      const {data} = await api.get<Offer>(route);
+      const {data} = await api.get<Offer>(`/hotels/${id}`);
       dispatch(loadPropertyOffer(data));
+    },
+  );
+
+export const fetchNearbyOffersAction = createAsyncThunk<void, number, {
+    dispatch: AppDispatch,
+    state: State,
+    extra: AxiosInstance
+  }>(
+    'data/fetchNearbyOffer',
+    async (id, {dispatch, extra: api}) => {
+      const {data} = await api.get<Offer[]>(`/hotels/${id}/nearby`);
+      dispatch(loadNearbyOffers(data));
+    },
+  );
+
+export const loadReviewsAction = createAsyncThunk<void, number, {
+    dispatch: AppDispatch,
+    state: State,
+    extra: AxiosInstance
+  }>(
+    'data/fetchReviews',
+    async (id, {dispatch, extra: api}) => {
+      const {data} = await api.get<Review[]>(`/comments/${id}`);
+      dispatch(loadReviews(data));
     },
   );
 
