@@ -10,6 +10,7 @@ type MapProps = {
   mapCity?: City;
   offers: Offer[];
   selectedOffer? : Offer;
+  propertyOffer? : Offer;
 };
 
 const defaultCustomIcon = new Icon({
@@ -25,13 +26,14 @@ const currentCustomIcon = new Icon({
 });
 
 function Map(props: MapProps): JSX.Element {
-  const {mapCity, offers, selectedOffer} = props;
+  const {mapCity, offers, selectedOffer, propertyOffer} = props;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, mapCity);
 
   useEffect(() => {
     const markers: Marker[] = [];
+    let propertyMarker: Marker;
 
     if (map && mapCity) {
       offers.forEach((offer) => {
@@ -62,13 +64,33 @@ function Map(props: MapProps): JSX.Element {
           lng: mapCity.lng,
         });
       }
+
+      if (propertyOffer) {
+        propertyMarker = new Marker({
+          lat: propertyOffer.location.latitude,
+          lng: propertyOffer.location.longitude,
+        });
+
+        propertyMarker
+          .setIcon(currentCustomIcon)
+          .addTo(map);
+
+        map.setView({
+          lat: propertyOffer.location.latitude,
+          lng: propertyOffer.location.longitude,
+        });
+      }
     }
 
     return () => {
       markers.forEach((marker) => {marker.remove();});
+
+      if (propertyMarker) {
+        propertyMarker.remove();
+      }
     };
 
-  }, [map, offers, mapCity, selectedOffer]);
+  }, [map, offers, mapCity, selectedOffer, propertyOffer]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

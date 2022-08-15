@@ -101,3 +101,5 @@ export const DEFAULT_SORT_TYPE = {
   type: 'Popular',
   title: 'Popular'
 };
+
+export const PROPERTY_IMAGES_COUNT = 6;
