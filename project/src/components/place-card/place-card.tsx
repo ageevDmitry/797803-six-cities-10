@@ -1,6 +1,8 @@
 import {RatingWidthFactor} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
+import {fetchReviewsAction} from '../../store/api-action';
+import {useAppDispatch} from '../../hooks';
 
 type PlaceCardProps = {
   typeComponent: string;
@@ -12,6 +14,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
 
   const {id, isPremium, previewImage, price, rating, title, type} = offer;
   const placeCardId = `/offer/:${id}`;
+  const dispatch = useAppDispatch();
 
   return (
     <article className={`${typeComponent}__card place-card`}
@@ -56,7 +59,13 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={placeCardId}>{title}</Link>
+          <Link to={placeCardId}
+            onClick={() => {
+              dispatch(fetchReviewsAction(id));
+            }}
+          >
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

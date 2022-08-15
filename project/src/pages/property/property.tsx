@@ -6,7 +6,6 @@ import Map from '../../components/map/map';
 import {PlaceCardType} from '../../const';
 import {useAppSelector} from '../../hooks';
 
-
 function Property (): JSX.Element {
 
   const filterOffers = useAppSelector((state) => state.offers);

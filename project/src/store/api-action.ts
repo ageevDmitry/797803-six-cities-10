@@ -1,8 +1,9 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
-import {loadOffers} from './action';
+import {loadOffers, loadPropertyOffer,loadReviews} from './action';
 import {Offer} from '../types/offer';
+import {Review} from '../types/review.js';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {setDataLoadedStatus, filterCity, requireAuthorization, redirectToRoute, loadUserData} from './action';
 import {AuthData} from '../types/auth-data';
@@ -21,6 +22,19 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
       dispatch(loadOffers(data));
       dispatch(setDataLoadedStatus(false));
       dispatch(filterCity());
+    },
+  );
+
+export const fetchReviewsAction = createAsyncThunk<void, number, {
+    dispatch: AppDispatch,
+    state: State,
+    extra: AxiosInstance
+  }>(
+    'data/fetchPropertyOffer',
+    async (id, {dispatch, extra: api}) => {
+      const route = `/hotels/${id}`;
+      const {data} = await api.get<Offer>(route);
+      dispatch(loadPropertyOffer(data));
     },
   );
 

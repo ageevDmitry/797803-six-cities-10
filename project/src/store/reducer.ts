@@ -5,15 +5,17 @@ import {changeFilterType,
   sortOffers,
   selectOffer,
   loadOffers,
+  loadUserData,
+  loadPropertyOffer,
+  loadNearbyOffers,
+  loadReviews,
   setDataLoadedStatus,
-  requireAuthorization,
-  loadUserData} from './action';
+  requireAuthorization} from './action';
 import {Offer} from '../types/offer';
 import {Review} from '../types/review';
 import {City} from '../types/city';
 import {SortType} from '../types/sort-type';
 import {MAP_CITIES} from '../mocks/map-cities';
-import {reviews} from '../mocks/reviews';
 import {DEFAULT_FILTER_TYPE, DEFAULT_SORT_TYPE} from '../const';
 import {getFilterOffers, getFilterCity, getHoverOffer, getSortOffers} from './utils';
 import {AuthorizationStatus} from '../const';
@@ -26,6 +28,8 @@ type InitialState = {
   sortType: SortType,
   sortedOffers: Offer[],
   selectedOffer: Offer | undefined,
+  propertyOffer: Offer | undefined,
+  nearbyOffers: Offer[],
   reviews: Review[],
   mapCity: City | undefined,
   authorizationStatus: AuthorizationStatus,
@@ -41,7 +45,9 @@ const initialState: InitialState = {
   sortType: DEFAULT_SORT_TYPE,
   sortedOffers: [],
   selectedOffer: undefined,
-  reviews: reviews,
+  propertyOffer: undefined,
+  nearbyOffers: [],
+  reviews: [],
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_FILTER_TYPE),
   authorizationStatus : AuthorizationStatus.Unknown,
   isDataLoaded: false,
@@ -77,6 +83,18 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffers, (state, action) => {
 
       state.offers = action.payload;
+    })
+    .addCase(loadPropertyOffer, (state, action) => {
+
+      state.propertyOffer = action.payload;
+    })
+    .addCase(loadNearbyOffers, (state, action) => {
+
+      state.nearbyOffers = action.payload;
+    })
+    .addCase(loadReviews, (state, action) => {
+
+      state.reviews = action.payload;
     })
     .addCase(setDataLoadedStatus, (state, action) => {
 
