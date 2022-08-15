@@ -7,7 +7,7 @@ import {useAppSelector} from '../../hooks';
 function Main (): JSX.Element {
 
   const offers = useAppSelector((state) => state.offers);
-  const filterOffers = useAppSelector((state) => state.filterOffers);
+  const filteredOffers = useAppSelector((state) => state.filteredOffers);
 
   return (
     <div className="page page--gray page--main">
@@ -20,7 +20,7 @@ function Main (): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          {(filterOffers.length === 0 && offers.length !== 0) ? <MainPlacesEmpty/> : <MainPlaces/>}
+          {(filteredOffers.length === 0 && offers.length !== 0) ? <MainPlacesEmpty/> : <MainPlaces/>}
         </div>
       </main>
     </div>

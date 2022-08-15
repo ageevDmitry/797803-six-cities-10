@@ -1,6 +1,6 @@
 import {Offer} from '../types/offer';
 import {City} from '../types/city';
-
+import {SortType} from '../const';
 export function getFilterOffers(items: Offer[], selectedItem: string) {
   return items.filter((item: Offer) => item.city.name === selectedItem);
 }
@@ -18,12 +18,12 @@ export function getSortOffers(items: Offer[], sortType: string) {
   const sortItems = items.slice();
 
   switch(sortType) {
-    case 'PriceHight':
-      return sortItems.sort((a: Offer, b: Offer) => a.price - b.price);
-    case 'PriceLow':
-      return sortItems.sort((a: Offer, b: Offer) => b.price - a.price);
-    case 'Rated':
-      return sortItems.sort((a: Offer, b: Offer) => b.rating - a.rating);
+    case SortType.PriceHight:
+      return sortItems.sort((a, b) => a.price - b.price);
+    case SortType.PriceLow:
+      return sortItems.sort((a, b) => b.price - a.price);
+    case SortType.Rated:
+      return sortItems.sort((a, b) => b.rating - a.rating);
     default:
       return items;
   }

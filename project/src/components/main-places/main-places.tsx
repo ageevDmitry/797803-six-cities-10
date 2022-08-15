@@ -7,9 +7,9 @@ import {useAppSelector} from '../../hooks';
 function MainPlaces (): JSX.Element {
 
   const selectedCity = useAppSelector((state) => state.filterType);
-  const offers = useAppSelector((state) => state.sortOffers);
-  const filterMapCity = useAppSelector((state) => state.mapCity);
-  const hoverOffer = useAppSelector((state) => state.hoverOffer);
+  const offers = useAppSelector((state) => state.sortedOffers);
+  const mapCity = useAppSelector((state) => state.mapCity);
+  const selectedOffer = useAppSelector((state) => state.selectedOffer);
 
   return (
     <div className="cities__places-container container">
@@ -25,9 +25,9 @@ function MainPlaces (): JSX.Element {
       <div className="cities__right-section">
         <section className="cities__map map">
           <Map
-            mapCity = {filterMapCity}
-            points = {offers}
-            hoverOffer = {hoverOffer}
+            mapCity = {mapCity}
+            offers = {offers}
+            selectedOffer = {selectedOffer}
           />
         </section>
       </div>

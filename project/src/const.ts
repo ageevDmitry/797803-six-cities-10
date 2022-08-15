@@ -23,6 +23,12 @@ export enum PlaceCardType {
   NearPlaces = 'near-places',
 }
 
+export enum SortType {
+  PriceHight = 'PriceHight',
+  PriceLow = 'PriceLow',
+  Rated = 'Rated',
+}
+
 export const PLACE_CARD_CLASS_NAME = {
   [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
   [PlaceCardType.Favorites]: 'favorites__places',

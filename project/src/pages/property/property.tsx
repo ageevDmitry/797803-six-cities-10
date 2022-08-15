@@ -157,7 +157,7 @@ function Property (): JSX.Element {
           <section className="property__map map">
             <Map
               mapCity = {filterMapCity}
-              points = {filterOffers}
+              offers = {filterOffers}
             />
           </section>
         </section>

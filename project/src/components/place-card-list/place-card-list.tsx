@@ -1,6 +1,6 @@
 import PlaceCard from '../place-card/place-card';
 import {useAppDispatch} from '../../hooks';
-import {hoverOffer} from '../../store/action';
+import {selectOffer} from '../../store/action';
 import LoadingScreen from '../loading-screen/loading-screen';
 import {PLACE_CARD_CLASS_NAME, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
@@ -16,7 +16,7 @@ function PlaceCardList ({offers, typeComponent, }:PlaceCardListProps): JSX.Eleme
   const dispatch = useAppDispatch();
 
   const setIdPlaceCard = (id: number) => {
-    dispatch(hoverOffer({hoverOfferId: id}));
+    dispatch(selectOffer({selectedOfferId: id}));
   };
 
   if (isDataLoaded) {

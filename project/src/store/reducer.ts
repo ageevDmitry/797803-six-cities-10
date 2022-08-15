@@ -1,9 +1,9 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeCity,
+import {changeFilterType,
   filterCity,
   changeSortType,
   sortOffers,
-  hoverOffer,
+  selectOffer,
   loadOffers,
   setDataLoadedStatus,
   requireAuthorization,
@@ -22,10 +22,10 @@ import {UserData} from '../types/user-data';
 type InitialState = {
   offers: Offer[],
   filterType: string,
-  filterOffers: Offer[],
+  filteredOffers: Offer[],
   sortType: SortType,
-  sortOffers: Offer[],
-  hoverOffer: Offer | undefined,
+  sortedOffers: Offer[],
+  selectedOffer: Offer | undefined,
   reviews: Review[],
   mapCity: City | undefined,
   authorizationStatus: AuthorizationStatus,
@@ -35,12 +35,12 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-  filterType: DEFAULT_FILTER_TYPE,
   offers: [],
-  filterOffers: [],
+  filterType: DEFAULT_FILTER_TYPE,
+  filteredOffers: [],
   sortType: DEFAULT_SORT_TYPE,
-  sortOffers: [],
-  hoverOffer: undefined,
+  sortedOffers: [],
+  selectedOffer: undefined,
   reviews: reviews,
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_FILTER_TYPE),
   authorizationStatus : AuthorizationStatus.Unknown,
@@ -51,15 +51,15 @@ const initialState: InitialState = {
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeCity, (state, action) => {
+    .addCase(changeFilterType, (state, action) => {
 
       state.filterType = action.payload.city;
     })
     .addCase(filterCity, (state) => {
 
-      state.filterOffers = getFilterOffers(state.offers, state.filterType);
+      state.filteredOffers = getFilterOffers(state.offers, state.filterType);
       state.mapCity = getFilterCity(MAP_CITIES, state.filterType);
-      state.sortOffers = state.filterOffers.slice();
+      state.sortedOffers = state.filteredOffers.slice();
       state.sortType = DEFAULT_SORT_TYPE;
     })
     .addCase(changeSortType, (state, action) => {
@@ -68,11 +68,11 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(sortOffers, (state) => {
 
-      state.sortOffers = getSortOffers(state.filterOffers, state.sortType.type);
+      state.sortedOffers = getSortOffers(state.filteredOffers, state.sortType.type);
     })
-    .addCase(hoverOffer, (state, action) => {
+    .addCase(selectOffer, (state, action) => {
 
-      state.hoverOffer = getHoverOffer(state.filterOffers, action.payload.hoverOfferId);
+      state.selectedOffer = getHoverOffer(state.filteredOffers, action.payload.selectedOfferId);
     })
     .addCase(loadOffers, (state, action) => {
 
