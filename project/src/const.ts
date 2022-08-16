@@ -2,7 +2,8 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Property = '/offer/:id'
+  Property = '/offer/:id',
+  NotFound = '*',
 }
 
 export enum APIRoute {
@@ -105,3 +106,7 @@ export const DEFAULT_SORT_TYPE = {
 export const PROPERTY_IMAGES_COUNT = 6;
 
 export const REVIEWS_COUNT = 10;
+
+export const MIN_LENGTH_COMMENT = 50;
+
+export const MAX_LENGTH_COMMENT = 300;

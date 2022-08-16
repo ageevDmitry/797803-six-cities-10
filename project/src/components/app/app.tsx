@@ -6,10 +6,13 @@ import Property from '../../pages/property/property';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../../pages/private-route/private-route';
 import HistoryRouter from '../history-route/history-route';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import browserHistory from '../../browser-history';
+import {useAppSelector} from '../../hooks';
 
 function App(): JSX.Element {
+
+  const currentAuthorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
     <HistoryRouter history={browserHistory}>
@@ -26,7 +29,7 @@ function App(): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
+              authorizationStatus={currentAuthorizationStatus}
             >
               <Favorites/>
             </PrivateRoute>

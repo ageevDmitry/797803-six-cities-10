@@ -5,6 +5,7 @@ import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
 import {PlaceCardType, PROPERTY_IMAGES_COUNT} from '../../const';
 import {useAppSelector} from '../../hooks';
+import {AuthorizationStatus} from '../../const';
 
 function Property (): JSX.Element {
 
@@ -12,6 +13,7 @@ function Property (): JSX.Element {
   const reviews = useAppSelector((state) => state.reviews);
   const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
   const mapCity = useAppSelector((state) => state.mapCity);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
     <div className="page">
@@ -105,7 +107,7 @@ function Property (): JSX.Element {
               Reviews · <span className="reviews__amount">{reviews.length}</span>
                 </h2>
                 <ReviewList reviews = {reviews}/>
-                <ReviewForm/>
+                {(authorizationStatus === AuthorizationStatus.Auth) ? <ReviewForm/> : ''}
               </section>
             </div>
           </div>

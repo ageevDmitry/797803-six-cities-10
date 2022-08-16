@@ -35,7 +35,6 @@ type InitialState = {
   sortedOffers: Offer[],
   selectedOffer?: Offer,
   propertyOffer?: Offer,
-  propertyOfferId?: number,
   nearbyOffers: Offer[],
   reviews: Review[],
   mapCity: City | undefined,
@@ -53,7 +52,6 @@ const initialState: InitialState = {
   sortedOffers: [],
   selectedOffer: undefined,
   propertyOffer: undefined,
-  propertyOfferId: undefined,
   nearbyOffers: [],
   reviews: [],
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_FILTER_TYPE),
@@ -95,7 +93,6 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadPropertyOffer, (state, action) => {
 
       state.propertyOffer = action.payload;
-      state.propertyOfferId = action.payload.id;
     })
     .addCase(loadNearbyOffers, (state, action) => {
 

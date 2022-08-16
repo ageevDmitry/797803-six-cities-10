@@ -9,7 +9,11 @@ import {loadOffers,
 import {Offer} from '../types/offer';
 import {Review, UserReview} from '../types/review.js';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
-import {setDataLoadedStatus, filterCity, requireAuthorization, redirectToRoute, loadUserData} from './action';
+import {setDataLoadedStatus,
+  filterCity,
+  requireAuthorization,
+  redirectToRoute,
+  loadUserData} from './action';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {saveToken, dropToken} from '../services/token';
@@ -36,8 +40,12 @@ export const fetchPropertyOffersAction = createAsyncThunk<void, number, {
   }>(
     'data/fetchPropertyOffer',
     async (id, {dispatch, extra: api}) => {
-      const {data} = await api.get<Offer>(`/hotels/${id}`);
-      dispatch(loadPropertyOffer(data));
+      try {
+        const {data} = await api.get<Offer>(`/hotels/${id}`);
+        dispatch(loadPropertyOffer(data));
+      } catch {
+        dispatch(redirectToRoute(AppRoute.NotFound));
+      }
     },
   );
 
