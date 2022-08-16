@@ -9,6 +9,7 @@ import {changeFilterType,
   loadPropertyOffer,
   loadNearbyOffers,
   loadReviews,
+  sendNewReview,
   setDataLoadedStatus,
   requireAuthorization} from './action';
 import {Offer} from '../types/offer';
@@ -29,6 +30,7 @@ type InitialState = {
   sortedOffers: Offer[],
   selectedOffer?: Offer,
   propertyOffer?: Offer,
+  propertyOfferId?: number,
   nearbyOffers: Offer[],
   reviews: Review[],
   mapCity: City | undefined,
@@ -46,6 +48,7 @@ const initialState: InitialState = {
   sortedOffers: [],
   selectedOffer: undefined,
   propertyOffer: undefined,
+  propertyOfferId: undefined,
   nearbyOffers: [],
   reviews: [],
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_FILTER_TYPE),
@@ -87,6 +90,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadPropertyOffer, (state, action) => {
 
       state.propertyOffer = action.payload;
+      state.propertyOfferId = action.payload.id;
     })
     .addCase(loadNearbyOffers, (state, action) => {
 
@@ -94,6 +98,11 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadReviews, (state, action) => {
 
+      state.reviews = action.payload;
+    })
+    .addCase(sendNewReview, (state, action) => {
+
+      // state.reviews.push(action.payload);
       state.reviews = action.payload;
     })
     .addCase(setDataLoadedStatus, (state, action) => {

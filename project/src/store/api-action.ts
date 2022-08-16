@@ -1,9 +1,13 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
-import {loadOffers, loadPropertyOffer, loadNearbyOffers, loadReviews} from './action';
+import {loadOffers,
+  loadPropertyOffer,
+  loadNearbyOffers,
+  loadReviews,
+  sendNewReview} from './action';
 import {Offer} from '../types/offer';
-import {Review} from '../types/review.js';
+import {Review, UserReview} from '../types/review.js';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {setDataLoadedStatus, filterCity, requireAuthorization, redirectToRoute, loadUserData} from './action';
 import {AuthData} from '../types/auth-data';
@@ -58,6 +62,18 @@ export const loadReviewsAction = createAsyncThunk<void, number, {
     async (id, {dispatch, extra: api}) => {
       const {data} = await api.get<Review[]>(`/comments/${id}`);
       dispatch(loadReviews(data));
+    },
+  );
+
+export const sendNewReviewAction = createAsyncThunk<void, UserReview, {
+    dispatch: AppDispatch,
+    state: State,
+    extra: AxiosInstance
+  }>(
+    'data/sendReview',
+    async (userReview, {dispatch, extra: api}) => {
+      const {data} = await api.post<Review[]>(`/comments/${userReview.propertyOfferId}`, userReview.newComment);
+      dispatch(sendNewReview(data));
     },
   );
 

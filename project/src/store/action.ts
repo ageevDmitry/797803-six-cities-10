@@ -25,6 +25,8 @@ export const loadNearbyOffers = createAction<Offer[]>('data/loadNearbyOffers');
 
 export const loadReviews = createAction<Review[]>('data/loadReviews');
 
+export const sendNewReview = createAction<Review[]>('data/sendNewReview');
+
 export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
