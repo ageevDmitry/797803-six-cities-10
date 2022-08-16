@@ -18,7 +18,12 @@ import {City} from '../types/city';
 import {SortType} from '../types/sort-type';
 import {MAP_CITIES} from '../mocks/map-cities';
 import {DEFAULT_FILTER_TYPE, DEFAULT_SORT_TYPE} from '../const';
-import {getFilterOffers, getFilterCity, getHoverOffer, getSortOffers} from './utils';
+import {getFilterOffers,
+  getFilterCity,
+  getHoverOffer,
+  getSortOffers,
+  getSortReviews,
+} from './utils';
 import {AuthorizationStatus} from '../const';
 import {UserData} from '../types/user-data';
 
@@ -98,12 +103,11 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadReviews, (state, action) => {
 
-      state.reviews = action.payload;
+      state.reviews = getSortReviews(action.payload);
     })
     .addCase(sendNewReview, (state, action) => {
 
-      // state.reviews.push(action.payload);
-      state.reviews = action.payload;
+      state.reviews = getSortReviews(action.payload);
     })
     .addCase(setDataLoadedStatus, (state, action) => {
 

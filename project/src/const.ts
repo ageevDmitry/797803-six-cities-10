@@ -103,3 +103,5 @@ export const DEFAULT_SORT_TYPE = {
 };
 
 export const PROPERTY_IMAGES_COUNT = 6;
+
+export const REVIEWS_COUNT = 10;

@@ -1,6 +1,6 @@
-// import dayjs from 'dayjs';
 import ReviewCard from '../review-card/review-card';
 import {Review} from '../../types/review';
+import {REVIEWS_COUNT} from '../../const';
 
 type ReviewListProps = {
  reviews: Review[];
@@ -8,13 +8,9 @@ type ReviewListProps = {
 
 function ReviewList({reviews}: ReviewListProps): JSX.Element {
 
-  const sortedReviews = reviews.sort((a, b) => a.id - b.id);
-  console.log(sortedReviews);
-
   return (
     <ul className="reviews__list">
-      {/* {sortedReviews.map((review) => ( */}
-      {reviews.map((review) => (
+      {reviews.slice(0, REVIEWS_COUNT).map((review) => (
         <ReviewCard
           key = {review.id}
           review = {review}

@@ -1,6 +1,9 @@
 import {Offer} from '../types/offer';
 import {City} from '../types/city';
+import {Review} from '../types/review';
 import {SortType} from '../const';
+import dayjs from 'dayjs';
+
 export function getFilterOffers(items: Offer[], selectedItem: string) {
   return items.filter((item: Offer) => item.city.name === selectedItem);
 }
@@ -27,4 +30,11 @@ export function getSortOffers(items: Offer[], sortType: string) {
     default:
       return items;
   }
+}
+
+export function getSortReviews(items: Review[]) {
+
+  const sortItems = items.slice();
+
+  return sortItems.sort((a, b) => dayjs(b.date).diff(dayjs(a.date)));
 }
