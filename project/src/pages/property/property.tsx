@@ -29,7 +29,7 @@ function Property (): JSX.Element {
                   >
                     <img className="property__image"
                       src={image}
-                      alt={image}
+                      alt=""
                     />
                   </div>
                 ))

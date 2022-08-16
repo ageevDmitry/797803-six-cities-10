@@ -27,7 +27,6 @@ export type Offer = {
         location: Location
         maxAdults: number
         previewImage: string,
-        // previewImageFavorites: string,
         price: number
         rating: number
         title: string
