@@ -33,7 +33,7 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     },
   );
 
-export const fetchPropertyOffersAction = createAsyncThunk<void, number, {
+export const fetchPropertyOffersAction = createAsyncThunk<void, string, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
@@ -49,7 +49,7 @@ export const fetchPropertyOffersAction = createAsyncThunk<void, number, {
     },
   );
 
-export const fetchNearbyOffersAction = createAsyncThunk<void, number, {
+export const fetchNearbyOffersAction = createAsyncThunk<void, string, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
@@ -61,7 +61,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<void, number, {
     },
   );
 
-export const loadReviewsAction = createAsyncThunk<void, number, {
+export const loadReviewsAction = createAsyncThunk<void, string, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance

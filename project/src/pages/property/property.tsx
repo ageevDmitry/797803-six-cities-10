@@ -1,3 +1,5 @@
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import Header from '../../components/header/header';
 import ReviewForm from '../../components/review-form/review-form';
 import ReviewList from '../../components/review-list/review-list';
@@ -6,8 +8,23 @@ import Map from '../../components/map/map';
 import {PlaceCardType, PROPERTY_IMAGES_COUNT} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {AuthorizationStatus} from '../../const';
+import {useAppDispatch} from '../../hooks';
+import {fetchPropertyOffersAction,
+  fetchNearbyOffersAction,
+  loadReviewsAction} from '../../store/api-action';
 
 function Property (): JSX.Element {
+
+  const {id} = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchPropertyOffersAction(id));
+      dispatch(fetchNearbyOffersAction(id));
+      dispatch(loadReviewsAction(id));
+    }
+  });
 
   const offer = useAppSelector((state) => state.propertyOffer);
   const reviews = useAppSelector((state) => state.reviews);
