@@ -7,7 +7,7 @@ import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
 import {PlaceCardType, PROPERTY_IMAGES_COUNT, RatingWidthFactor} from '../../const';
 import {useAppSelector} from '../../hooks';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, ViewOfferType} from '../../const';
 import {useAppDispatch} from '../../hooks';
 import {fetchPropertyOffersAction,
   fetchNearbyOffersAction,
@@ -79,7 +79,7 @@ function Property (): JSX.Element {
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                    {offer.type}
+                    {ViewOfferType[offer.type]}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
                     {offer?.bedrooms} Bedrooms

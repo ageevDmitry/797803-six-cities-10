@@ -44,6 +44,20 @@ export enum RatingWidthFactor {
   Property = 29
 }
 
+export enum OfferType {
+  Apartment = 'apartment',
+  Room = 'room',
+  House = 'house',
+  Hotel = 'hotel'
+}
+
+export const ViewOfferType = {
+  [OfferType.Apartment]: 'Apartment',
+  [OfferType.Room]: 'Private Room',
+  [OfferType.House]: 'House',
+  [OfferType.Hotel]: 'Hotel'
+} as const;
+
 export const CITIES = [
   'Paris',
   'Cologne',
@@ -113,3 +127,4 @@ export const REVIEWS_COUNT = 10;
 export const MIN_LENGTH_COMMENT = 50;
 
 export const MAX_LENGTH_COMMENT = 300;
+

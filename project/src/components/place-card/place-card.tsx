@@ -1,6 +1,7 @@
 import {RatingWidthFactor} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
+import {ViewOfferType} from '../../const';
 
 type PlaceCardProps = {
   typeComponent: string;
@@ -60,7 +61,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             {title}
           </Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{ViewOfferType[type]}</p>
       </div>
     </article>
   );
