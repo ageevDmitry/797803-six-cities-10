@@ -41,7 +41,7 @@ export const fetchPropertyOffersAction = createAsyncThunk<void, string, {
     'data/fetchPropertyOffer',
     async (id, {dispatch, extra: api}) => {
       try {
-        const {data} = await api.get<Offer>(`/hotels/${id}`);
+        const {data} = await api.get<Offer>(`${APIRoute.Hotels}/${id}`);
         dispatch(loadPropertyOffer(data));
       } catch {
         dispatch(redirectToRoute(AppRoute.NotFound));
@@ -56,7 +56,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<void, string, {
   }>(
     'data/fetchNearbyOffer',
     async (id, {dispatch, extra: api}) => {
-      const {data} = await api.get<Offer[]>(`/hotels/${id}/nearby`);
+      const {data} = await api.get<Offer[]>(`${APIRoute.Hotels}/${id}/nearby`);
       dispatch(loadNearbyOffers(data));
     },
   );
@@ -68,7 +68,7 @@ export const loadReviewsAction = createAsyncThunk<void, string, {
   }>(
     'data/fetchReviews',
     async (id, {dispatch, extra: api}) => {
-      const {data} = await api.get<Review[]>(`/comments/${id}`);
+      const {data} = await api.get<Review[]>(`${APIRoute.Comments}/${id}`);
       dispatch(loadReviews(data));
     },
   );
@@ -80,7 +80,7 @@ export const sendNewReviewAction = createAsyncThunk<void, UserReview, {
   }>(
     'data/sendReview',
     async (userReview, {dispatch, extra: api}) => {
-      const {data} = await api.post<Review[]>(`/comments/${userReview.propertyOfferId}`, userReview.newComment);
+      const {data} = await api.post<Review[]>(`${APIRoute.Comments}/${userReview.propertyOfferId}`, userReview.newComment);
       dispatch(sendNewReview(data));
     },
   );
