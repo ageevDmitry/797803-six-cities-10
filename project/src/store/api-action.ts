@@ -80,7 +80,9 @@ export const sendNewReviewAction = createAsyncThunk<void, UserReview, {
   }>(
     'data/sendReview',
     async (userReview, {dispatch, extra: api}) => {
+      dispatch(setDataLoadedStatus(true));
       const {data} = await api.post<Review[]>(`${APIRoute.Comments}/${userReview.propertyOfferId}`, userReview.newComment);
+      dispatch(setDataLoadedStatus(false));
       dispatch(sendNewReview(data));
     },
   );
