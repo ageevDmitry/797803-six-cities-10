@@ -25,7 +25,7 @@ function Property (): JSX.Element {
       dispatch(fetchNearbyOffersAction(id));
       dispatch(loadReviewsAction(id));
     }
-  });
+  }, [id, dispatch]);
 
   const offer = useAppSelector((state) => state.propertyOffer);
   const reviews = useAppSelector((state) => state.reviews);
