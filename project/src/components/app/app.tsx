@@ -43,6 +43,10 @@ function App(): JSX.Element {
           path={AppRoute.NotFound}
           element={<NotFoundScreen />}
         />
+        <Route
+          path={'*'}
+          element={<NotFoundScreen />}
+        />
       </Routes>
     </HistoryRouter>
   );

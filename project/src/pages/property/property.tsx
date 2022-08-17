@@ -18,6 +18,7 @@ function Property (): JSX.Element {
 
   const {id} = useParams();
   const dispatch = useAppDispatch();
+  const {isDataLoaded} = useAppSelector((state) => state);
 
   useEffect(() => {
     if (id) {
@@ -32,6 +33,12 @@ function Property (): JSX.Element {
   const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
   const mapCity = useAppSelector((state) => state.mapCity);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  if (isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
 
