@@ -72,7 +72,7 @@ function Property (): JSX.Element {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: offer.rating * RatingWidthFactor.Film}} />
+                    <span style={{width: offer.rating * RatingWidthFactor.Property}} />
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">{offer.rating}</span>

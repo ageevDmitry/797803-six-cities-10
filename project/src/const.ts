@@ -38,7 +38,8 @@ export const PLACE_CARD_CLASS_NAME = {
 
 export enum RatingWidthFactor {
   Film = 14.8,
-  Review = 19.5
+  Review = 19.5,
+  Property = 29
 }
 
 export const CITIES = [
