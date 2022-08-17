@@ -8,7 +8,7 @@ import {sendNewReviewAction} from '../../store/api-action';
 function ReviewForm(): JSX.Element {
 
   const commentRef = useRef<HTMLTextAreaElement | null>(null);
-  const ratingRef = useRef<HTMLInputElement | null>(null);
+  const ratingRef = useRef<Array<HTMLInputElement | null>>([]);
   const propertyOffer = useAppSelector((state) => state.propertyOffer);
 
   const dispatch = useAppDispatch();
