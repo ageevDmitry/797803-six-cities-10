@@ -21,12 +21,14 @@ function ReviewForm(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (commentRef.current !== null && ratingRef.current !== null && propertyOffer) {
+    const selectedRating = ratingRef.current.reverse().find((element) => element?.checked);
+
+    if (commentRef.current !== null && selectedRating && propertyOffer) {
       onSubmit({
         propertyOfferId: propertyOffer.id,
         newComment: {
           comment: commentRef.current.value,
-          rating: ratingRef.current.value
+          rating: selectedRating.value
         }
       }
       );
@@ -37,9 +39,9 @@ function ReviewForm(): JSX.Element {
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {REVIEW_FORM_STATUS.map((item) => (
+        {REVIEW_FORM_STATUS.map((item, idx) => (
           <Fragment key = {item.startNumber}>
-            <input ref={ratingRef} className="form__rating-input visually-hidden" name="rating" value={item.startNumber} id={`${item.startNumber}-stars`} type="radio" />
+            <input ref={(ref)=> {ratingRef.current[idx] = ref;}} className="form__rating-input visually-hidden" name="rating" value={item.startNumber} id={`${item.startNumber}-stars`} type="radio" />
             <label htmlFor={`${item.startNumber}-stars`} className="reviews__rating-label form__rating-label" title={item.title}>
               <svg className="form__star-image" width={37} height={33}>
                 <use xlinkHref="#icon-star" />
