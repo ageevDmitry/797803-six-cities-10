@@ -12,3 +12,11 @@ export type Review = {
     rating: number
     user: User
 }
+
+export type UserReview = {
+    propertyOfferId: number,
+    newComment: {
+        comment: string
+        rating: string
+    }
+}

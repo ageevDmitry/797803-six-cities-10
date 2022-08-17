@@ -1,3 +1,5 @@
+import {OfferType} from '../const';
+
 export type Location = {
     latitude: number
     longitude: number
@@ -27,9 +29,8 @@ export type Offer = {
         location: Location
         maxAdults: number
         previewImage: string,
-        // previewImageFavorites: string,
         price: number
         rating: number
         title: string
-        type: string
+        type: OfferType
     }

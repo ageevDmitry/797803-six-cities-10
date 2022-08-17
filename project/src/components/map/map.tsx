@@ -8,8 +8,9 @@ import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
   mapCity?: City;
-  points: Offer[];
-  hoverOffer? : Offer;
+  offers: Offer[];
+  selectedOffer? : Offer;
+  propertyOffer? : Offer;
 };
 
 const defaultCustomIcon = new Icon({
@@ -25,36 +26,37 @@ const currentCustomIcon = new Icon({
 });
 
 function Map(props: MapProps): JSX.Element {
-  const {mapCity, points, hoverOffer} = props;
+  const {mapCity, offers, selectedOffer, propertyOffer} = props;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, mapCity);
 
   useEffect(() => {
     const markers: Marker[] = [];
+    let propertyMarker: Marker;
 
     if (map && mapCity) {
-      points.forEach((point) => {
+      offers.forEach((offer) => {
         const marker = new Marker({
-          lat: point.location.latitude,
-          lng: point.location.longitude,
+          lat: offer.location.latitude,
+          lng: offer.location.longitude,
         });
 
         markers.push(marker);
 
         marker
           .setIcon(
-            hoverOffer !== undefined && point.id === hoverOffer.id
+            selectedOffer && offer.id === selectedOffer.id
               ? currentCustomIcon
               : defaultCustomIcon
           )
           .addTo(map);
       });
 
-      if (hoverOffer) {
+      if (selectedOffer) {
         map.setView({
-          lat: hoverOffer.location.latitude,
-          lng: hoverOffer.location.longitude,
+          lat: selectedOffer.location.latitude,
+          lng: selectedOffer.location.longitude,
         });
       } else {
         map.setView({
@@ -62,13 +64,33 @@ function Map(props: MapProps): JSX.Element {
           lng: mapCity.lng,
         });
       }
+
+      if (propertyOffer) {
+        propertyMarker = new Marker({
+          lat: propertyOffer.location.latitude,
+          lng: propertyOffer.location.longitude,
+        });
+
+        propertyMarker
+          .setIcon(currentCustomIcon)
+          .addTo(map);
+
+        map.setView({
+          lat: propertyOffer.location.latitude,
+          lng: propertyOffer.location.longitude,
+        });
+      }
     }
 
     return () => {
       markers.forEach((marker) => {marker.remove();});
+
+      if (propertyMarker) {
+        propertyMarker.remove();
+      }
     };
 
-  }, [map, points, mapCity, hoverOffer]);
+  }, [map, offers, mapCity, selectedOffer, propertyOffer]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

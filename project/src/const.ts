@@ -2,13 +2,16 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Property = '/offer/:id'
+  Property = '/offer/:id',
+  NotFound = '/404',
 }
 
 export enum APIRoute {
   Offers = '/hotels',
   Login = '/login',
+  Hotels = '/hotels',
   Logout = '/logout',
+  Comments = '/comments',
 }
 
 export enum AuthorizationStatus {
@@ -23,6 +26,12 @@ export enum PlaceCardType {
   NearPlaces = 'near-places',
 }
 
+export enum SortType {
+  PriceHight = 'PriceHight',
+  PriceLow = 'PriceLow',
+  Rated = 'Rated',
+}
+
 export const PLACE_CARD_CLASS_NAME = {
   [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
   [PlaceCardType.Favorites]: 'favorites__places',
@@ -31,8 +40,23 @@ export const PLACE_CARD_CLASS_NAME = {
 
 export enum RatingWidthFactor {
   Film = 14.8,
-  Review = 19.5
+  Review = 19.5,
+  Property = 29
 }
+
+export enum OfferType {
+  Apartment = 'apartment',
+  Room = 'room',
+  House = 'house',
+  Hotel = 'hotel'
+}
+
+export const ViewOfferType = {
+  [OfferType.Apartment]: 'Apartment',
+  [OfferType.Room]: 'Private Room',
+  [OfferType.House]: 'House',
+  [OfferType.Hotel]: 'Hotel'
+} as const;
 
 export const CITIES = [
   'Paris',
@@ -95,3 +119,12 @@ export const DEFAULT_SORT_TYPE = {
   type: 'Popular',
   title: 'Popular'
 };
+
+export const PROPERTY_IMAGES_COUNT = 6;
+
+export const REVIEWS_COUNT = 10;
+
+export const MIN_LENGTH_COMMENT = 50;
+
+export const MAX_LENGTH_COMMENT = 300;
+

@@ -5,10 +5,10 @@ import {useState} from 'react';
 
 function SortPlaceCard ():JSX.Element {
 
-  const [isSortList, callSortList] = useState(false);
+  const [isSortList, toggleSortList] = useState(false);
 
   const dispatch = useAppDispatch();
-  const selectedSortType = useAppSelector((state) => state.sortType);
+  const sortType = useAppSelector((state) => state.sortType);
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -17,10 +17,10 @@ function SortPlaceCard ():JSX.Element {
 
       <span className="places__sorting-type" tabIndex={0}
         onClick={() => {
-          callSortList(!isSortList);
+          toggleSortList(!isSortList);
         }}
       >
-        {selectedSortType.title}
+        {sortType.title}
         <svg className="places__sorting-arrow" width={7} height={4}>
           <use xlinkHref="#icon-arrow-select" />
         </svg>
@@ -28,10 +28,10 @@ function SortPlaceCard ():JSX.Element {
       {isSortList &&
       <ul className="places__options places__options--custom places__options--opened">
         {SORT_LIST.map((item) => (
-          <li key = {item.title} className={`places__option ${item.type === selectedSortType.type ? 'places__option--active' : ''}`} tabIndex={0}
+          <li key = {item.title} className={`places__option ${item.type === sortType.type ? 'places__option--active' : ''}`} tabIndex={0}
             onClick={() => {
               dispatch(changeSortType({sortType: item}));
-              callSortList(!isSortList);
+              toggleSortList(!isSortList);
               dispatch(sortOffers());
             }}
           >

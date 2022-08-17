@@ -1,6 +1,7 @@
 import {RatingWidthFactor} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
+import {ViewOfferType} from '../../const';
 
 type PlaceCardProps = {
   typeComponent: string;
@@ -11,7 +12,7 @@ type PlaceCardProps = {
 function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps): JSX.Element {
 
   const {id, isPremium, previewImage, price, rating, title, type} = offer;
-  const placeCardId = `/offer/:${id}`;
+  const placeCardId = `/offer/${id}`;
 
   return (
     <article className={`${typeComponent}__card place-card`}
@@ -19,7 +20,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
     >
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className={`${typeComponent}__image-wrapper place-card__image-wrapper`}>
-        <a href="/">
+        <Link to={placeCardId}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -27,7 +28,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             width={260}
             height={200}
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -56,9 +57,11 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={placeCardId}>{title}</Link>
+          <Link to={placeCardId}>
+            {title}
+          </Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{ViewOfferType[type]}</p>
       </div>
     </article>
   );
