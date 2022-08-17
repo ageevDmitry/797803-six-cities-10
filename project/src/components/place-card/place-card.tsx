@@ -19,7 +19,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
     >
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
       <div className={`${typeComponent}__image-wrapper place-card__image-wrapper`}>
-        <a href="/">
+        <Link to={placeCardId}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -27,7 +27,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             width={260}
             height={200}
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
