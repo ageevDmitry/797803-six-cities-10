@@ -11,7 +11,8 @@ import {changeFilterType,
   loadReviews,
   sendNewReview,
   setDataLoadedStatus,
-  requireAuthorization} from './action';
+  requireAuthorization,
+  setDownloadError} from './action';
 import {Offer} from '../types/offer';
 import {Review} from '../types/review';
 import {City} from '../types/city';
@@ -40,7 +41,7 @@ type InitialState = {
   mapCity: City | undefined,
   authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
-  error: string | null,
+  error: boolean,
   userData: UserData | null,
 }
 
@@ -53,7 +54,7 @@ const initialState: InitialState = {
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_FILTER_TYPE),
   authorizationStatus : AuthorizationStatus.Unknown,
   isDataLoaded: false,
-  error: null,
+  error: false,
   userData: null,
 };
 
@@ -113,6 +114,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadUserData, (state, action) => {
 
       state.userData = action.payload;
+    })
+    .addCase(setDownloadError, (state, action) => {
+
+      state.error = action.payload;
     });
 });
 

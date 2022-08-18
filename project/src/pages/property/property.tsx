@@ -18,7 +18,6 @@ function Property (): JSX.Element {
 
   const {id} = useParams();
   const dispatch = useAppDispatch();
-  // const {isDataLoaded} = useAppSelector((state) => state);
 
   useEffect(() => {
     if (id) {
