@@ -1,8 +1,8 @@
 import {RatingWidthFactor} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
-import {ViewOfferType} from '../../const';
-// import {useState} from 'react';
+import {ViewOfferType, FavoriteStatus} from '../../const';
+import {useState} from 'react';
 import {changeFavoriteStatusAction} from '../../store/api-action';
 import {useAppDispatch} from '../../hooks';
 
@@ -17,6 +17,8 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
   const {id, isPremium, previewImage, price, rating, title, type, isFavorite} = offer;
   const placeCardId = `/offer/${id}`;
   const dispatch = useAppDispatch();
+
+  const [isFavoriteFlag, setFavoriteFlag] = useState(isFavorite);
 
   return (
     <article className={`${typeComponent}__card place-card`}
@@ -41,9 +43,11 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button onClick={() => {
+            setFavoriteFlag(!isFavoriteFlag);
+
             dispatch(changeFavoriteStatusAction({
               id : id,
-              favoriteStatus: (!isFavorite) ? 1 : 0,
+              favoriteStatus: (isFavoriteFlag) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
             }));
           }}
           className="place-card__bookmark-button button"
@@ -53,6 +57,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
               className="place-card__bookmark-icon"
               width={18}
               height={19}
+              style={(isFavoriteFlag) ? {stroke: '#4481c3', fill: '#4481c3'} : {stroke: '#979797'}}
             >
               <use xlinkHref="#icon-bookmark" />
             </svg>

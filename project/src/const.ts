@@ -33,6 +33,11 @@ export enum SortType {
   Rated = 'Rated',
 }
 
+export enum FavoriteStatus {
+  isFavorite = 1,
+  isNotFavorite = 0,
+}
+
 export const PLACE_CARD_CLASS_NAME = {
   [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
   [PlaceCardType.Favorites]: 'favorites__places',
