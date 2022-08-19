@@ -8,14 +8,17 @@ import {loadOffers,
   sendNewReview,
   setDownloadError,
 } from './action';
-import {Offer} from '../types/offer';
+import {Offer, FavoritesTypeOffer} from '../types/offer';
 import {Review, UserReview} from '../types/review.js';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {setDataLoadedStatus,
   filterCity,
   requireAuthorization,
   redirectToRoute,
-  loadUserData} from './action';
+  loadUserData,
+  loadFavoriteOffers,
+  changeFavoriteStatusOffer
+} from './action';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {saveToken, dropToken} from '../services/token';
@@ -93,6 +96,30 @@ export const sendNewReviewAction = createAsyncThunk<void, UserReview, {
       dispatch(sendNewReview(data));
     },
   );
+
+export const fetchFavoriteOffersAction = createAsyncThunk<void, undefined, {
+    dispatch: AppDispatch,
+    state: State,
+    extra: AxiosInstance
+  }>(
+    'data/fetchFavoriteOffers',
+    async (_arg, {dispatch, extra: api}) => {
+      const {data} = await api.get<Offer[]>(APIRoute.Favorite);
+      dispatch(loadFavoriteOffers(data));
+    },
+  );
+
+export const changeFavoriteStatusAction = createAsyncThunk<void, FavoritesTypeOffer, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/changeFavoriteStatusOffer',
+  async (changedOffer, {dispatch, extra: api}) => {
+    const {data} = await api.post<Offer>(`${APIRoute.Favorite}/${changedOffer.id}/${changedOffer.favoriteStatus}`);
+    dispatch(changeFavoriteStatusOffer(data));
+  },
+);
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
     dispatch: AppDispatch,

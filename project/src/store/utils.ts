@@ -38,3 +38,20 @@ export function getSortReviews(items: Review[]) {
 
   return sortItems.sort((a, b) => dayjs(b.date).diff(dayjs(a.date)));
 }
+
+export function changeFavoriteOffers(items: Offer[], changedItem: Offer): Offer[] {
+
+  const index = items.findIndex((item) => item.id === changedItem.id);
+
+  if (index === -1) {
+    items.push(changedItem);
+    return items;
+  }
+
+  items = [
+    ...items.slice(0, index),
+    ...items.slice(index + 1),
+  ];
+
+  return items;
+}

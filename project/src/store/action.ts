@@ -27,6 +27,10 @@ export const loadReviews = createAction<Review[]>('data/loadReviews');
 
 export const sendNewReview = createAction<Review[]>('data/sendNewReview');
 
+export const loadFavoriteOffers = createAction<Offer[]>('data/loadFavoriteOffers');
+
+export const changeFavoriteStatusOffer = createAction<Offer>('data/changeFavoriteStatusOffer');
+
 export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');

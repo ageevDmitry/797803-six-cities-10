@@ -2,6 +2,9 @@ import {RatingWidthFactor} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 import {ViewOfferType} from '../../const';
+import {useState} from 'react';
+import {changeFavoriteStatusAction} from '../../store/api-action';
+import {useAppDispatch} from '../../hooks';
 
 type PlaceCardProps = {
   typeComponent: string;
@@ -11,8 +14,11 @@ type PlaceCardProps = {
 
 function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps): JSX.Element {
 
-  const {id, isPremium, previewImage, price, rating, title, type} = offer;
+  const {id, isPremium, previewImage, price, rating, title, type, isFavorite} = offer;
   const placeCardId = `/offer/${id}`;
+  const dispatch = useAppDispatch();
+
+  const [favoriteStatus, setFavorite] = useState(isFavorite);
 
   return (
     <article className={`${typeComponent}__card place-card`}
@@ -36,9 +42,22 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             <b className="place-card__price-value">{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button
-            className="place-card__bookmark-button button"
-            type="button"
+          <button onClick={() => {
+            setFavorite(!favoriteStatus);
+
+            let a = 1;
+
+            if (favoriteStatus) {
+              a = 0;
+            }
+
+            dispatch(changeFavoriteStatusAction({
+              id : id,
+              favoriteStatus: a
+            }));
+          }}
+          className="place-card__bookmark-button button"
+          type="button"
           >
             <svg
               className="place-card__bookmark-icon"

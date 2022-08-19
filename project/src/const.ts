@@ -12,6 +12,7 @@ export enum APIRoute {
   Hotels = '/hotels',
   Logout = '/logout',
   Comments = '/comments',
+  Favorite = '/favorite'
 }
 
 export enum AuthorizationStatus {
@@ -49,6 +50,11 @@ export enum OfferType {
   Room = 'room',
   House = 'house',
   Hotel = 'hotel'
+}
+
+export enum OfferStatus {
+  Favorite = 1,
+  NotFavorite = 0,
 }
 
 export const ViewOfferType = {
@@ -127,4 +133,3 @@ export const REVIEWS_COUNT = 10;
 export const MIN_LENGTH_COMMENT = 50;
 
 export const MAX_LENGTH_COMMENT = 300;
-

@@ -12,7 +12,10 @@ import {changeFilterType,
   sendNewReview,
   setDataLoadedStatus,
   requireAuthorization,
-  setDownloadError} from './action';
+  setDownloadError,
+  loadFavoriteOffers,
+  changeFavoriteStatusOffer,
+} from './action';
 import {Offer} from '../types/offer';
 import {Review} from '../types/review';
 import {City} from '../types/city';
@@ -24,6 +27,7 @@ import {getFilterOffers,
   getHoverOffer,
   getSortOffers,
   getSortReviews,
+  changeFavoriteOffers
 } from './utils';
 import {AuthorizationStatus} from '../const';
 import {UserData} from '../types/user-data';
@@ -37,6 +41,7 @@ type InitialState = {
   selectedOffer?: Offer,
   propertyOffer?: Offer,
   nearbyOffers?: Offer[],
+  favoriteOffers: Offer[],
   reviews?: Review[],
   mapCity: City | undefined,
   authorizationStatus: AuthorizationStatus,
@@ -51,6 +56,7 @@ const initialState: InitialState = {
   filteredOffers: [],
   sortType: DEFAULT_SORT_TYPE,
   sortedOffers: [],
+  favoriteOffers: [],
   mapCity: getFilterCity(MAP_CITIES, DEFAULT_FILTER_TYPE),
   authorizationStatus : AuthorizationStatus.Unknown,
   isDataLoaded: false,
@@ -102,6 +108,14 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(sendNewReview, (state, action) => {
 
       state.reviews = getSortReviews(action.payload);
+    })
+    .addCase(loadFavoriteOffers, (state, action) => {
+
+      state.favoriteOffers = action.payload;
+    })
+    .addCase(changeFavoriteStatusOffer, (state, action) => {
+
+      state.favoriteOffers = changeFavoriteOffers(state.favoriteOffers, action.payload);
     })
     .addCase(setDataLoadedStatus, (state, action) => {
 

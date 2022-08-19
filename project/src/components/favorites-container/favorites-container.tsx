@@ -1,12 +1,11 @@
 import PlaceCardList from '../place-card-list/place-card-list';
-import {Offer} from '../../types/offer';
 import {CITIES, PlaceCardType} from '../../const';
+import {useAppSelector} from '../../hooks';
 
-type FavoritesContainerProps = {
-  offers: Offer[];
-}
 
-function FavoritesContainer ({offers}: FavoritesContainerProps): JSX.Element {
+function FavoritesContainer (): JSX.Element {
+
+  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
 
   return (
     <section className="favorites">
@@ -22,7 +21,7 @@ function FavoritesContainer ({offers}: FavoritesContainerProps): JSX.Element {
               </div>
             </div>
             <PlaceCardList
-              offers = {offers}
+              offers = {favoriteOffers}
               typeComponent = {PlaceCardType.Favorites}
             />
           </li>

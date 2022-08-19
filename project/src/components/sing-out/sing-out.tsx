@@ -8,6 +8,7 @@ function SingOut ():JSX.Element {
   const dispatch = useAppDispatch();
   const userName = useAppSelector((state) => state.userData?.email);
   const userAvatar = useAppSelector((state) => state.userData?.avatarUrl);
+  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
 
   return (
     <ul className="header__nav-list">
@@ -21,7 +22,7 @@ function SingOut ():JSX.Element {
             height={20}
           />
           <span className="header__user-name user__name">{userName}</span>
-          <span className="header__favorite-count">3</span>
+          <span className="header__favorite-count">{favoriteOffers.length}</span>
         </Link>
       </li>
       <li className="header__nav-item">
