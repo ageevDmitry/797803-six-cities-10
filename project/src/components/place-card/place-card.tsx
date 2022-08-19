@@ -2,7 +2,7 @@ import {RatingWidthFactor} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 import {ViewOfferType} from '../../const';
-import {useState} from 'react';
+// import {useState} from 'react';
 import {changeFavoriteStatusAction} from '../../store/api-action';
 import {useAppDispatch} from '../../hooks';
 
@@ -17,8 +17,6 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
   const {id, isPremium, previewImage, price, rating, title, type, isFavorite} = offer;
   const placeCardId = `/offer/${id}`;
   const dispatch = useAppDispatch();
-
-  const [favoriteStatus, setFavorite] = useState(isFavorite);
 
   return (
     <article className={`${typeComponent}__card place-card`}
@@ -43,17 +41,9 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button onClick={() => {
-            setFavorite(!favoriteStatus);
-
-            let a = 1;
-
-            if (favoriteStatus) {
-              a = 0;
-            }
-
             dispatch(changeFavoriteStatusAction({
               id : id,
-              favoriteStatus: a
+              favoriteStatus: (!isFavorite) ? 1 : 0,
             }));
           }}
           className="place-card__bookmark-button button"
