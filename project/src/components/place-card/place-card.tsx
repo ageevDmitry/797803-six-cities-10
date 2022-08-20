@@ -43,12 +43,12 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button onClick={() => {
-            setFavoriteFlag(!isFavoriteFlag);
-
             dispatch(changeFavoriteStatusAction({
               id : id,
               favoriteStatus: (isFavoriteFlag) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
             }));
+
+            setFavoriteFlag(!isFavoriteFlag);
           }}
           className="place-card__bookmark-button button"
           type="button"

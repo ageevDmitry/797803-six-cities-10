@@ -34,8 +34,8 @@ export enum SortType {
 }
 
 export enum FavoriteStatus {
-  isFavorite = 1,
-  isNotFavorite = 0,
+  isFavorite = 0,
+  isNotFavorite = 1,
 }
 
 export const PLACE_CARD_CLASS_NAME = {
