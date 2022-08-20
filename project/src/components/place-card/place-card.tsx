@@ -1,4 +1,4 @@
-import {RatingWidthFactor} from '../../const';
+import {RatingWidthFactor, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 import {ViewOfferType, FavoriteStatus, AuthorizationStatus, AppRoute} from '../../const';
@@ -33,8 +33,8 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             className="place-card__image"
             src={previewImage}
             alt="Place figure"
-            width={260}
-            height={200}
+            width={(typeComponent === PlaceCardType.Favorites) ? 150 : 210}
+            height={(typeComponent === PlaceCardType.Favorites) ? 110 : 200}
           />
         </Link>
       </div>

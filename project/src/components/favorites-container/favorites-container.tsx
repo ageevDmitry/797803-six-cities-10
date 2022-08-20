@@ -7,21 +7,6 @@ function FavoritesContainer (): JSX.Element {
 
   const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
 
-  // const newCities: Offer[] = [];
-
-  // CITIES.map((city) => {
-
-  //   const city2 = favoriteOffers.find((item: Offer) => item.city.name === city);
-
-  //   if (city2) {
-  //     newCities.push(city2);
-  //   }
-
-  //   return newCities;
-  // });
-
-  // console.log(newCities);
-
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
