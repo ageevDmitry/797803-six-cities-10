@@ -2,10 +2,15 @@ import PlaceCardList from '../place-card-list/place-card-list';
 import {CITIES, PlaceCardType} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {Offer} from '../../types/offer';
+import FavoritesContainerEmpty from '../../components/favorities-container-empty/favorities-container-empty';
 
 function FavoritesContainer (): JSX.Element {
 
   const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
+
+  if (favoriteOffers.length === 0) {
+    return <FavoritesContainerEmpty/>;
+  }
 
   return (
     <section className="favorites">
