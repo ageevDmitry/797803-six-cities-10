@@ -27,7 +27,7 @@ import {getFilterOffers,
   getHoverOffer,
   getSortOffers,
   getSortReviews,
-  getFavoriteOffers,
+  changeOffers,
 } from './utils';
 import {AuthorizationStatus} from '../const';
 import {UserData} from '../types/user-data';
@@ -115,7 +115,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeFavoriteStatusOffer, (state, action) => {
 
-      state.favoriteOffers = getFavoriteOffers(state.favoriteOffers, action.payload);
+      state.offers = changeOffers(state.offers, action.payload);
+      state.filteredOffers = changeOffers(state.filteredOffers, action.payload);
+      state.sortedOffers = changeOffers(state.sortedOffers, action.payload);
     })
     .addCase(setDataLoadedStatus, (state, action) => {
 

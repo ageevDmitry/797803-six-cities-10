@@ -7,6 +7,21 @@ function FavoritesContainer (): JSX.Element {
 
   const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
 
+  // const newCities: Offer[] = [];
+
+  // CITIES.map((city) => {
+
+  //   const city2 = favoriteOffers.find((item: Offer) => item.city.name === city);
+
+  //   if (city2) {
+  //     newCities.push(city2);
+  //   }
+
+  //   return newCities;
+  // });
+
+  // console.log(newCities);
+
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
@@ -16,19 +31,20 @@ function FavoritesContainer (): JSX.Element {
           const filteredOffers = favoriteOffers.filter((item: Offer) => item.city.name === city);
 
           return (
-            <li key = {city} className="favorites__locations-items">
-              <div className="favorites__locations locations locations--current">
-                <div className="locations__item">
-                  <a className="locations__item-link" href="/">
-                    <span>{city}</span>
-                  </a>
+            (filteredOffers.length > 0) ?
+              <li key = {city} className="favorites__locations-items">
+                <div className="favorites__locations locations locations--current">
+                  <div className="locations__item">
+                    <a className="locations__item-link" href="/">
+                      <span>{city}</span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <PlaceCardList
-                offers = {filteredOffers}
-                typeComponent = {PlaceCardType.Favorites}
-              />
-            </li>
+                <PlaceCardList
+                  offers = {filteredOffers}
+                  typeComponent = {PlaceCardType.Favorites}
+                />
+              </li> : undefined
           );
         })}
       </ul>
