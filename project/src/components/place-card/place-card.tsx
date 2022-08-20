@@ -1,10 +1,11 @@
 import {RatingWidthFactor} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
-import {ViewOfferType, FavoriteStatus} from '../../const';
+import {ViewOfferType, FavoriteStatus, AuthorizationStatus, AppRoute} from '../../const';
 import {useState} from 'react';
 import {changeFavoriteStatusAction} from '../../store/api-action';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {redirectToRoute} from '../../store/action';
 
 type PlaceCardProps = {
   typeComponent: string;
@@ -17,6 +18,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
   const {id, isPremium, previewImage, price, rating, title, type, isFavorite} = offer;
   const placeCardId = `/offer/${id}`;
   const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   const [isFavoriteFlag, setFavoriteFlag] = useState(isFavorite);
 
@@ -43,6 +45,11 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button onClick={() => {
+
+            if (authorizationStatus !== AuthorizationStatus.Auth) {
+              return dispatch(redirectToRoute(AppRoute.Login));
+            }
+
             dispatch(changeFavoriteStatusAction({
               id : id,
               favoriteStatus: (isFavoriteFlag) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
