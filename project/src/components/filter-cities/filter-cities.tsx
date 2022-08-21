@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeFilterType, filterCity} from '../../store/action';
+import {changeFilterType} from '../../store/action';
 import {CITIES} from '../../const';
 import {Link} from 'react-router-dom';
 
@@ -15,7 +15,6 @@ function FilterCities (): JSX.Element {
           <Link to="/" className={`locations__item-link tabs__item ${item === filterType ? 'tabs__item--active' : ''}`}
             onClick={() => {
               dispatch(changeFilterType({city: item}));
-              dispatch(filterCity());
             }}
           >
             <span>{item}</span>

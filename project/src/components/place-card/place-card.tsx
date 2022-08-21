@@ -2,7 +2,6 @@ import {RatingWidthFactor, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 import {ViewOfferType, FavoriteStatus, AuthorizationStatus, AppRoute} from '../../const';
-import {useState} from 'react';
 import {changeFavoriteStatusAction} from '../../store/api-action';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {redirectToRoute} from '../../store/action';
@@ -19,7 +18,6 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
   const placeCardId = `/offer/${id}`;
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const [isFavoriteFlag, setFavoriteFlag] = useState(isFavorite);
 
   const handleOnClick = () => {
 
@@ -29,12 +27,9 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
 
     dispatch(changeFavoriteStatusAction({
       id : id,
-      favoriteStatus: (isFavoriteFlag) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
+      favoriteStatus: (isFavorite) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
     }));
-
-    setFavoriteFlag(!isFavoriteFlag);
   };
-
 
   return (
     <article className={`${typeComponent}__card place-card`}
@@ -66,7 +61,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
               className="place-card__bookmark-icon"
               width={18}
               height={19}
-              style={(isFavoriteFlag) ? {stroke: '#4481c3', fill: '#4481c3'} : {stroke: '#979797'}}
+              style={(isFavorite) ? {stroke: '#4481c3', fill: '#4481c3'} : undefined}
             >
               <use xlinkHref="#icon-bookmark" />
             </svg>

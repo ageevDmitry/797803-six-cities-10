@@ -1,8 +1,8 @@
-import {Offer} from '../types/offer';
-import {City} from '../types/city';
-import {Review} from '../types/review';
-import {SortType} from '../const';
 import dayjs from 'dayjs';
+import {Offer} from './types/offer';
+import {City} from './types/city';
+import {Review} from './types/review';
+import {SortType} from './const';
 
 export function getFilterOffers(items: Offer[], selectedItem: string) {
   return items.filter((item: Offer) => item.city.name === selectedItem);
@@ -37,21 +37,4 @@ export function getSortReviews(items: Review[]) {
   const sortItems = items.slice();
 
   return sortItems.sort((a, b) => dayjs(b.date).diff(dayjs(a.date)));
-}
-
-export function changeOffers(items: Offer[], changedItem: Offer): Offer[] {
-
-  const index = items.findIndex((item) => item.id === changedItem.id);
-
-  if (index === -1) {
-    return items;
-  }
-
-  items = [
-    ...items.slice(0, index),
-    changedItem,
-    ...items.slice(index + 1),
-  ];
-
-  return items;
 }

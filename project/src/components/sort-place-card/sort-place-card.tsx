@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeSortType, sortOffers} from '../../store/action';
+import {changeSortType} from '../../store/action';
 import {SORT_LIST} from '../../const';
 import {useState} from 'react';
 
@@ -32,7 +32,6 @@ function SortPlaceCard ():JSX.Element {
             onClick={() => {
               dispatch(changeSortType({sortType: item}));
               toggleSortList(!isSortList);
-              dispatch(sortOffers());
             }}
           >
             {item.title}

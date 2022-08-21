@@ -12,12 +12,10 @@ import {Offer, FavoritesTypeOffer} from '../types/offer';
 import {Review, UserReview} from '../types/review.js';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {setDataLoadedStatus,
-  filterCity,
   requireAuthorization,
   redirectToRoute,
   loadUserData,
   loadFavoriteOffers,
-  changeFavoriteStatusOffer
 } from './action';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
@@ -33,7 +31,6 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
       try {
         const {data} = await api.get<Offer[]>(APIRoute.Offers);
         dispatch(loadOffers(data));
-        dispatch(filterCity());
         dispatch(setDownloadError(false));
       } catch {
         dispatch(loadOffers([]));
@@ -116,8 +113,8 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, FavoritesTypeOf
 }>(
   'data/changeFavoriteStatusOffer',
   async (changedOffer, {dispatch, extra: api}) => {
-    const {data} = await api.post<Offer>(`${APIRoute.Favorite}/${changedOffer.id}/${changedOffer.favoriteStatus}`);
-    dispatch(changeFavoriteStatusOffer(data));
+    await api.post<Offer>(`${APIRoute.Favorite}/${changedOffer.id}/${changedOffer.favoriteStatus}`);
+    dispatch(fetchOffersAction());
     dispatch(fetchFavoriteOffersAction());
   },
 );
@@ -133,6 +130,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
         const {data} = await api.get<UserData>(APIRoute.Login);
         dispatch(loadUserData(data));
         dispatch(requireAuthorization(AuthorizationStatus.Auth));
+        dispatch(fetchFavoriteOffersAction());
       } catch {
         dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
       }
@@ -151,6 +149,8 @@ export const loginAction = createAsyncThunk<void, AuthData, {
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
       dispatch(redirectToRoute(AppRoute.Main));
       dispatch(loadUserData(data));
+      dispatch(fetchOffersAction());
+      dispatch(fetchFavoriteOffersAction());
     },
   );
 
@@ -164,5 +164,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
       await api.delete(APIRoute.Logout);
       dropToken();
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+      dispatch(fetchOffersAction());
+      dispatch(fetchFavoriteOffersAction());
     },
   );

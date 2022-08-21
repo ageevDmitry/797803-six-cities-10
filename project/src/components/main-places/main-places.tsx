@@ -1,9 +1,9 @@
+import {useAppSelector} from '../../hooks';
+import {PlaceCardType} from '../../const';
+import {getFilterOffers, getSortOffers} from '../../utils';
 import SortPlaceCard from '../sort-place-card/sort-place-card';
 import PlaceCardList from '../place-card-list/place-card-list';
 import Map from '../map/map';
-import {PlaceCardType} from '../../const';
-import {useAppSelector} from '../../hooks';
-import {getFilterOffers, getSortOffers} from '../../store/utils';
 
 function MainPlaces (): JSX.Element {
 
