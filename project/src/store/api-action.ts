@@ -48,7 +48,7 @@ export const fetchPropertyOffersAction = createAsyncThunk<void, string | number,
     'data/fetchPropertyOffer',
     async (id, {dispatch, extra: api}) => {
       try {
-        const {data} = await api.get<Offer>(`${APIRoute.Hotels}/${id}`);
+        const {data} = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
         dispatch(loadPropertyOffer(data));
       } catch {
         dispatch(redirectToRoute(AppRoute.NotFound));
@@ -63,7 +63,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<void, string, {
   }>(
     'data/fetchNearbyOffer',
     async (id, {dispatch, extra: api}) => {
-      const {data} = await api.get<Offer[]>(`${APIRoute.Hotels}/${id}/nearby`);
+      const {data} = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
       dispatch(loadNearbyOffers(data));
     },
   );

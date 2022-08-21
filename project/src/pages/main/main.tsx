@@ -11,7 +11,7 @@ function Main (): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header/>
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${(error) ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -19,7 +19,9 @@ function Main (): JSX.Element {
           </section>
         </div>
         <div className="cities">
-          {(error) ? <MainPlacesEmpty/> : <MainPlaces/>}
+          <div className={`cities__places-container ${(error) ? 'cities__places-container--empty' : ''} container`}>
+            {(error) ? <MainPlacesEmpty/> : <MainPlaces/>}
+          </div>
         </div>
       </main>
     </div>

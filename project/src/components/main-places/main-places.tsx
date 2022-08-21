@@ -4,6 +4,7 @@ import {getFilterOffers, getSortOffers} from '../../utils';
 import SortPlaceCard from '../sort-place-card/sort-place-card';
 import PlaceCardList from '../place-card-list/place-card-list';
 import Map from '../map/map';
+import { Fragment } from 'react';
 
 function MainPlaces (): JSX.Element {
 
@@ -17,8 +18,7 @@ function MainPlaces (): JSX.Element {
   const sortedOffers = getSortOffers(filteredOffers, sortType);
 
   return (
-
-    <div className="cities__places-container container">
+    <Fragment>
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{sortedOffers.length} places to stay in {selectedCity}</b>
@@ -37,7 +37,10 @@ function MainPlaces (): JSX.Element {
           />
         </section>
       </div>
-    </div>
+    </Fragment>
+    
+      
+
   );
 }
 
