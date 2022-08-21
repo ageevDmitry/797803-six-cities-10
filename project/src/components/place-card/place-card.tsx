@@ -19,8 +19,22 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
   const placeCardId = `/offer/${id}`;
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-
   const [isFavoriteFlag, setFavoriteFlag] = useState(isFavorite);
+
+  const handleOnClick = () => {
+
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      return dispatch(redirectToRoute(AppRoute.Login));
+    }
+
+    dispatch(changeFavoriteStatusAction({
+      id : id,
+      favoriteStatus: (isFavoriteFlag) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
+    }));
+
+    setFavoriteFlag(!isFavoriteFlag);
+  };
+
 
   return (
     <article className={`${typeComponent}__card place-card`}
@@ -44,21 +58,9 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             <b className="place-card__price-value">{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button onClick={() => {
-
-            if (authorizationStatus !== AuthorizationStatus.Auth) {
-              return dispatch(redirectToRoute(AppRoute.Login));
-            }
-
-            dispatch(changeFavoriteStatusAction({
-              id : id,
-              favoriteStatus: (isFavoriteFlag) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
-            }));
-
-            setFavoriteFlag(!isFavoriteFlag);
-          }}
-          className="place-card__bookmark-button button"
-          type="button"
+          <button onClick={handleOnClick}
+            className="place-card__bookmark-button button"
+            type="button"
           >
             <svg
               className="place-card__bookmark-icon"
