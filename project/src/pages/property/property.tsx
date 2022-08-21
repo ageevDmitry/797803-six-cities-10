@@ -7,17 +7,25 @@ import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
 import {PlaceCardType, PROPERTY_IMAGES_COUNT, RatingWidthFactor} from '../../const';
 import {useAppSelector} from '../../hooks';
-import {AuthorizationStatus, ViewOfferType} from '../../const';
+import {AuthorizationStatus, ViewOfferType, AppRoute, FavoriteStatus} from '../../const';
 import {useAppDispatch} from '../../hooks';
 import {fetchPropertyOffersAction,
   fetchNearbyOffersAction,
   loadReviewsAction} from '../../store/api-action';
 import LoadingScreen from '../../components/loading-screen/loading-screen';
+import {redirectToRoute} from '../../store/action';
+import {changeFavoriteStatusAction} from '../../store/api-action';
 
 function Property (): JSX.Element {
 
   const {id} = useParams();
   const dispatch = useAppDispatch();
+
+  const offer = useAppSelector((state) => state.propertyOffer);
+  const reviews = useAppSelector((state) => state.reviews);
+  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
+  const mapCity = useAppSelector((state) => state.mapCity);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
     if (id) {
@@ -25,13 +33,19 @@ function Property (): JSX.Element {
       dispatch(fetchNearbyOffersAction(id));
       dispatch(loadReviewsAction(id));
     }
-  }, [id, dispatch]);
+  }, [id, offer?.id, dispatch]);
 
-  const offer = useAppSelector((state) => state.propertyOffer);
-  const reviews = useAppSelector((state) => state.reviews);
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
-  const mapCity = useAppSelector((state) => state.mapCity);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const handleOnClick = () => {
+
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      return dispatch(redirectToRoute(AppRoute.Login));
+    }
+
+    dispatch(changeFavoriteStatusAction({
+      id : offer?.id,
+      favoriteStatus: (offer?.isFavorite) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
+    }));
+  };
 
   if (!offer || !reviews || !nearbyOffers) {
     return (
@@ -68,8 +82,12 @@ function Property (): JSX.Element {
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width={31} height={33}>
+                <button onClick={handleOnClick} className="property__bookmark-button button" type="button">
+                  <svg className="property__bookmark-icon"
+                    width={31}
+                    height={33}
+                    style={(offer.isFavorite) ? {stroke: '#4481c3', fill: '#4481c3'} : undefined}
+                  >
                     <use xlinkHref="#icon-bookmark" />
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>

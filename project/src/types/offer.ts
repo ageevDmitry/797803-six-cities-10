@@ -36,6 +36,6 @@ export type Offer = {
     }
 
 export type FavoritesTypeOffer = {
-        id: number,
+        id: number | undefined,
         favoriteStatus: number,
     }

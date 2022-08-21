@@ -40,7 +40,7 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     },
   );
 
-export const fetchPropertyOffersAction = createAsyncThunk<void, string, {
+export const fetchPropertyOffersAction = createAsyncThunk<void, string | number, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
