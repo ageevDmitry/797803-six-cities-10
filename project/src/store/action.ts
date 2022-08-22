@@ -29,6 +29,6 @@ export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStat
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
-export const setDownloadError = createAction<boolean>('data/setError');
+export const setErrorStatus = createAction<boolean>('data/setError');
 
 export const redirectToRoute = createAction<AppRoute>('user/redirectToRoute');

@@ -33,15 +33,10 @@ export enum SortType {
 }
 
 export enum FavoriteStatus {
-  isFavorite = 0,
-  isNotFavorite = 1,
+  Favorite = 0,
+  NotFavorite = 1,
 }
 
-export const PLACE_CARD_CLASS_NAME = {
-  [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
-  [PlaceCardType.Favorites]: 'favorites__places',
-  [PlaceCardType.NearPlaces]: 'near-places__list places__list',
-};
 
 export enum RatingWidthFactor {
   Film = 14.8,
@@ -56,12 +51,28 @@ export enum OfferType {
   Hotel = 'hotel'
 }
 
+export enum UrlMapMarket {
+  Default = 'img/pin.svg',
+  Current = 'img/pin-active.svg',
+}
+
 export enum OfferStatus {
   Favorite = 1,
   NotFavorite = 0,
 }
 
-export const ViewOfferType = {
+export const enum LengthComment {
+  Min = 50,
+  Max = 300,
+}
+
+export const PLACE_CARD_CLASS_NAME = {
+  [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
+  [PlaceCardType.Favorites]: 'favorites__places',
+  [PlaceCardType.NearPlaces]: 'near-places__list places__list',
+};
+
+export const VIEW_OFFER_TYPE = {
   [OfferType.Apartment]: 'Apartment',
   [OfferType.Room]: 'Private Room',
   [OfferType.House]: 'House',
@@ -119,10 +130,6 @@ export const REVIEW_FORM_STATUS = [
   },
 ];
 
-export const URL_MARKER_DEFAULT = 'img/pin.svg';
-
-export const URL_MARKER_CURRENT = 'img/pin-active.svg';
-
 export const DEFAULT_FILTER_TYPE = 'Paris';
 
 export const DEFAULT_SORT_TYPE = {
@@ -133,7 +140,3 @@ export const DEFAULT_SORT_TYPE = {
 export const PROPERTY_IMAGES_COUNT = 6;
 
 export const REVIEWS_COUNT = 10;
-
-export const MIN_LENGTH_COMMENT = 50;
-
-export const MAX_LENGTH_COMMENT = 300;

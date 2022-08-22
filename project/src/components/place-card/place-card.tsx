@@ -1,7 +1,7 @@
 import {RatingWidthFactor, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
-import {ViewOfferType, FavoriteStatus, AuthorizationStatus, AppRoute} from '../../const';
+import {VIEW_OFFER_TYPE, FavoriteStatus, AuthorizationStatus, AppRoute} from '../../const';
 import {changeFavoriteStatusAction} from '../../store/api-action';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {redirectToRoute} from '../../store/action';
@@ -27,7 +27,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
 
     dispatch(changeFavoriteStatusAction({
       id : String(offer.id),
-      favoriteStatus: (isFavorite) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
+      favoriteStatus: (isFavorite) ? FavoriteStatus.Favorite : FavoriteStatus.NotFavorite,
     }));
   };
 
@@ -79,7 +79,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             {title}
           </Link>
         </h2>
-        <p className="place-card__type">{ViewOfferType[type]}</p>
+        <p className="place-card__type">{VIEW_OFFER_TYPE[type]}</p>
       </div>
     </article>
   );

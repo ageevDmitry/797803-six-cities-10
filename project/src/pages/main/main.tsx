@@ -6,7 +6,7 @@ import {useAppSelector} from '../../hooks';
 
 function Main (): JSX.Element {
 
-  const error = useAppSelector((state) => state.error);
+  const error = useAppSelector((state) => state.isError);
 
   return (
     <div className="page page--gray page--main">

@@ -6,7 +6,7 @@ import {loadOffers,
   loadNearbyOffers,
   loadReviews,
   sendNewReview,
-  setDownloadError,
+  setErrorStatus,
 } from './action';
 import {Offer, FavoritesTypeOffer} from '../types/offer';
 import {Review, UserReview} from '../types/review.js';
@@ -31,11 +31,11 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
       try {
         const {data} = await api.get<Offer[]>(APIRoute.Offers);
         dispatch(loadOffers(data));
-        dispatch(setDownloadError(false));
+        dispatch(setErrorStatus(false));
       } catch {
         dispatch(loadOffers([]));
         dispatch(redirectToRoute(AppRoute.Main));
-        dispatch(setDownloadError(true));
+        dispatch(setErrorStatus(true));
       }
     },
   );

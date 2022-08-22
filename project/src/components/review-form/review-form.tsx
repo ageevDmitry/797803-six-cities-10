@@ -1,6 +1,6 @@
 import {Fragment} from 'react';
 import {useRef, FormEvent} from 'react';
-import {REVIEW_FORM_STATUS, MIN_LENGTH_COMMENT, MAX_LENGTH_COMMENT} from '../../const';
+import {REVIEW_FORM_STATUS, LengthComment} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {UserReview} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-action';
@@ -50,7 +50,7 @@ function ReviewForm(): JSX.Element {
           </Fragment>
         ))}
       </div>
-      <textarea ref={commentRef} minLength={MIN_LENGTH_COMMENT} maxLength={MAX_LENGTH_COMMENT} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" defaultValue={''} />
+      <textarea ref={commentRef} minLength={LengthComment.Min} maxLength={LengthComment.Max} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" defaultValue={''} />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
                         To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.

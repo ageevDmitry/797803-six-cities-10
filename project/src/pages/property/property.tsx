@@ -7,7 +7,7 @@ import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
 import {PlaceCardType, PROPERTY_IMAGES_COUNT, RatingWidthFactor} from '../../const';
 import {useAppSelector} from '../../hooks';
-import {AuthorizationStatus, ViewOfferType, AppRoute, FavoriteStatus} from '../../const';
+import {AuthorizationStatus, VIEW_OFFER_TYPE, AppRoute, FavoriteStatus} from '../../const';
 import {useAppDispatch} from '../../hooks';
 import {fetchPropertyOffersAction,
   fetchNearbyOffersAction,
@@ -49,7 +49,7 @@ function Property (): JSX.Element {
 
     dispatch(changeFavoriteStatusAction({
       id : String(offer.id),
-      favoriteStatus: (offer.isFavorite) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
+      favoriteStatus: (offer.isFavorite) ? FavoriteStatus.Favorite : FavoriteStatus.NotFavorite,
     }));
   };
 
@@ -102,7 +102,7 @@ function Property (): JSX.Element {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {ViewOfferType[offer.type]}
+                  {VIEW_OFFER_TYPE[offer.type]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {offer?.bedrooms} Bedrooms

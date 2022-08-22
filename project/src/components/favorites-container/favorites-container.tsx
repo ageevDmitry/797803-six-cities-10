@@ -42,7 +42,7 @@ function FavoritesContainer (): JSX.Element {
                   offers = {filteredOffers}
                   typeComponent = {PlaceCardType.Favorites}
                 />
-              </li> : undefined
+              </li> : null
           );
         })}
       </ul>
