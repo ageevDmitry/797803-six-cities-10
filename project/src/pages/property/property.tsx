@@ -15,17 +15,20 @@ import {fetchPropertyOffersAction,
 import LoadingScreen from '../../components/loading-screen/loading-screen';
 import {redirectToRoute} from '../../store/action';
 import {changeFavoriteStatusAction} from '../../store/api-action';
+import {getPropertyOffer, getReviews, getNearbyOffer} from '../../store/offers-data/selectors';
+import {getMapCity} from '../../store/offers-ui/selectors';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 function Property (): JSX.Element {
 
   const {id} = useParams();
   const dispatch = useAppDispatch();
 
-  const offer = useAppSelector((state) => state.propertyOffer);
-  const reviews = useAppSelector((state) => state.reviews);
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
-  const mapCity = useAppSelector((state) => state.mapCity);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const offer = useAppSelector(getPropertyOffer);
+  const reviews = useAppSelector(getReviews);
+  const nearbyOffers = useAppSelector(getNearbyOffer);
+  const mapCity = useAppSelector(getMapCity);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     if (id) {

@@ -1,14 +1,15 @@
 import PlaceCardList from '../place-card-list/place-card-list';
 import {CITIES, PlaceCardType} from '../../const';
 import {useAppSelector} from '../../hooks';
+import {getFavoriteOffers, getIsDataLoaded} from '../../store/offers-data/selectors';
 import {Offer} from '../../types/offer';
 import FavoritesContainerEmpty from '../../components/favorities-container-empty/favorities-container-empty';
 import LoadingScreen from '../loading-screen/loading-screen';
 
 function FavoritesContainer (): JSX.Element {
 
-  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
-  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
+  const isDataLoaded = useAppSelector(getIsDataLoaded);
 
   if (isDataLoaded) {
     return (
@@ -16,7 +17,7 @@ function FavoritesContainer (): JSX.Element {
     );
   }
 
-  if (favoriteOffers.length === 0) {
+  if (!favoriteOffers) {
     return <FavoritesContainerEmpty/>;
   }
 

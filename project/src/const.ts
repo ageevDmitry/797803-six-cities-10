@@ -1,3 +1,5 @@
+import {City} from './types/city';
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -64,6 +66,12 @@ export enum OfferStatus {
 export const enum LengthComment {
   Min = 50,
   Max = 300,
+}
+
+export enum NameSpace {
+  UserProcess = 'USER-PROCESS',
+  OffersData = 'OFFERS-DATA',
+  OffersUI = 'OFFERS-UI',
 }
 
 export const PLACE_CARD_CLASS_NAME = {
@@ -140,3 +148,42 @@ export const DEFAULT_SORT_TYPE = {
 export const PROPERTY_IMAGES_COUNT = 6;
 
 export const REVIEWS_COUNT = 10;
+
+export const MAP_CITIES: City[] = [
+  {
+    title: 'Paris',
+    lat: 48.864716,
+    lng: 2.349014,
+    zoom: 5,
+  },
+  {
+    title: 'Cologne',
+    lat: 50.935173,
+    lng: 6.953101,
+    zoom: 5,
+  },
+  {
+    title: 'Brussels',
+    lat: 50.8505,
+    lng: 4.3488,
+    zoom: 5,
+  },
+  {
+    title: 'Amsterdam',
+    lat: 52.377956,
+    lng: 4.897070,
+    zoom: 5,
+  },
+  {
+    title: 'Hamburg',
+    lat: 53.551086,
+    lng: 9.993682,
+    zoom: 5,
+  },
+  {
+    title: 'Dusseldorf',
+    lat: 51.233334,
+    lng: 6.783333,
+    zoom: 5,
+  },
+];

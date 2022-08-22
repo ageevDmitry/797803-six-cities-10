@@ -1,11 +1,11 @@
 import {createAction} from '@reduxjs/toolkit';
-import {AppRoute, AuthorizationStatus} from '../const';
+import {AppRoute} from '../const';
 import {UserData} from '../types/user-data';
 import {Offer} from '../types/offer';
 import {Review} from '../types/review';
 import {SortType} from '../types/sort-type';
 
-export const changeFilterType = createAction<{city: string}>('city/change');
+export const changeFilterType = createAction<{city: string}>('offers/changeFilterType');
 
 export const changeSortType = createAction<{sortType: SortType}>('offers/changeSortType');
 
@@ -26,8 +26,6 @@ export const sendNewReview = createAction<Review[]>('data/sendNewReview');
 export const loadFavoriteOffers = createAction<Offer[]>('data/loadFavoriteOffers');
 
 export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
-
-export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
 export const setErrorStatus = createAction<boolean>('data/setError');
 

@@ -4,15 +4,16 @@ import {REVIEW_FORM_STATUS, LengthComment} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {UserReview} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-action';
+import {getPropertyOffer, getIsDataLoaded} from '../../store/offers-data/selectors';
 
 function ReviewForm(): JSX.Element {
 
+  const dispatch = useAppDispatch();
+
   const commentRef = useRef<HTMLTextAreaElement | null>(null);
   const ratingRef = useRef<Array<HTMLInputElement | null>>([]);
-  const propertyOffer = useAppSelector((state) => state.propertyOffer);
-
-  const dispatch = useAppDispatch();
-  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+  const propertyOffer = useAppSelector(getPropertyOffer);
+  const isDataLoaded = useAppSelector(getIsDataLoaded);
 
   const onSubmit = (newReview: UserReview) => {
     dispatch(sendNewReviewAction(newReview));

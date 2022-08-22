@@ -5,6 +5,7 @@ import {VIEW_OFFER_TYPE, FavoriteStatus, AuthorizationStatus, AppRoute} from '..
 import {changeFavoriteStatusAction} from '../../store/api-action';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {redirectToRoute} from '../../store/action';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 type PlaceCardProps = {
   typeComponent: string;
@@ -17,7 +18,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
   const {id, isPremium, previewImage, price, rating, title, type, isFavorite} = offer;
   const placeCardId = `/offer/${id}`;
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const handleButtonClick = () => {
 

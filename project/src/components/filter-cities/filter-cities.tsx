@@ -1,12 +1,13 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeFilterType} from '../../store/action';
+import {getFilterType} from '../../store/offers-ui/selectors';
 import {CITIES} from '../../const';
 import {Link} from 'react-router-dom';
 
 function FilterCities (): JSX.Element {
 
   const dispatch = useAppDispatch();
-  const filterType = useAppSelector((state) => state.filterType);
+  const filterType = useAppSelector(getFilterType);
 
   return (
     <ul className="locations__list tabs__list">
