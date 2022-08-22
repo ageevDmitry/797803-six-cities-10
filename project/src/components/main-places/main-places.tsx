@@ -38,9 +38,6 @@ function MainPlaces (): JSX.Element {
         </section>
       </div>
     </Fragment>
-    
-      
-
   );
 }
 

@@ -53,17 +53,10 @@ function Map(props: MapProps): JSX.Element {
           .addTo(map);
       });
 
-      if (selectedOffer) {
-        map.setView({
-          lat: selectedOffer.location.latitude,
-          lng: selectedOffer.location.longitude,
-        });
-      } else {
-        map.setView({
-          lat: mapCity.lat,
-          lng: mapCity.lng,
-        });
-      }
+      map.setView({
+        lat: mapCity.lat,
+        lng: mapCity.lng,
+      });
 
       if (propertyOffer) {
         propertyMarker = new Marker({

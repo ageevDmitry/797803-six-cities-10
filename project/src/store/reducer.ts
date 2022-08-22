@@ -60,6 +60,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(changeFilterType, (state, action) => {
 
       state.filterType = action.payload.city;
+      state.mapCity = getFilterCity(MAP_CITIES, action.payload.city);
     })
     .addCase(changeSortType, (state, action) => {
 

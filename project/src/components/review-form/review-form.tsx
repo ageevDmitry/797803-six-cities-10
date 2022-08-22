@@ -18,7 +18,7 @@ function ReviewForm(): JSX.Element {
     dispatch(sendNewReviewAction(newReview));
   };
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const selectedRating = ratingRef.current.reverse().find((element) => element?.checked);
@@ -36,7 +36,7 @@ function ReviewForm(): JSX.Element {
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {REVIEW_FORM_STATUS.map((item, idx) => (

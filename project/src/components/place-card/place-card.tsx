@@ -19,14 +19,14 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  const handleOnClick = () => {
+  const handleButtonClick = () => {
 
     if (authorizationStatus !== AuthorizationStatus.Auth) {
       return dispatch(redirectToRoute(AppRoute.Login));
     }
 
     dispatch(changeFavoriteStatusAction({
-      id : id,
+      id : String(offer.id),
       favoriteStatus: (isFavorite) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
     }));
   };
@@ -53,7 +53,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             <b className="place-card__price-value">{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button onClick={handleOnClick}
+          <button onClick={handleButtonClick}
             className="place-card__bookmark-button button"
             type="button"
           >

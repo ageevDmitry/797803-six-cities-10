@@ -35,23 +35,23 @@ function Property (): JSX.Element {
     }
   }, [id, offer?.id, dispatch]);
 
-  const handleOnClick = () => {
+  if (!offer || !reviews || !nearbyOffers) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
+  const handleButtonClick = () => {
 
     if (authorizationStatus !== AuthorizationStatus.Auth) {
       return dispatch(redirectToRoute(AppRoute.Login));
     }
 
     dispatch(changeFavoriteStatusAction({
-      id : offer?.id,
-      favoriteStatus: (offer?.isFavorite) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
+      id : String(offer.id),
+      favoriteStatus: (offer.isFavorite) ? FavoriteStatus.isFavorite : FavoriteStatus.isNotFavorite,
     }));
   };
-
-  if (!offer || !reviews || !nearbyOffers) {
-    return (
-      <LoadingScreen />
-    );
-  }
 
   return (
 
@@ -82,7 +82,7 @@ function Property (): JSX.Element {
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <button onClick={handleOnClick} className="property__bookmark-button button" type="button">
+                <button onClick={handleButtonClick} className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon"
                     width={31}
                     height={33}
