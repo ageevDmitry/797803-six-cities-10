@@ -3,10 +3,18 @@ import {CITIES, PlaceCardType} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {Offer} from '../../types/offer';
 import FavoritesContainerEmpty from '../../components/favorities-container-empty/favorities-container-empty';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function FavoritesContainer (): JSX.Element {
 
   const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
+  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+
+  if (isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   if (favoriteOffers.length === 0) {
     return <FavoritesContainerEmpty/>;
