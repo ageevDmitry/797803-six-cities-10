@@ -10,6 +10,7 @@ function ReviewForm(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
+  const formRef = useRef<HTMLFormElement>(null);
   const commentRef = useRef<HTMLTextAreaElement | null>(null);
   const ratingRef = useRef<Array<HTMLInputElement | null>>([]);
   const propertyOffer = useAppSelector(getPropertyOffer);
@@ -24,7 +25,7 @@ function ReviewForm(): JSX.Element {
 
     const selectedRating = ratingRef.current.reverse().find((element) => element?.checked);
 
-    if (commentRef.current !== null && selectedRating && propertyOffer) {
+    if (formRef.current !== null && commentRef.current !== null && selectedRating && propertyOffer) {
       onSubmit({
         propertyOfferId: propertyOffer.id,
         newComment: {
@@ -33,11 +34,12 @@ function ReviewForm(): JSX.Element {
         }
       }
       );
+      formRef.current.reset();
     }
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
+    <form ref={formRef} className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {REVIEW_FORM_STATUS.map((item, idx) => (
