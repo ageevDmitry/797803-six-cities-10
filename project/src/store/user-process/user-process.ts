@@ -32,8 +32,8 @@ export const userProcess = createSlice({
       .addCase(loginAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
         saveToken(action.payload.token);
-        redirectToRoute(AppRoute.Main);
         state.userData = action.payload;
+        redirectToRoute(AppRoute.Main);
         fetchOffersAction();
         fetchFavoriteOffersAction();
       })
