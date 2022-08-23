@@ -17,7 +17,7 @@ function FavoritesContainer (): JSX.Element {
     );
   }
 
-  if (!favoriteOffers) {
+  if (!favoriteOffers || favoriteOffers?.length === 0) {
     return <FavoritesContainerEmpty/>;
   }
 

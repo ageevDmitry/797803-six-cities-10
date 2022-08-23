@@ -90,7 +90,6 @@ export const offersData = createSlice({
       .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
         state.isDataLoaded = false;
-        state.isError = false;
       })
       .addCase(fetchFavoriteOffersAction.rejected, (state) => {
         state.isError = true;
