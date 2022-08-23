@@ -16,6 +16,7 @@ export const offersUI = createSlice({
     changeFilterType: (state, action) => {
       state.filterType = action.payload.city;
       state.mapCity = getFilterCity(MAP_CITIES, action.payload.city);
+      state.sortType = DEFAULT_SORT_TYPE;
     },
     changeSortType: (state, action) => {
       state.sortType = action.payload.sortType;
