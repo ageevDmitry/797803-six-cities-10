@@ -1,8 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace, DEFAULT_FILTER_TYPE, DEFAULT_SORT_TYPE, MAP_CITIES} from '../../const';
 import {OffersUI} from '../../types/state';
-import {getFilterCity, getHoverOffer} from '../../utils';
-import {selectOffer} from '../action';
+import {getFilterCity} from '../../utils';
 
 const initialState: OffersUI = {
   filterType: DEFAULT_FILTER_TYPE,
@@ -22,13 +21,6 @@ export const offersUI = createSlice({
       state.sortType = action.payload.sortType;
     }
   },
-  extraReducers(builder) {
-    builder
-      .addCase(selectOffer, (state, action) => {
-
-        state.selectedOffer = getHoverOffer(state.offers, action.payload.selectedOfferId);
-      });
-  }
 });
 
 export const {changeFilterType, changeSortType} = offersUI.actions;

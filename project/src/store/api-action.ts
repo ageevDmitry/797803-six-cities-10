@@ -7,7 +7,7 @@ import {APIRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 
-export const fetchOffersAction = createAsyncThunk<void, undefined, {
+export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
@@ -19,7 +19,7 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     },
   );
 
-export const fetchPropertyOffersAction = createAsyncThunk<void, string, {
+export const fetchPropertyOffersAction = createAsyncThunk<Offer, string, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
@@ -31,7 +31,7 @@ export const fetchPropertyOffersAction = createAsyncThunk<void, string, {
     },
   );
 
-export const fetchNearbyOffersAction = createAsyncThunk<void, string, {
+export const fetchNearbyOffersAction = createAsyncThunk<Offer[], string, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
@@ -43,7 +43,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<void, string, {
     },
   );
 
-export const loadReviewsAction = createAsyncThunk<void, string, {
+export const loadReviewsAction = createAsyncThunk<Review[], string, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
@@ -55,7 +55,7 @@ export const loadReviewsAction = createAsyncThunk<void, string, {
     },
   );
 
-export const sendNewReviewAction = createAsyncThunk<void, UserReview, {
+export const sendNewReviewAction = createAsyncThunk<Review[], UserReview, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
@@ -67,7 +67,7 @@ export const sendNewReviewAction = createAsyncThunk<void, UserReview, {
     },
   );
 
-export const fetchFavoriteOffersAction = createAsyncThunk<void, undefined, {
+export const fetchFavoriteOffersAction = createAsyncThunk<Offer[], undefined, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
@@ -79,7 +79,7 @@ export const fetchFavoriteOffersAction = createAsyncThunk<void, undefined, {
     },
   );
 
-export const changeFavoriteStatusAction = createAsyncThunk<void, FavoritesTypeOffer, {
+export const changeFavoriteStatusAction = createAsyncThunk<Offer, FavoritesTypeOffer, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -91,7 +91,7 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, FavoritesTypeOf
   },
 );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData, undefined, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
@@ -103,7 +103,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
     },
   );
 
-export const loginAction = createAsyncThunk<void, AuthData, {
+export const loginAction = createAsyncThunk<UserData, AuthData, {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance

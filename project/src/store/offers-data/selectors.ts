@@ -10,3 +10,4 @@ export const getFavoriteOffers = (state: State): Offer[] | undefined => state[Na
 export const getReviews = (state: State): Review[] | undefined => state[NameSpace.OffersData].reviews;
 export const getIsDataLoaded = (state: State): boolean => state[NameSpace.OffersData].isDataLoaded;
 export const getIsError = (state: State): boolean => state[NameSpace.OffersData].isError;
+export const getSelectedOffer = (state: State): Offer | undefined => state[NameSpace.OffersData].selectedOffer;

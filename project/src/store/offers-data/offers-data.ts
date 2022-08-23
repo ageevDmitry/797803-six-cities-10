@@ -10,7 +10,7 @@ import {fetchOffersAction,
   changeFavoriteStatusAction
 } from '../api-action';
 import {redirectToRoute} from '../action';
-import {getSortReviews} from '../../utils';
+import {getSortReviews, getHoverOffer} from '../../utils';
 
 const initialState: OffersData = {
   offers: [],
@@ -22,7 +22,11 @@ const initialState: OffersData = {
 export const offersData = createSlice({
   name: NameSpace.OffersData,
   initialState,
-  reducers: {},
+  reducers: {
+    selectOffer: (state, action) => {
+      state.selectedOffer = getHoverOffer(state.offers, action.payload.selectedOfferId);
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchOffersAction.pending, (state) => {
@@ -108,3 +112,5 @@ export const offersData = createSlice({
       });
   }
 });
+
+export const {selectOffer} = offersData.actions;

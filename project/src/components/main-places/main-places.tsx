@@ -5,8 +5,9 @@ import SortPlaceCard from '../sort-place-card/sort-place-card';
 import PlaceCardList from '../place-card-list/place-card-list';
 import Map from '../map/map';
 import {Fragment} from 'react';
-import {getFilterType, getMapCity, getSelectedOffer, getSortType} from '../../store/offers-ui/selectors';
-import {getOffers} from '../../store/offers-data/selectors';
+import {getFilterType, getMapCity, getSortType} from '../../store/offers-ui/selectors';
+import {} from '../../store/offers-data/selectors';
+import {getOffers, getSelectedOffer} from '../../store/offers-data/selectors';
 
 function MainPlaces (): JSX.Element {
 

@@ -16,6 +16,7 @@ export type OffersData = {
     propertyOffer?: Offer,
     nearbyOffers?: Offer[],
     favoriteOffers: Offer[],
+    selectedOffer?: Offer,
     reviews?: Review[],
     isDataLoaded: boolean,
     isError: boolean,

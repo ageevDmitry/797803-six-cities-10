@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeFilterType} from '../../store/action';
+import {changeFilterType} from '../../store/offers-ui/offers-ui';
 import {getFilterType} from '../../store/offers-ui/selectors';
 import {CITIES} from '../../const';
 import {Link} from 'react-router-dom';

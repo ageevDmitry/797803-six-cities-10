@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeSortType} from '../../store/action';
+import {changeSortType} from '../../store/offers-ui/offers-ui';
 import {SORT_LIST} from '../../const';
 import {useState} from 'react';
 import {getSortType} from '../../store/offers-ui/selectors';
