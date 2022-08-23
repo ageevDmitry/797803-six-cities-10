@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace, AppRoute} from '../../const';
+import {NameSpace} from '../../const';
 import {OffersData} from '../../types/state';
 import {fetchOffersAction,
   fetchPropertyOffersAction,
@@ -9,7 +9,6 @@ import {fetchOffersAction,
   fetchFavoriteOffersAction,
   changeFavoriteStatusAction
 } from '../api-action';
-import {redirectToRoute} from '../action';
 import {getSortReviews, getHoverOffer} from '../../utils';
 
 const initialState: OffersData = {
@@ -39,7 +38,6 @@ export const offersData = createSlice({
       })
       .addCase(fetchOffersAction.rejected, (state) => {
         state.offers = [];
-        redirectToRoute(AppRoute.Main);
         state.isError = true;
       })
       .addCase(fetchPropertyOffersAction.pending, (state) => {
@@ -101,8 +99,6 @@ export const offersData = createSlice({
         state.isDataLoaded = true;
       })
       .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {
-        fetchOffersAction();
-        fetchFavoriteOffersAction();
         state.propertyOffer = action.payload;
         state.isDataLoaded = false;
         state.isError = false;

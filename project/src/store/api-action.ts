@@ -3,9 +3,11 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import {Offer, FavoritesTypeOffer} from '../types/offer';
 import {Review, UserReview} from '../types/review.js';
-import {APIRoute} from '../const';
+import {APIRoute, AppRoute} from '../const';
+import {redirectToRoute} from './action';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
+import {saveToken, dropToken} from '../services/token';
 
 export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
     dispatch: AppDispatch,
@@ -87,6 +89,8 @@ export const changeFavoriteStatusAction = createAsyncThunk<Offer, FavoritesTypeO
   'data/changeFavoriteStatusOffer',
   async (changedOffer, {dispatch, extra: api}) => {
     const {data} = await api.post<Offer>(`${APIRoute.Favorite}/${changedOffer.id}/${changedOffer.favoriteStatus}`);
+    dispatch(fetchOffersAction());
+    dispatch(fetchFavoriteOffersAction());
     return data;
   },
 );
@@ -99,6 +103,7 @@ export const checkAuthAction = createAsyncThunk<UserData, undefined, {
     'user/checkAuthAction',
     async (_arg, {dispatch, extra: api}) => {
       const {data} = await api.get<UserData>(APIRoute.Login);
+      dispatch(fetchFavoriteOffersAction());
       return data;
     },
   );
@@ -111,6 +116,10 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {
     'user/login',
     async ({login: email, password}, {dispatch, extra: api}) => {
       const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+      saveToken(data.token);
+      dispatch(redirectToRoute(AppRoute.Main));
+      dispatch(fetchOffersAction());
+      dispatch(fetchFavoriteOffersAction());
       return data;
     },
   );
@@ -122,6 +131,8 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   }>(
     'user/logout',
     async (_arg, {dispatch, extra: api}) => {
-      await api.delete(APIRoute.Logout);
+      dropToken();
+      dispatch(fetchOffersAction());
+      dispatch(fetchFavoriteOffersAction());
     },
   );
