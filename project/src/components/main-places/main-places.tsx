@@ -9,7 +9,7 @@ import {getSelectedOffer} from '../../store/offers-data/selectors';
 
 function MainPlaces (): JSX.Element {
 
-  // const selectedCity = useAppSelector(getMapCity);
+  const selectedCity = useAppSelector(getMapCity);
   const offers = useAppSelector(getSortedOffers);
   const mapCity = useAppSelector(getMapCity);
   const selectedOffer = useAppSelector(getSelectedOffer);
@@ -18,8 +18,7 @@ function MainPlaces (): JSX.Element {
     <Fragment>
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        {/* <b className="places__found">{offers.length} places to stay in {selectedCity}</b> */}
-        <b className="places__found">places to stay in</b>
+        <b className="places__found">{offers.length} places to stay in {selectedCity?.title}</b>
         <SortPlaceCard/>
         <PlaceCardList
           offers = {offers}
