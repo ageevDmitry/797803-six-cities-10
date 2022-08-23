@@ -28,7 +28,7 @@ export enum PlaceCardType {
   NearPlaces = 'near-places',
 }
 
-export enum Sort {
+export enum Sorting {
   PriceHight = 'PriceHight',
   PriceLow = 'PriceLow',
   Rated = 'Rated',
