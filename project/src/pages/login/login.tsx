@@ -7,12 +7,22 @@ import {Navigate} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {AppRoute, AuthorizationStatus, PASSWORD_REGULAR_EXPRESSION} from '../../const';
+import {getIsDataLoading} from '../../store/offers-data/selectors';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
 
 function Login (): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
+
+  const isDataLoading = useAppSelector(getIsDataLoading);
+
+  if (isDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Main}/>;
@@ -85,4 +95,3 @@ function Login (): JSX.Element {
 }
 
 export default Login;
-
