@@ -3,16 +3,24 @@ import {useRef, FormEvent} from 'react';
 import {useAppDispatch} from '../../hooks';
 import {loginAction} from '../../store/api-action';
 import {AuthData} from '../../types/auth-data';
+import {Navigate} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {AppRoute, AuthorizationStatus} from '../../const';
 
 function Login (): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
-  const onSubmit = (authData: AuthData) => {
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Main}/>;
+  }
+
+  function onSubmit(authData: AuthData) {
     dispatch(loginAction(authData));
-  };
+  }
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -53,6 +61,8 @@ function Login (): JSX.Element {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  pattern="[A-Za-zА-Яа-яЁё]{1,}\s[0-9]{1,}"
+                  title="Пароль должен состоять минимум из одной буквы и цифры"
                   required
                 />
               </div>
