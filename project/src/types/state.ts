@@ -18,7 +18,7 @@ export type OffersData = {
     favoriteOffers: Offer[],
     selectedOffer?: Offer,
     reviews?: Review[],
-    isDataLoaded: boolean,
+    isDataLoading: boolean,
     isError: boolean,
 };
 

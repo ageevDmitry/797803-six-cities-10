@@ -4,7 +4,7 @@ import {REVIEW_FORM_STATUS, LengthComment} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {UserReview} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-action';
-import {getPropertyOffer, getIsDataLoaded} from '../../store/offers-data/selectors';
+import {getPropertyOffer, getIsDataLoading} from '../../store/offers-data/selectors';
 
 function ReviewForm(): JSX.Element {
 
@@ -14,7 +14,7 @@ function ReviewForm(): JSX.Element {
   const commentRef = useRef<HTMLTextAreaElement | null>(null);
   const ratingRef = useRef<Array<HTMLInputElement | null>>([]);
   const propertyOffer = useAppSelector(getPropertyOffer);
-  const isDataLoaded = useAppSelector(getIsDataLoaded);
+  const isDataLoading = useAppSelector(getIsDataLoading);
 
   const onSubmit = (newReview: UserReview) => {
     dispatch(sendNewReviewAction(newReview));
@@ -58,7 +58,7 @@ function ReviewForm(): JSX.Element {
         <p className="reviews__help">
                         To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled ={isDataLoaded}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled ={isDataLoading}>Submit</button>
       </div>
     </form>
   );

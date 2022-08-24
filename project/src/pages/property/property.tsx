@@ -140,8 +140,8 @@ function Property (): JSX.Element {
                       height={74}
                     />
                   </div>
-                  {offer.host.isPro && <span className="property__user-name">{offer.host.name}</span>}
-                  <span className="property__user-status">Pro</span>
+                  <span className="property__user-name">{offer.host.name}</span>
+                  {offer.host.isPro && <span className="property__user-status">Pro</span>}
                 </div>
                 <div className="property__description">
                   {offer.description}

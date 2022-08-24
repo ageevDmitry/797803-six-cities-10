@@ -9,12 +9,12 @@ import {fetchOffersAction,
   fetchFavoriteOffersAction,
   changeFavoriteStatusAction
 } from '../api-action';
-import {getSortReviews, getHoverOffer} from '../../utils';
+import {getSortReviews, getSelectedOffer} from '../../utils';
 
 const initialState: OffersData = {
   offers: [],
   favoriteOffers: [],
-  isDataLoaded: false,
+  isDataLoading: false,
   isError: false,
 };
 
@@ -23,17 +23,17 @@ export const offersData = createSlice({
   initialState,
   reducers: {
     selectOffer: (state, action) => {
-      state.selectedOffer = getHoverOffer(state.offers, action.payload.selectedOfferId);
+      state.selectedOffer = getSelectedOffer(state.offers, action.payload.selectedOfferId);
     },
   },
   extraReducers(builder) {
     builder
       .addCase(fetchOffersAction.pending, (state) => {
-        state.isDataLoaded = true;
+        state.isDataLoading = true;
       })
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.offers = action.payload;
-        state.isDataLoaded = false;
+        state.isDataLoading = false;
         state.isError = false;
       })
       .addCase(fetchOffersAction.rejected, (state) => {
@@ -41,65 +41,65 @@ export const offersData = createSlice({
         state.isError = true;
       })
       .addCase(fetchPropertyOffersAction.pending, (state) => {
-        state.isDataLoaded = true;
+        state.isDataLoading = true;
       })
       .addCase(fetchPropertyOffersAction.fulfilled, (state, action) => {
         state.propertyOffer = action.payload;
-        state.isDataLoaded = false;
+        state.isDataLoading = false;
         state.isError = false;
       })
       .addCase(fetchPropertyOffersAction.rejected, (state) => {
         state.isError = true;
       })
       .addCase(fetchNearbyOffersAction.pending, (state) => {
-        state.isDataLoaded = true;
+        state.isDataLoading = true;
       })
       .addCase(fetchNearbyOffersAction.fulfilled, (state, action) => {
         state.nearbyOffers = action.payload;
-        state.isDataLoaded = false;
+        state.isDataLoading = false;
         state.isError = false;
       })
       .addCase(fetchNearbyOffersAction.rejected, (state) => {
         state.isError = true;
       })
       .addCase(loadReviewsAction.pending, (state) => {
-        state.isDataLoaded = true;
+        state.isDataLoading = true;
       })
       .addCase(loadReviewsAction.fulfilled, (state, action) => {
         state.reviews = getSortReviews(action.payload);
-        state.isDataLoaded = false;
+        state.isDataLoading = false;
         state.isError = false;
       })
       .addCase(loadReviewsAction.rejected, (state) => {
         state.isError = true;
       })
       .addCase(sendNewReviewAction.pending, (state) => {
-        state.isDataLoaded = true;
+        state.isDataLoading = true;
       })
       .addCase(sendNewReviewAction.fulfilled, (state, action) => {
         state.reviews = getSortReviews(action.payload);
-        state.isDataLoaded = false;
+        state.isDataLoading = false;
         state.isError = false;
       })
       .addCase(sendNewReviewAction.rejected, (state) => {
         state.isError = true;
       })
       .addCase(fetchFavoriteOffersAction.pending, (state) => {
-        state.isDataLoaded = true;
+        state.isDataLoading = true;
       })
       .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
-        state.isDataLoaded = false;
+        state.isDataLoading = false;
       })
       .addCase(fetchFavoriteOffersAction.rejected, (state) => {
         state.isError = true;
       })
       .addCase(changeFavoriteStatusAction.pending, (state) => {
-        state.isDataLoaded = true;
+        state.isDataLoading = true;
       })
       .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {
         state.propertyOffer = action.payload;
-        state.isDataLoaded = false;
+        state.isDataLoading = false;
         state.isError = false;
       })
       .addCase(changeFavoriteStatusAction.rejected, (state) => {
