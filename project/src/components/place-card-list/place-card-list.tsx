@@ -1,6 +1,6 @@
 import PlaceCard from '../place-card/place-card';
 import {useAppDispatch} from '../../hooks';
-import {selectOffer} from '../../store/action';
+import {selectOffer} from '../../store/offers-data/offers-data';
 import {PLACE_CARD_CLASS_NAME, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 

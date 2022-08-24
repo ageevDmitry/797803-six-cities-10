@@ -1,29 +1,31 @@
 import {Fragment} from 'react';
 import {useRef, FormEvent} from 'react';
-import {REVIEW_FORM_STATUS, MIN_LENGTH_COMMENT, MAX_LENGTH_COMMENT} from '../../const';
+import {REVIEW_FORM_STATUS, LengthComment} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {UserReview} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-action';
+import {getPropertyOffer, getIsDataLoading} from '../../store/offers-data/selectors';
 
 function ReviewForm(): JSX.Element {
 
+  const dispatch = useAppDispatch();
+
+  const formRef = useRef<HTMLFormElement>(null);
   const commentRef = useRef<HTMLTextAreaElement | null>(null);
   const ratingRef = useRef<Array<HTMLInputElement | null>>([]);
-  const propertyOffer = useAppSelector((state) => state.propertyOffer);
-
-  const dispatch = useAppDispatch();
-  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+  const propertyOffer = useAppSelector(getPropertyOffer);
+  const isDataLoading = useAppSelector(getIsDataLoading);
 
   const onSubmit = (newReview: UserReview) => {
     dispatch(sendNewReviewAction(newReview));
   };
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const selectedRating = ratingRef.current.reverse().find((element) => element?.checked);
 
-    if (commentRef.current !== null && selectedRating && propertyOffer) {
+    if (formRef.current !== null && commentRef.current !== null && selectedRating && propertyOffer) {
       onSubmit({
         propertyOfferId: propertyOffer.id,
         newComment: {
@@ -32,11 +34,12 @@ function ReviewForm(): JSX.Element {
         }
       }
       );
+      formRef.current.reset();
     }
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
+    <form ref={formRef} className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {REVIEW_FORM_STATUS.map((item, idx) => (
@@ -50,12 +53,12 @@ function ReviewForm(): JSX.Element {
           </Fragment>
         ))}
       </div>
-      <textarea ref={commentRef} minLength={MIN_LENGTH_COMMENT} maxLength={MAX_LENGTH_COMMENT} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" defaultValue={''} />
+      <textarea ref={commentRef} minLength={LengthComment.Min} maxLength={LengthComment.Max} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" defaultValue={''} />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
                         To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled ={isDataLoaded}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled ={isDataLoading}>Submit</button>
       </div>
     </form>
   );

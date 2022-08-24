@@ -1,3 +1,5 @@
+import {City} from './types/city';
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -9,9 +11,9 @@ export enum AppRoute {
 export enum APIRoute {
   Offers = '/hotels',
   Login = '/login',
-  Hotels = '/hotels',
   Logout = '/logout',
   Comments = '/comments',
+  Favorite = '/favorite'
 }
 
 export enum AuthorizationStatus {
@@ -26,17 +28,17 @@ export enum PlaceCardType {
   NearPlaces = 'near-places',
 }
 
-export enum SortType {
+export enum Sorting {
   PriceHight = 'PriceHight',
   PriceLow = 'PriceLow',
   Rated = 'Rated',
 }
 
-export const PLACE_CARD_CLASS_NAME = {
-  [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
-  [PlaceCardType.Favorites]: 'favorites__places',
-  [PlaceCardType.NearPlaces]: 'near-places__list places__list',
-};
+export enum FavoriteStatus {
+  Favorite = 0,
+  NotFavorite = 1,
+}
+
 
 export enum RatingWidthFactor {
   Film = 14.8,
@@ -51,7 +53,34 @@ export enum OfferType {
   Hotel = 'hotel'
 }
 
-export const ViewOfferType = {
+export enum UrlMapMarket {
+  Default = 'img/pin.svg',
+  Current = 'img/pin-active.svg',
+}
+
+export enum OfferStatus {
+  Favorite = 1,
+  NotFavorite = 0,
+}
+
+export const enum LengthComment {
+  Min = 50,
+  Max = 300,
+}
+
+export enum NameSpace {
+  UserProcess = 'USER-PROCESS',
+  OffersData = 'OFFERS-DATA',
+  OffersUI = 'OFFERS-UI',
+}
+
+export const PLACE_CARD_CLASS_NAME = {
+  [PlaceCardType.Cities]: 'cities__places-list places__list tabs__content',
+  [PlaceCardType.Favorites]: 'favorites__places',
+  [PlaceCardType.NearPlaces]: 'near-places__list places__list',
+};
+
+export const VIEW_OFFER_TYPE = {
   [OfferType.Apartment]: 'Apartment',
   [OfferType.Room]: 'Private Room',
   [OfferType.House]: 'House',
@@ -109,10 +138,6 @@ export const REVIEW_FORM_STATUS = [
   },
 ];
 
-export const URL_MARKER_DEFAULT = 'img/pin.svg';
-
-export const URL_MARKER_CURRENT = 'img/pin-active.svg';
-
 export const DEFAULT_FILTER_TYPE = 'Paris';
 
 export const DEFAULT_SORT_TYPE = {
@@ -124,7 +149,41 @@ export const PROPERTY_IMAGES_COUNT = 6;
 
 export const REVIEWS_COUNT = 10;
 
-export const MIN_LENGTH_COMMENT = 50;
-
-export const MAX_LENGTH_COMMENT = 300;
-
+export const MAP_CITIES: City[] = [
+  {
+    title: 'Paris',
+    lat: 48.864716,
+    lng: 2.349014,
+    zoom: 5,
+  },
+  {
+    title: 'Cologne',
+    lat: 50.935173,
+    lng: 6.953101,
+    zoom: 5,
+  },
+  {
+    title: 'Brussels',
+    lat: 50.8505,
+    lng: 4.3488,
+    zoom: 5,
+  },
+  {
+    title: 'Amsterdam',
+    lat: 52.377956,
+    lng: 4.897070,
+    zoom: 5,
+  },
+  {
+    title: 'Hamburg',
+    lat: 53.551086,
+    lng: 9.993682,
+    zoom: 5,
+  },
+  {
+    title: 'Dusseldorf',
+    lat: 51.233334,
+    lng: 6.783333,
+    zoom: 5,
+  },
+];

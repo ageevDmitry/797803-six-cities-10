@@ -3,10 +3,11 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 import SingIn from '../sing-in/sing-in';
 import SingOut from '../sing-out/sing-out';
 import {useAppSelector} from '../../hooks';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 function Header ():JSX.Element {
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <header className="header">

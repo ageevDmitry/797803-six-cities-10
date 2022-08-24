@@ -1,7 +1,11 @@
-import {RatingWidthFactor} from '../../const';
+import {RatingWidthFactor, PlaceCardType} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
-import {ViewOfferType} from '../../const';
+import {VIEW_OFFER_TYPE, FavoriteStatus, AuthorizationStatus, AppRoute} from '../../const';
+import {changeFavoriteStatusAction} from '../../store/api-action';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {redirectToRoute} from '../../store/action';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 type PlaceCardProps = {
   typeComponent: string;
@@ -11,8 +15,22 @@ type PlaceCardProps = {
 
 function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps): JSX.Element {
 
-  const {id, isPremium, previewImage, price, rating, title, type} = offer;
+  const {id, isPremium, previewImage, price, rating, title, type, isFavorite} = offer;
   const placeCardId = `/offer/${id}`;
+  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  const handleButtonClick = () => {
+
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      return dispatch(redirectToRoute(AppRoute.Login));
+    }
+
+    dispatch(changeFavoriteStatusAction({
+      id : String(offer.id),
+      favoriteStatus: (isFavorite) ? FavoriteStatus.Favorite : FavoriteStatus.NotFavorite,
+    }));
+  };
 
   return (
     <article className={`${typeComponent}__card place-card`}
@@ -25,8 +43,8 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             className="place-card__image"
             src={previewImage}
             alt="Place figure"
-            width={260}
-            height={200}
+            width={(typeComponent === PlaceCardType.Favorites) ? 150 : 210}
+            height={(typeComponent === PlaceCardType.Favorites) ? 110 : 200}
           />
         </Link>
       </div>
@@ -36,7 +54,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             <b className="place-card__price-value">{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button
+          <button onClick={handleButtonClick}
             className="place-card__bookmark-button button"
             type="button"
           >
@@ -44,6 +62,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
               className="place-card__bookmark-icon"
               width={18}
               height={19}
+              style={(isFavorite) ? {stroke: '#4481c3', fill: '#4481c3'} : undefined}
             >
               <use xlinkHref="#icon-bookmark" />
             </svg>
@@ -61,7 +80,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             {title}
           </Link>
         </h2>
-        <p className="place-card__type">{ViewOfferType[type]}</p>
+        <p className="place-card__type">{VIEW_OFFER_TYPE[type]}</p>
       </div>
     </article>
   );

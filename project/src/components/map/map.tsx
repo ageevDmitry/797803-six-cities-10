@@ -2,7 +2,7 @@ import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
 import {City} from '../../types/city';
 import {Offer} from '../../types/offer';
-import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
+import {UrlMapMarket} from '../../const';
 import useMap from '../../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 
@@ -14,13 +14,13 @@ type MapProps = {
 };
 
 const defaultCustomIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
+  iconUrl: UrlMapMarket.Default,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: URL_MARKER_CURRENT,
+  iconUrl: UrlMapMarket.Current,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
@@ -53,17 +53,10 @@ function Map(props: MapProps): JSX.Element {
           .addTo(map);
       });
 
-      if (selectedOffer) {
-        map.setView({
-          lat: selectedOffer.location.latitude,
-          lng: selectedOffer.location.longitude,
-        });
-      } else {
-        map.setView({
-          lat: mapCity.lat,
-          lng: mapCity.lng,
-        });
-      }
+      map.setView({
+        lat: mapCity.lat,
+        lng: mapCity.lng,
+      });
 
       if (propertyOffer) {
         propertyMarker = new Marker({

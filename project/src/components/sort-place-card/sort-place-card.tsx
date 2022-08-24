@@ -1,14 +1,15 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeSortType, sortOffers} from '../../store/action';
+import {changeSortType} from '../../store/offers-ui/offers-ui';
 import {SORT_LIST} from '../../const';
 import {useState} from 'react';
+import {getSortType} from '../../store/offers-ui/selectors';
 
 function SortPlaceCard ():JSX.Element {
 
   const [isSortList, toggleSortList] = useState(false);
 
   const dispatch = useAppDispatch();
-  const sortType = useAppSelector((state) => state.sortType);
+  const sortType = useAppSelector(getSortType);
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -32,7 +33,6 @@ function SortPlaceCard ():JSX.Element {
             onClick={() => {
               dispatch(changeSortType({sortType: item}));
               toggleSortList(!isSortList);
-              dispatch(sortOffers());
             }}
           >
             {item.title}

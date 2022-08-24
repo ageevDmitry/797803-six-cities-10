@@ -34,3 +34,8 @@ export type Offer = {
         title: string
         type: OfferType
     }
+
+export type FavoritesTypeOffer = {
+        id: string,
+        favoriteStatus: number,
+    }
