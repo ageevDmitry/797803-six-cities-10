@@ -1,6 +1,6 @@
 import {Fragment} from 'react';
 import {useRef, FormEvent} from 'react';
-import {REVIEW_FORM_STATUS, LengthComment} from '../../const';
+import {REVIEW_FORM_STATUSES, LengthComment} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {UserReview} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-action';
@@ -42,7 +42,7 @@ function ReviewForm(): JSX.Element {
     <form ref={formRef} className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {REVIEW_FORM_STATUS.map((item, idx) => (
+        {REVIEW_FORM_STATUSES.map((item, idx) => (
           <Fragment key = {item.startNumber}>
             <input ref={(ref)=> {ratingRef.current[idx] = ref;}} className="form__rating-input visually-hidden" name="rating" value={item.startNumber} id={`${item.startNumber}-stars`} type="radio" />
             <label htmlFor={`${item.startNumber}-stars`} className="reviews__rating-label form__rating-label" title={item.title}>

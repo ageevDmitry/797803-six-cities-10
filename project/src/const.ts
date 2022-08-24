@@ -58,11 +58,6 @@ export enum UrlMapMarket {
   Current = 'img/pin-active.svg',
 }
 
-export enum OfferStatus {
-  Favorite = 1,
-  NotFavorite = 0,
-}
-
 export const enum LengthComment {
   Min = 50,
   Max = 300,
@@ -115,7 +110,7 @@ export const SORT_LIST = [
   },
 ];
 
-export const REVIEW_FORM_STATUS = [
+export const REVIEW_FORM_STATUSES = [
   {
     startNumber: 5,
     title: 'perfect'

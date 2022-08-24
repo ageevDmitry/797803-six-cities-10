@@ -4,6 +4,7 @@ import {useAppSelector} from '../../hooks';
 import {getFavoriteOffers, getIsDataLoading} from '../../store/offers-data/selectors';
 import FavoritesContainerEmpty from '../favorites-container-empty/favorites-container-empty';
 import LoadingScreen from '../loading-screen/loading-screen';
+import {Link} from 'react-router-dom';
 
 function FavoritesContainer (): JSX.Element {
 
@@ -33,9 +34,9 @@ function FavoritesContainer (): JSX.Element {
               <li key = {city} className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <a className="locations__item-link" href="/">
+                    <Link to="/" className="locations__item-link">
                       <span>{city}</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <PlaceCardList
