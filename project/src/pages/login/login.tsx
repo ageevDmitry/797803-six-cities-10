@@ -6,7 +6,7 @@ import {AuthData} from '../../types/auth-data';
 import {Navigate} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute, AuthorizationStatus, PASSWORD_REGULAR_EXPRESSION} from '../../const';
 
 function Login (): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -61,7 +61,7 @@ function Login (): JSX.Element {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  pattern="[A-Za-zА-Яа-яЁё]{1,}\s[0-9]{1,}"
+                  pattern={PASSWORD_REGULAR_EXPRESSION}
                   title="Пароль должен состоять минимум из одной буквы и цифры"
                   required
                 />

@@ -147,6 +147,8 @@ export const DEFAULT_SORT_TYPE = {
 
 export const PROPERTY_IMAGES_COUNT = 6;
 
+export const PASSWORD_REGULAR_EXPRESSION = '^(?=.*[0-9])(?=.*[A-Za-zА-Яа-яЁё])([A-Za-zА-Яа-яЁё0-9]+)$';
+
 export const REVIEWS_COUNT = 10;
 
 export const MAP_CITIES: City[] = [
