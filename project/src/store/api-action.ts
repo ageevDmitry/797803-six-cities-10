@@ -15,7 +15,7 @@ export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
     extra: AxiosInstance
   }>(
     'data/fetchOffers',
-    async (_arg, {dispatch, extra: api}) => {
+    async (_arg, {extra: api}) => {
       const {data} = await api.get<Offer[]>(APIRoute.Offers);
       return data;
     },
@@ -27,7 +27,7 @@ export const fetchPropertyOffersAction = createAsyncThunk<Offer, string, {
     extra: AxiosInstance
   }>(
     'data/fetchPropertyOffer',
-    async (id, {dispatch, extra: api}) => {
+    async (id, {extra: api}) => {
       const {data} = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
       return data;
     },
@@ -39,7 +39,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<Offer[], string, {
     extra: AxiosInstance
   }>(
     'data/fetchNearbyOffer',
-    async (id, {dispatch, extra: api}) => {
+    async (id, {extra: api}) => {
       const {data} = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
       return data;
     },
@@ -51,7 +51,7 @@ export const loadReviewsAction = createAsyncThunk<Review[], string, {
     extra: AxiosInstance
   }>(
     'data/fetchReviews',
-    async (id, {dispatch, extra: api}) => {
+    async (id, {extra: api}) => {
       const {data} = await api.get<Review[]>(`${APIRoute.Comments}/${id}`);
       return data;
     },
@@ -63,7 +63,7 @@ export const sendNewReviewAction = createAsyncThunk<Review[], UserReview, {
     extra: AxiosInstance
   }>(
     'data/sendReview',
-    async (userReview, {dispatch, extra: api}) => {
+    async (userReview, {extra: api}) => {
       const {data} = await api.post<Review[]>(`${APIRoute.Comments}/${userReview.propertyOfferId}`, userReview.newComment);
       return data;
     },
@@ -75,7 +75,7 @@ export const fetchFavoriteOffersAction = createAsyncThunk<Offer[], undefined, {
     extra: AxiosInstance
   }>(
     'data/fetchFavoriteOffers',
-    async (_arg, {dispatch, extra: api}) => {
+    async (_arg, {extra: api}) => {
       const {data} = await api.get<Offer[]>(APIRoute.Favorite);
       return data;
     },
@@ -131,8 +131,8 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   }>(
     'user/logout',
     async (_arg, {dispatch, extra: api}) => {
+      await api.delete(APIRoute.Logout);
       dropToken();
       dispatch(fetchOffersAction());
-      dispatch(fetchFavoriteOffersAction());
     },
   );

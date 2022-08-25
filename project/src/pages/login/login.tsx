@@ -2,27 +2,41 @@ import Header from '../../components/header/header';
 import {useRef, FormEvent} from 'react';
 import {useAppDispatch} from '../../hooks';
 import {loginAction} from '../../store/api-action';
-import {AuthData} from '../../types/auth-data';
+import {Navigate} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {AppRoute, AuthorizationStatus, PASSWORD_REGULAR_EXPRESSION} from '../../const';
+import {getIsDataLoading} from '../../store/offers-data/selectors';
+import LoadingScreen from '../../components/loading-screen/loading-screen';
+import {Link} from 'react-router-dom';
 
 function Login (): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
-  const onSubmit = (authData: AuthData) => {
-    dispatch(loginAction(authData));
-  };
+  const isDataLoading = useAppSelector(getIsDataLoading);
+
+  if (isDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Main}/>;
+  }
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
+      dispatch(loginAction({
         login: loginRef.current.value,
         password: passwordRef.current.value,
       }
-      );
+      ));
     }
   };
 
@@ -53,6 +67,8 @@ function Login (): JSX.Element {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  pattern={PASSWORD_REGULAR_EXPRESSION}
+                  title="Пароль должен состоять минимум из одной буквы и цифры"
                   required
                 />
               </div>
@@ -63,9 +79,9 @@ function Login (): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="/">
+              <Link to="/" className="locations__item-link">
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
@@ -75,4 +91,3 @@ function Login (): JSX.Element {
 }
 
 export default Login;
-

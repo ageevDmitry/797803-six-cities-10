@@ -58,11 +58,6 @@ export enum UrlMapMarket {
   Current = 'img/pin-active.svg',
 }
 
-export enum OfferStatus {
-  Favorite = 1,
-  NotFavorite = 0,
-}
-
 export const enum LengthComment {
   Min = 50,
   Max = 300,
@@ -115,7 +110,7 @@ export const SORT_LIST = [
   },
 ];
 
-export const REVIEW_FORM_STATUS = [
+export const REVIEW_FORM_STATUSES = [
   {
     startNumber: 5,
     title: 'perfect'
@@ -146,6 +141,8 @@ export const DEFAULT_SORT_TYPE = {
 };
 
 export const PROPERTY_IMAGES_COUNT = 6;
+
+export const PASSWORD_REGULAR_EXPRESSION = '^(?=.*[0-9])(?=.*[A-Za-zА-Яа-яЁё])([A-Za-zА-Яа-яЁё0-9]+)$';
 
 export const REVIEWS_COUNT = 10;
 
