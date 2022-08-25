@@ -11,13 +11,13 @@ function FavoritesContainer (): JSX.Element {
   const favoriteOffers = useAppSelector(getFavoriteOffers);
   const isDataLoading = useAppSelector(getIsDataLoading);
 
-  if (isDataLoading) {
+  if (isDataLoading && favoriteOffers.length === 0) {
     return (
       <LoadingScreen />
     );
   }
 
-  if (!favoriteOffers || favoriteOffers?.length === 0) {
+  if (!isDataLoading && favoriteOffers.length === 0) {
     return <FavoritesContainerEmpty/>;
   }
 
