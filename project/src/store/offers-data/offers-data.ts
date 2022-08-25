@@ -39,6 +39,7 @@ export const offersData = createSlice({
       .addCase(fetchOffersAction.rejected, (state) => {
         state.offers = [];
         state.isError = true;
+        state.isDataLoading = false;
       })
       .addCase(fetchPropertyOffersAction.pending, (state) => {
         state.isDataLoading = true;
@@ -50,6 +51,7 @@ export const offersData = createSlice({
       })
       .addCase(fetchPropertyOffersAction.rejected, (state) => {
         state.isError = true;
+        state.isDataLoading = false;
       })
       .addCase(fetchNearbyOffersAction.pending, (state) => {
         state.isDataLoading = true;
@@ -61,6 +63,7 @@ export const offersData = createSlice({
       })
       .addCase(fetchNearbyOffersAction.rejected, (state) => {
         state.isError = true;
+        state.isDataLoading = false;
       })
       .addCase(loadReviewsAction.pending, (state) => {
         state.isDataLoading = true;
@@ -72,6 +75,7 @@ export const offersData = createSlice({
       })
       .addCase(loadReviewsAction.rejected, (state) => {
         state.isError = true;
+        state.isDataLoading = false;
       })
       .addCase(sendNewReviewAction.pending, (state) => {
         state.isDataLoading = true;
@@ -83,6 +87,7 @@ export const offersData = createSlice({
       })
       .addCase(sendNewReviewAction.rejected, (state) => {
         state.isError = true;
+        state.isDataLoading = false;
       })
       .addCase(fetchFavoriteOffersAction.pending, (state) => {
         state.isDataLoading = true;
@@ -93,6 +98,7 @@ export const offersData = createSlice({
       })
       .addCase(fetchFavoriteOffersAction.rejected, (state) => {
         state.isError = true;
+        state.isDataLoading = false;
       })
       .addCase(changeFavoriteStatusAction.pending, (state) => {
         state.isDataLoading = true;
@@ -104,6 +110,7 @@ export const offersData = createSlice({
       })
       .addCase(changeFavoriteStatusAction.rejected, (state) => {
         state.isError = true;
+        state.isDataLoading = false;
       });
   }
 });
