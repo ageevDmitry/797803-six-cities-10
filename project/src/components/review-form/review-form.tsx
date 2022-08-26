@@ -3,7 +3,7 @@ import {REVIEW_FORM_STATUSES, LengthComment} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {UserReview} from '../../types/review';
 import {sendNewReviewAction} from '../../store/api-action';
-import {getPropertyOffer, getIsDataLoading} from '../../store/offers-data/selectors';
+import {getPropertyOffer, getIsDataLoading, getIsError} from '../../store/offers-data/selectors';
 import {useState, ChangeEvent} from 'react';
 
 function ReviewForm(): JSX.Element {
@@ -12,6 +12,7 @@ function ReviewForm(): JSX.Element {
   const formRef = useRef<HTMLFormElement>(null);
   const propertyOffer = useAppSelector(getPropertyOffer);
   const isDataLoading = useAppSelector(getIsDataLoading);
+  const isError = useAppSelector(getIsError);
   const defaultFormState = {
     comment: '',
     rating: '',
@@ -19,8 +20,8 @@ function ReviewForm(): JSX.Element {
 
   const [formData, setFormData] = useState(defaultFormState);
 
-  const isValidForm = ((LengthComment.Min < formData.comment.length &&
-    formData.comment.length < LengthComment.Max && formData.rating !== ''));
+  const isValidForm = (LengthComment.Min < formData.comment.length &&
+    formData.comment.length < LengthComment.Max && formData.rating !== '');
 
   const isFormDisabled = !isValidForm || isDataLoading;
 
@@ -28,6 +29,8 @@ function ReviewForm(): JSX.Element {
 
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value},);
+
+    console.log(evt.target);
   };
 
   const onSubmit = (newReview: UserReview) => {
@@ -49,8 +52,11 @@ function ReviewForm(): JSX.Element {
         }
       }
       );
-      setFormData(defaultFormState);
-      formRef.current.reset();
+
+      if (formRef.current !== null) {
+        setFormData(defaultFormState);
+        formRef.current.reset();
+      }
     }
   };
 
@@ -60,7 +66,7 @@ function ReviewForm(): JSX.Element {
       <div className="reviews__rating-form form__rating">
         {REVIEW_FORM_STATUSES.map((item) => (
           <Fragment key = {item.startNumber}>
-            <input onChange={handleFormChange} className="form__rating-input visually-hidden" defaultValue={item.startNumber} name="rating" id={`${item.startNumber}-stars`} type="radio" />
+            <input onChange={handleFormChange} className="form__rating-input visually-hidden" value={item.startNumber} name="rating" id={`${item.startNumber}-stars`} type="radio" />
             <label htmlFor={`${item.startNumber}-stars`} className="reviews__rating-label form__rating-label" title={item.title}>
               <svg className="form__star-image" width={37} height={33}>
                 <use xlinkHref="#icon-star" />
