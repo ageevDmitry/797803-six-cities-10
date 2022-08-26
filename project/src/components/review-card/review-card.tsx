@@ -28,7 +28,7 @@ function ReviewCard ({review}: ReviewProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: rating * RatingWidthFactor.Review}} />
+            <span style={{width: Math.round(rating) * RatingWidthFactor.Review}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

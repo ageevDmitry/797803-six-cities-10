@@ -71,7 +71,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: rating * RatingWidthFactor.Film}} />
+            <span style={{width: Math.round(rating) * RatingWidthFactor.Film}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
