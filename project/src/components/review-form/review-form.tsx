@@ -26,8 +26,6 @@ function ReviewForm(): JSX.Element {
 
   const handleFormChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
 
-    evt.preventDefault();
-
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value},);
   };
