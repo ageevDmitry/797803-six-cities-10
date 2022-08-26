@@ -57,7 +57,6 @@ function Property (): JSX.Element {
   };
 
   return (
-
     <div className="page">
       <Header/>
       <main className="page__main page__main--property">
