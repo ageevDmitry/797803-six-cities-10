@@ -1,4 +1,4 @@
-import {FormEventHandler, Fragment} from 'react';
+import {FormEvent, Fragment, useRef} from 'react';
 import {REVIEW_FORM_STATUSES, LengthComment} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {UserReview} from '../../types/review';
@@ -9,15 +9,20 @@ import {useState, ChangeEvent} from 'react';
 function ReviewForm(): JSX.Element {
 
   const dispatch = useAppDispatch();
-
+  const formRef = useRef<HTMLFormElement>(null);
   const propertyOffer = useAppSelector(getPropertyOffer);
   const isDataLoading = useAppSelector(getIsDataLoading);
-  let isFormDisabled = true;
-
-  const [formData, setFormData] = useState({
+  const defaultFormState = {
     comment: '',
-    rating: null,
-  });
+    rating: '',
+  };
+
+  const [formData, setFormData] = useState(defaultFormState);
+
+  const isValidForm = ((LengthComment.Min < formData.comment.length &&
+    formData.comment.length < LengthComment.Max && formData.rating !== ''));
+
+  const isFormDisabled = !isValidForm || isDataLoading;
 
   const handleFormChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
 
@@ -29,17 +34,14 @@ function ReviewForm(): JSX.Element {
 
   const onSubmit = (newReview: UserReview) => {
 
-    console.log(newReview);
-
     dispatch(sendNewReviewAction(newReview));
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
 
-    if (propertyOffer &&
-      LengthComment.Min < formData.comment.length &&
-      formData.comment.length < LengthComment.Max &&
-      formData.rating !== null) {
+    evt.preventDefault();
+
+    if (isValidForm && propertyOffer && formRef.current !== null) {
 
       onSubmit({
         propertyOfferId: propertyOffer.id,
@@ -49,20 +51,13 @@ function ReviewForm(): JSX.Element {
         }
       }
       );
+      setFormData(defaultFormState);
+      formRef.current.reset();
     }
   };
 
-  if (LengthComment.Min < formData.comment.length &&
-    formData.comment.length < LengthComment.Max &&
-    formData.rating !== null &&
-    !isDataLoading) {
-    isFormDisabled = false;
-  }
-
-  console.log(formData.comment.length);
-
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
+    <form ref={formRef} className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {REVIEW_FORM_STATUSES.map((item) => (
