@@ -21,7 +21,7 @@ function ReviewForm(): JSX.Element {
   }, [isSuccess]);
 
   const isValidForm = (LengthComment.Min < formData.comment.length &&
-    formData.comment.length < LengthComment.Max && formData.rating !== '');
+    formData.comment.length < LengthComment.Max && formData.rating.length > 0);
 
   const isFormDisabled = !isValidForm || isDataLoading;
 
@@ -58,11 +58,11 @@ function ReviewForm(): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {REVIEW_FORM_STATUSES.map((item) => (
-          <Fragment key = {item.startNumber}>
-            <input onChange={handleFormChange} className="form__rating-input visually-hidden" value={item.startNumber} name="rating" id={`${item.startNumber}-stars`}
-              type="radio" checked={(item.startNumber === Number(formData.rating))} disabled ={isDataLoading}
+          <Fragment key = {item.starNumber}>
+            <input onChange={handleFormChange} className="form__rating-input visually-hidden" value={item.starNumber} name="rating" id={`${item.starNumber}-stars`}
+              type="radio" checked={(item.starNumber === Number(formData.rating))} disabled ={isDataLoading}
             />
-            <label htmlFor={`${item.startNumber}-stars`} className="reviews__rating-label form__rating-label" title={item.title}>
+            <label htmlFor={`${item.starNumber}-stars`} className="reviews__rating-label form__rating-label" title={item.title}>
               <svg className="form__star-image" width={37} height={33}>
                 <use xlinkHref="#icon-star" />
               </svg>

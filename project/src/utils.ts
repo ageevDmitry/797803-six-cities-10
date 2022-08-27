@@ -17,3 +17,7 @@ export function getSortReviews(items: Review[]) {
 
   return sortItems.sort((a, b) => dayjs(b.date).diff(dayjs(a.date)));
 }
+
+export function getRating(rating: number, factor: number) {
+  return Math.round(rating) * factor;
+}

@@ -1,11 +1,16 @@
-import {RatingWidthFactor, PlaceCardType} from '../../const';
+import {RatingWidthFactor,
+  PlaceCardType,
+  VIEW_OFFER_TYPE,
+  FavoriteStatus,
+  AuthorizationStatus,
+  AppRoute} from '../../const';
 import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
-import {VIEW_OFFER_TYPE, FavoriteStatus, AuthorizationStatus, AppRoute} from '../../const';
 import {changeFavoriteStatusAction} from '../../store/api-action';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {redirectToRoute} from '../../store/action';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {getRating} from '../../utils';
 
 type PlaceCardProps = {
   typeComponent: string;
@@ -71,7 +76,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: Math.round(rating) * RatingWidthFactor.Film}} />
+            <span style={{width: getRating(rating, RatingWidthFactor.Film)}}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
