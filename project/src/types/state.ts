@@ -19,7 +19,7 @@ export type OffersData = {
     selectedOffer?: Offer,
     reviews?: Review[],
     isDataLoading: boolean,
-    isError: boolean,
+    isSuccess: boolean,
 };
 
 export type OffersUI = {

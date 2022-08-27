@@ -184,3 +184,8 @@ export const MAP_CITIES: City[] = [
     zoom: 5,
   },
 ];
+
+export const FORM_REVIEW_DEFAULT_STATE = {
+  comment: '',
+  rating: '',
+};

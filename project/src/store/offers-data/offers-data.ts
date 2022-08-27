@@ -15,7 +15,7 @@ const initialState: OffersData = {
   offers: [],
   favoriteOffers: [],
   isDataLoading: false,
-  isError: false,
+  isSuccess: false,
 };
 
 export const offersData = createSlice({
@@ -45,15 +45,17 @@ export const offersData = createSlice({
       })
       .addCase(sendNewReviewAction.pending, (state) => {
         state.isDataLoading = true;
+        state.isSuccess = false;
+
       })
       .addCase(sendNewReviewAction.fulfilled, (state, action) => {
         state.reviews = getSortReviews(action.payload);
         state.isDataLoading = false;
-        state.isError = false;
+        state.isSuccess = true;
       })
       .addCase(sendNewReviewAction.rejected, (state) => {
-        state.isError = true;
         state.isDataLoading = false;
+        state.isSuccess = false;
       })
       .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
