@@ -1,4 +1,4 @@
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, Navigate} from 'react-router-dom';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
@@ -53,7 +53,7 @@ function App(): JSX.Element {
         />
         <Route
           path={'*'}
-          element={<NotFoundScreen />}
+          element={<Navigate to={AppRoute.NotFound} replace />}
         />
       </Routes>
     </HistoryRouter>
