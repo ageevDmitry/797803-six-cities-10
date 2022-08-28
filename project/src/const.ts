@@ -67,6 +67,7 @@ export enum NameSpace {
   UserProcess = 'USER-PROCESS',
   OffersData = 'OFFERS-DATA',
   OffersUI = 'OFFERS-UI',
+  DataError = 'DATA-ERROR',
 }
 
 export const PLACE_CARD_CLASS_NAME = {

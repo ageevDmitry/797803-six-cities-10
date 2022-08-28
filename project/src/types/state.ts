@@ -29,6 +29,10 @@ export type OffersUI = {
     mapCity: City | undefined,
 };
 
+export type DataError = {
+  isDataError: boolean,
+};
+
 export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;

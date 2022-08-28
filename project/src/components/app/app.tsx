@@ -8,8 +8,21 @@ import PrivateRoute from '../../pages/private-route/private-route';
 import HistoryRouter from '../history-router/history-router';
 import {AppRoute} from '../../const';
 import browserHistory from '../../browser-history';
+import {redirectToRoute} from '../../store/action';
+import {useEffect} from 'react';
+import {getIsDataError} from '../../store/data-error/selectors';
+import {useAppSelector, useAppDispatch} from '../../hooks';
 
 function App(): JSX.Element {
+
+  const isDataError = useAppSelector(getIsDataError);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isDataError) {
+      dispatch(redirectToRoute(AppRoute.NotFound));
+    }
+  }, [isDataError, dispatch]);
 
   return (
     <HistoryRouter history={browserHistory}>
