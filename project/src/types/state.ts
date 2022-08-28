@@ -19,7 +19,7 @@ export type OffersData = {
     selectedOffer?: Offer,
     reviews?: Review[],
     isDataLoading: boolean,
-    isError: boolean,
+    isSuccess: boolean,
 };
 
 export type OffersUI = {
@@ -27,6 +27,10 @@ export type OffersUI = {
     sortType: SortType,
     selectedOffer?: Offer,
     mapCity: City | undefined,
+};
+
+export type DataError = {
+  isDataError: boolean,
 };
 
 export type State = ReturnType<typeof store.getState>;

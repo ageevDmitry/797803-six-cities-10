@@ -67,6 +67,7 @@ export enum NameSpace {
   UserProcess = 'USER-PROCESS',
   OffersData = 'OFFERS-DATA',
   OffersUI = 'OFFERS-UI',
+  DataError = 'DATA-ERROR',
 }
 
 export const PLACE_CARD_CLASS_NAME = {
@@ -112,23 +113,23 @@ export const SORT_LIST = [
 
 export const REVIEW_FORM_STATUSES = [
   {
-    startNumber: 5,
+    starNumber: 5,
     title: 'perfect'
   },
   {
-    startNumber: 4,
+    starNumber: 4,
     title: 'good'
   },
   {
-    startNumber: 3,
+    starNumber: 3,
     title: 'not bad'
   },
   {
-    startNumber: 2,
+    starNumber: 2,
     title: 'badly'
   },
   {
-    startNumber: 1,
+    starNumber: 1,
     title: 'terribly'
   },
 ];
@@ -184,3 +185,8 @@ export const MAP_CITIES: City[] = [
     zoom: 5,
   },
 ];
+
+export const FORM_REVIEW_DEFAULT_STATE = {
+  comment: '',
+  rating: '',
+};

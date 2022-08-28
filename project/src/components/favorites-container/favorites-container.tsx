@@ -1,23 +1,16 @@
 import PlaceCardList from '../place-card-list/place-card-list';
 import {CITIES, PlaceCardType} from '../../const';
 import {useAppSelector} from '../../hooks';
-import {getFavoriteOffers, getIsDataLoading} from '../../store/offers-data/selectors';
+import {getFavoriteOffers} from '../../store/offers-data/selectors';
 import FavoritesContainerEmpty from '../favorites-container-empty/favorites-container-empty';
-import LoadingScreen from '../loading-screen/loading-screen';
 import {Link} from 'react-router-dom';
 
 function FavoritesContainer (): JSX.Element {
 
   const favoriteOffers = useAppSelector(getFavoriteOffers);
-  const isDataLoading = useAppSelector(getIsDataLoading);
 
-  if (isDataLoading && favoriteOffers.length === 0) {
-    return (
-      <LoadingScreen />
-    );
-  }
 
-  if (!isDataLoading && favoriteOffers.length === 0) {
+  if (favoriteOffers.length === 0) {
     return <FavoritesContainerEmpty/>;
   }
 

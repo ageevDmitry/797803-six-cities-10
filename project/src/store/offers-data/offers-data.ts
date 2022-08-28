@@ -15,7 +15,7 @@ const initialState: OffersData = {
   offers: [],
   favoriteOffers: [],
   isDataLoading: false,
-  isError: false,
+  isSuccess: false,
 };
 
 export const offersData = createSlice({
@@ -28,82 +28,40 @@ export const offersData = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchOffersAction.pending, (state) => {
-        state.isDataLoading = true;
-      })
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.offers = action.payload;
-        state.isDataLoading = false;
-        state.isError = false;
       })
       .addCase(fetchOffersAction.rejected, (state) => {
         state.offers = [];
-        state.isError = true;
-      })
-      .addCase(fetchPropertyOffersAction.pending, (state) => {
-        state.isDataLoading = true;
       })
       .addCase(fetchPropertyOffersAction.fulfilled, (state, action) => {
         state.propertyOffer = action.payload;
-        state.isDataLoading = false;
-        state.isError = false;
-      })
-      .addCase(fetchPropertyOffersAction.rejected, (state) => {
-        state.isError = true;
-      })
-      .addCase(fetchNearbyOffersAction.pending, (state) => {
-        state.isDataLoading = true;
       })
       .addCase(fetchNearbyOffersAction.fulfilled, (state, action) => {
         state.nearbyOffers = action.payload;
-        state.isDataLoading = false;
-        state.isError = false;
-      })
-      .addCase(fetchNearbyOffersAction.rejected, (state) => {
-        state.isError = true;
-      })
-      .addCase(loadReviewsAction.pending, (state) => {
-        state.isDataLoading = true;
       })
       .addCase(loadReviewsAction.fulfilled, (state, action) => {
         state.reviews = getSortReviews(action.payload);
-        state.isDataLoading = false;
-        state.isError = false;
-      })
-      .addCase(loadReviewsAction.rejected, (state) => {
-        state.isError = true;
       })
       .addCase(sendNewReviewAction.pending, (state) => {
         state.isDataLoading = true;
+        state.isSuccess = false;
+
       })
       .addCase(sendNewReviewAction.fulfilled, (state, action) => {
         state.reviews = getSortReviews(action.payload);
         state.isDataLoading = false;
-        state.isError = false;
+        state.isSuccess = true;
       })
       .addCase(sendNewReviewAction.rejected, (state) => {
-        state.isError = true;
-      })
-      .addCase(fetchFavoriteOffersAction.pending, (state) => {
-        state.isDataLoading = true;
+        state.isDataLoading = false;
+        state.isSuccess = false;
       })
       .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
         state.favoriteOffers = action.payload;
-        state.isDataLoading = false;
-      })
-      .addCase(fetchFavoriteOffersAction.rejected, (state) => {
-        state.isError = true;
-      })
-      .addCase(changeFavoriteStatusAction.pending, (state) => {
-        state.isDataLoading = true;
       })
       .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {
         state.propertyOffer = action.payload;
-        state.isDataLoading = false;
-        state.isError = false;
-      })
-      .addCase(changeFavoriteStatusAction.rejected, (state) => {
-        state.isError = true;
       });
   }
 });

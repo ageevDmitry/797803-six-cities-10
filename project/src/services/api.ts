@@ -39,6 +39,10 @@ export const createAPI = (): AxiosInstance => {
         toast.warn(error.response.data.error);
       }
 
+      if (!window.navigator.onLine) {
+        toast.warn('Отсутсвует соединение с интернетом!');
+      }
+
       throw error;
     }
   );

@@ -8,5 +8,5 @@ export const getNearbyOffer = (state: State): Offer[] | undefined => state[NameS
 export const getFavoriteOffers = (state: State): Offer[] => state[NameSpace.OffersData].favoriteOffers;
 export const getReviews = (state: State): Review[] | undefined => state[NameSpace.OffersData].reviews;
 export const getIsDataLoading = (state: State): boolean => state[NameSpace.OffersData].isDataLoading;
-export const getIsError = (state: State): boolean => state[NameSpace.OffersData].isError;
+export const getIsSuccess = (state: State): boolean => state[NameSpace.OffersData].isSuccess;
 export const getSelectedOffer = (state: State): Offer | undefined => state[NameSpace.OffersData].selectedOffer;

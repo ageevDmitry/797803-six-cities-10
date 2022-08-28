@@ -5,10 +5,14 @@ import ReviewForm from '../../components/review-form/review-form';
 import ReviewList from '../../components/review-list/review-list';
 import PlaceCardList from '../../components/place-card-list/place-card-list';
 import Map from '../../components/map/map';
-import {PlaceCardType, PROPERTY_IMAGES_COUNT, RatingWidthFactor} from '../../const';
-import {useAppSelector} from '../../hooks';
-import {AuthorizationStatus, VIEW_OFFER_TYPE, AppRoute, FavoriteStatus} from '../../const';
-import {useAppDispatch} from '../../hooks';
+import {PlaceCardType,
+  PROPERTY_IMAGES_COUNT,
+  RatingWidthFactor,
+  AuthorizationStatus,
+  VIEW_OFFER_TYPE,
+  AppRoute,
+  FavoriteStatus} from '../../const';
+import {useAppSelector, useAppDispatch} from '../../hooks';
 import {fetchPropertyOffersAction,
   fetchNearbyOffersAction,
   loadReviewsAction} from '../../store/api-action';
@@ -18,6 +22,7 @@ import {changeFavoriteStatusAction} from '../../store/api-action';
 import {getPropertyOffer, getReviews, getNearbyOffer} from '../../store/offers-data/selectors';
 import {getMapCity} from '../../store/offers-ui/selectors';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {getRating} from '../../utils';
 
 function Property (): JSX.Element {
 
@@ -57,7 +62,6 @@ function Property (): JSX.Element {
   };
 
   return (
-
     <div className="page">
       <Header/>
       <main className="page__main page__main--property">
@@ -98,7 +102,7 @@ function Property (): JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: offer.rating * RatingWidthFactor.Property}} />
+                  <span style={{width: getRating(offer.rating, RatingWidthFactor.Property)}} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{offer.rating}</span>

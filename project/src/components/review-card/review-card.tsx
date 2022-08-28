@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import {Review} from '../../types/review';
 import {RatingWidthFactor} from '../../const';
+import {getRating} from '../../utils';
 
 type ReviewProps = {
  review: Review
@@ -28,7 +29,7 @@ function ReviewCard ({review}: ReviewProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: rating * RatingWidthFactor.Review}} />
+            <span style={{width: getRating(rating, RatingWidthFactor.Review)}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
