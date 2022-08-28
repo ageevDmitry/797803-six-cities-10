@@ -48,7 +48,7 @@ function PlaceCard ({typeComponent, offer, onMouseEnterPlaceCard}:PlaceCardProps
             className="place-card__image"
             src={previewImage}
             alt="Place figure"
-            width={(typeComponent === PlaceCardType.Favorites) ? 150 : 210}
+            width={(typeComponent === PlaceCardType.Favorites) ? 150 : 260}
             height={(typeComponent === PlaceCardType.Favorites) ? 110 : 200}
           />
         </Link>
