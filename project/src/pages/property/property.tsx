@@ -28,7 +28,6 @@ function Property (): JSX.Element {
 
   const {id} = useParams();
   const dispatch = useAppDispatch();
-
   const offer = useAppSelector(getPropertyOffer);
   const reviews = useAppSelector(getReviews);
   const nearbyOffers = useAppSelector(getNearbyOffer);
@@ -115,7 +114,7 @@ function Property (): JSX.Element {
                   {offer?.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-              Max {offer.maxAdults} adults
+                  Max {offer.maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
